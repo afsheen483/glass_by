@@ -120,7 +120,7 @@ itemtype="https://schema.org/WebPage"
                         <div class="app-main__inner row">
                             <div id="feed" class="col-lg-12">
                               
-                              <div class="alert alert-info">Hello <?php  echo $session_name?>!</div>
+                              <div class="alert alert-info">Hello <?echo $session_name?>!</div>
                               
                             
 
@@ -130,7 +130,7 @@ itemtype="https://schema.org/WebPage"
                         
                         <div class="card p-2 m-2">
                         
-                        <?php  if(isset($_GET['id'])){
+                        <?if(isset($_GET['id'])){
                             $id = $_GET['id'];
                             $stmt = $con->prepare("SELECT * FROM glassBuy_globals where id='$id'");
                             $stmt->execute();
@@ -141,13 +141,13 @@ itemtype="https://schema.org/WebPage"
                                 $type = $row['type'];
                             }
                         ?>
-                        <?php  if($type=="text"){?>
-                        <textarea name="value" class="form-control"><?php  echo $value?></textarea>
-                        <?php  }else{?>
+                        <?if($type=="text"){?>
+                        <textarea name="value" class="form-control"><?echo $value?></textarea>
+                        <?}else{?>
                         <input class="form-control" name="logo" type="file">
-                        <?php  }?>
+                        <?}?>
                         <button type="submit" class="btn btn-primary m-2">Submit</button>
-                        <?php  }?>
+                        <?}?>
                         <table class="table ">
                             <tr>
                                 <td>Title</td>
@@ -155,21 +155,21 @@ itemtype="https://schema.org/WebPage"
                                 <td>Edit</td>
                             </tr>
                             
-                            <?php  $stmt = $con->prepare("SELECT * FROM glassBuy_globals");
+                            <?$stmt = $con->prepare("SELECT * FROM glassBuy_globals");
                             $stmt->execute();
                             $result = $stmt->get_result();
                                 while($row = $result->fetch_assoc()) 
                                 {?>
                                 <tr>
-                                    <td><?php  echo $row['title'];?></td>
-                                    <td><?php  if($row['type']=="text"){echo $row['value'];}else{
+                                    <td><?echo $row['title'];?></td>
+                                    <td><?if($row['type']=="text"){echo $row['value'];}else{
                                     ?>
-                                    <img src="./uploads/<?php  echo $row['value']?>" style="height:100px;">
-                                    <?php  
+                                    <img src="./uploads/<?echo $row['value']?>" style="height:100px;">
+                                    <?
                                     }?></td>
-                                    <Td><a href="?id=<?php  echo $row['id']?>" class="btn btn-warning ">Edit</a></Td>
+                                    <Td><a href="?id=<?echo $row['id']?>" class="btn btn-warning ">Edit</a></Td>
                                 </tr>
-                            <?php  }?>
+                            <?}?>
                             
                         </table>
                         </div>

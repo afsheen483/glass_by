@@ -94,7 +94,7 @@ itemtype="https://schema.org/WebPage"
                 <a target="_blank" class="button" href="./export.php?table=users&format=excel">Export</a>
                 <?}?>
                 
-                <table class="table">
+                <table >
                     <thead>
                         <tr>
                             
@@ -147,7 +147,7 @@ itemtype="https://schema.org/WebPage"
 
 <script type="text/javascript">
     $(document).ready(function(e){
-        $(".table").dataTable();
+        $("table").dataTable();
         $("form.deleteGlass").on('submit',function(e){
             return confirm("Do you want to delete this record?");
         })

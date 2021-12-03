@@ -151,59 +151,59 @@ itemtype="https://schema.org/WebPage"
                                                                                                 
                                                                                                 
                                                                                                 
-                                                                                                <?php foreach($glass_atts as $i=>$col){?>
-                                                                                                    <p class="woocommerce-form-row woocommerce-form-row--<?php  if(fmod($i, 2)==0){?>first<?php  }else{?>last<?php  }?> form-row form-row-<?php  if(fmod($i, 2)==0){?>first<?php  }else{?>last<?php  }?>">
-                                                                                                        <label for="additional_info"><?php  echo ucfirst($col)?><span class="required">*</span></label>
-                                                                                                        <?php  if(stristr($col, "color") || stristr($col, "colour")){?>
-                                                                                                        <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?php  echo $col?>" id="available_sizes" value="<?php  echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
-                                                                                                            <?php  foreach($g_colors as $color){?>
-                                                                                                            <option <?php  if($getGlasses[$col]==$color){echo "selected";}?> ><?php  echo $color?></option>
-                                                                                                            <?php  }?>
+                                                                                                <?foreach($glass_atts as $i=>$col){?>
+                                                                                                    <p class="woocommerce-form-row woocommerce-form-row--<?if(fmod($i, 2)==0){?>first<?}else{?>last<?}?> form-row form-row-<?if(fmod($i, 2)==0){?>first<?}else{?>last<?}?>">
+                                                                                                        <label for="additional_info"><?echo ucfirst($col)?><span class="required">*</span></label>
+                                                                                                        <?if(stristr($col, "color") || stristr($col, "colour")){?>
+                                                                                                        <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
+                                                                                                            <?foreach($g_colors as $color){?>
+                                                                                                            <option <?if($getGlasses[$col]==$color){echo "selected";}?> ><?echo $color?></option>
+                                                                                                            <?}?>
                                                                                                         </select>
-                                                                                                        <?php  }else if($col=="shape"){?>
-                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?php  echo $col?>" id="available_sizes" value="<?php  echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
-                                                                                                            <?php  
+                                                                                                        <?}else if($col=="shape"){?>
+                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
+                                                                                                            <?
                                                                                                             $temp_table = array("Square", "Round", "Plane" );
                                                                                                             foreach($temp_table as $rt){?>
-                                                                                                                <option <?php  if($getGlasses[$col]==$rt){echo "selected";}?> ><?php  echo $rt?></option>
-                                                                                                            <?php  }?>
+                                                                                                                <option <?if($getGlasses[$col]==$rt){echo "selected";}?> ><?echo $rt?></option>
+                                                                                                            <?}?>
                                                                                                             </select>
                                                                                                             
-                                                                                                        <?php  }else if($col=="material"){?>
-                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?php  echo $col?>" id="available_sizes" value="<?php  echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
-                                                                                                            <?php  
+                                                                                                        <?}else if($col=="material"){?>
+                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
+                                                                                                            <?
                                                                                                             $temp_table = array("Metal", "Plastic", "Fiber" );
                                                                                                             foreach($temp_table as $rt){?>
-                                                                                                                <option <?php  if($getGlasses[$col]==$rt){echo "selected";}?> ><?php  echo $rt?></option>
-                                                                                                            <?php  }?>
+                                                                                                                <option <?if($getGlasses[$col]==$rt){echo "selected";}?> ><?echo $rt?></option>
+                                                                                                            <?}?>
                                                                                                             </select>
                                                                                                             
-                                                                                                        <?php  }else if($col=="gender"){?>
-                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?php  echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
-                                                                                                            <?php  
+                                                                                                        <?}else if($col=="gender"){?>
+                                                                                                            <select type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
+                                                                                                            <?
                                                                                                             $temp_table = array("men", "women", "unisex" );
                                                                                                             foreach($temp_table as $rt){?>
-                                                                                                                <option <?php  if($getGlasses[$col]==$rt){echo "selected";}?> ><?php  echo $rt?></option>
-                                                                                                            <?php  }?>
+                                                                                                                <option <?if($getGlasses[$col]==$rt){echo "selected";}?> ><?echo $rt?></option>
+                                                                                                            <?}?>
                                                                                                             </select>
                                                                                                             
-                                                                                                        <?php  }else{?>
+                                                                                                        <?}else{?>
                                                                                                         
                                                                                                         
-                                                                                                          <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?php  echo $col?>" id="available_sizes" value="<?php  echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
-                                                                                                            <?php  if(stristr($col, "gender") ){?>
+                                                                                                          <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="<?echo $col?>" id="available_sizes" value="<?php echo isset($getGlasses) ? $getGlasses[$col] : '' ?>">
+                                                                                                            <?if(stristr($col, "gender") ){?>
                                                                                                                 <label>men/women/unisex</label>
-                                                                                                            <?php  }?>
-                                                                                                            <?php  if(stristr($col, "type") ){?>
+                                                                                                            <?}?>
+                                                                                                            <?if(stristr($col, "type") ){?>
                                                                                                             <label>glasses/sunglasses</label>
-                                                                                                            <?php  }?>
-                                                                                                        <?php  }?>
+                                                                                                            <?}?>
+                                                                                                        <?}?>
                                                                                                     </p>
-                                                                                                    <?php  
+                                                                                                    <?
                                                                                                     if(fmod($i, 2)!=0){?>
                                                                                                     <div class="clear"></div>
-                                                                                                    <?php  }?>
-                                                                                                <?php  }?>
+                                                                                                    <?}?>
+                                                                                                <?}?>
                                                                                                 
                                                                                                 <div class="clear"></div>
                                                                                 

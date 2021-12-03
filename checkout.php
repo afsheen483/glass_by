@@ -150,35 +150,17 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
         $shipping = mb_htmlentities($_POST['shipping_country']);
 
         //PRESCRIPTION
-        //$lens_type_details = $_SESSION['prescript_data1']['lens_type_details'];
-        //dd($lens_type_details);
         $r_sph = $_SESSION['prescript_data1']['addon-1584107435-1-sph-0'];
         $r_cyl = $_SESSION['prescript_data1']['addon-1584107435-1-cyl-1'];
         $r_axis = $_SESSION['prescript_data1']['addon-1584107435-1-axis-2'];
         $r_add = $_SESSION['prescript_data1']['addon-1584107435-1-add-3'];
-        if ($r_cyl > 0) { 
-            $r_convert_sph = $r_sph + $r_cyl;
-            $r_convert_cyl = "-".$r_cyl;
-          }
-          if ($r_axis > 90) {
-            $r_convert_axis = $r_axis - 90;
-         }elseif($r_axis < 90){
-           $r_convert_axis = $r_axis + 90;
-         }
+
         $l_sph = $_SESSION['prescript_data1']['addon-1584107435-2-sph-0'];
         $l_cyl = $_SESSION['prescript_data1']['addon-1584107435-2-cyl-1'];
         $l_axis = $_SESSION['prescript_data1']['addon-1584107435-2-axis-2'];
         $l_add = $_SESSION['prescript_data1']['addon-1584107435-2-add-3'];
         $pdimage = $_SESSION['prescript_data1']['pdimage'];
-        if ($l_cyl > 0) { 
-            $l_convert_sph = $l_sph + $l_cyl;
-            $l_convert_cyl = "-".$l_cyl;
-          }
-          if ($l_axis > 90) {
-            $l_convert_axis = $l_axis - 90;
-         }elseif($r_axis < 90){
-           $l_convert_axis = $l_axis + 90;
-         }
+
         $quantity1 = $_SESSION['prescript_data1']['component_1584107435_bundle_quantity_1'];
 
         $pd = $_SESSION['prescript_data1']['addon-1584107435-pd-2'];
@@ -236,7 +218,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
         //check if previous prescrpition
         if($_SESSION['prescript_data1']['selected_prescription']==""){
              $time = time();
-             $prescription = "INSERT INTO glassBuy_prescription(product_id,order_id,r_sph,r_cyl,r_axis,r_add,l_sph,l_cyl,l_axis,l_add,lens_type,quantity,pd,fname,lname,prescription,file_name, userId, timeAdded, pdimage) VALUES('$pid',$last_id,'$r_convert_sph','$r_convert_cyl','$r_convert_axis','$r_add','$l_convert_sph','$l_convert_cyl','$l_convert_axis','$l_add','$lens_type','$quantity','$pd','$pre_fname','$pre_lname','$prescript','$pre_file', '$session_userId', '$time', '$pdimage')";
+             $prescription = "INSERT INTO glassBuy_prescription(product_id,order_id,r_sph,r_cyl,r_axis,r_add,l_sph,l_cyl,l_axis,l_add,lens_type,quantity,pd,fname,lname,prescription,file_name, userId, timeAdded, pdimage) VALUES('$pid',$last_id,'$r_sph','$r_cyl','$r_axis','$r_add','$l_sph','$l_cyl','$l_axis','$l_add','$lens_type','$quantity','$pd','$pre_fname','$pre_lname','$prescript','$pre_file', '$session_userId', '$time', '$pdimage')";
              $con->query($prescription);
             //  echo "empty: ".$prescription;
         }else{
@@ -248,31 +230,11 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                   $row_pres = $pres_data->fetch_assoc();
                   $r_sph = $row_pres['r_sph'];
                   $r_cyl = $row_pres['r_cyl'];
-
-                  if ($r_cyl > 0) { 
-                    $r_convert_sph = $r_sph + $r_cyl;
-                    $r_convert_cyl = "-".$r_cyl;
-                  }
                   $r_axis = $row_pres['r_axis'];
-                  if ($r_axis > 90) {
-                     $r_convert_axis = $r_axis - 90;
-                  }elseif($r_axis < 90){
-                    $r_convert_axis = $r_axis + 90;
-                  }
                   $r_add = $row_pres['r_add'];
                   $l_sph = $row_pres['l_sph'];
                   $l_cyl = $row_pres['l_cyl'];
-
-                  if ($l_cyl > 0) { 
-                    $l_convert_sph = $l_sph + $l_cyl;
-                    $l_convert_cyl = "-".$l_cyl;
-                  }
                   $l_axis = $row_pres['l_axis'];
-                  if ($l_axis > 90) {
-                    $l_convert_axis = $l_axis - 90;
-                 }elseif($r_axis < 90){
-                   $l_convert_axis = $l_axis + 90;
-                 }
                   $l_add = $row_pres['l_add'];
                   $lens_type = $row_pres['lens_type'];
                   $quantity = $row_pres['quantity'];
@@ -291,7 +253,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
             
             $prescription = "INSERT INTO glassBuy_prescription(product_id,order_id,r_sph,r_cyl,r_axis,r_add,l_sph,l_cyl,l_axis,l_add
             ,lens_type,quantity,pd,fname,lname,prescription,file_name, userId, timeAdded, pdimage) VALUES ('$pid',$last_id,
-            '$r_convert_sph','$r_convert_cyl','$r_convert_axis','$r_add','$l_convert_sph','$l_convert_cyl','$l_convert_axis','$l_add','$lens_type','$quantity',
+            '$r_sph','$r_cyl','$r_axis','$r_add','$l_sph','$l_cyl','$l_axis','$l_add','$lens_type','$quantity',
             '$pd','$fname','$lname','$prescript','$file_name', '$session_userId', '$time', '$pdimage')";
             $con->query($prescription);
             
@@ -312,7 +274,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
             ]
             );
             
-             $success_url  = $g_project_url.'view_order.php?pId='.($last_id)."thankyou=thankyou";
+             $success_url  = $g_project_url.'admin_orders.php?id='.($last_id)."&c=".md5($last_id)."&pId=$index";
             //  echo $success_url;
             //  exit();
             $session = $stripe->checkout->sessions->create([
@@ -339,14 +301,14 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
             // Make the id field from the Checkout Session creation API response
             // available to this file, so you can provide it as argument here
             // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-            sessionId: '<?php  echo $session['id']?>'
+            sessionId: '<?echo $session['id']?>'
           }).then(function (result) {
             // If `redirectToCheckout` fails due to a browser or network
             // error, display the localized error message to your customer
             // using `result.error.message`.
           });
         </script>
-        <?php  
+        <?
         echo "Redirecting...";
         exit();
             
@@ -437,15 +399,15 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                             <a href="./cart.php">< Back</a>
                                                                             
                                                                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-                                                                            <?php  if($_GET['m']!=""){?>
+                                                                            <?if($_GET['m']!=""){?>
                                                                             <div class="alert alert-danger" role="alert">
                                                                                                 <div class="alert-text">
-                                                                                                <?php  echo  $_GET['m']?>
+                                                                                                <?echo  $_GET['m']?>
                                                                                                 </div>
                                                                                             </div>
                                                                                             
                                                                                             
-                                                                            <?php  }?>
+                                                                            <?}?>
                                                                         
                                                                         
                                                                             <div class="col2-set" id="customer_details">
@@ -550,9 +512,9 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                                         readonly="readonly"
                                                                                                     />-->
                                                                                                     <select type="text" class="input-text" name="billing_postcode" id="billing_postcode" placeholder="" value="" autocomplete="postal-code" >
-                                                                                                        <?php  foreach($g_countries as $country){?>
-                                                                                                        <option <?php  if($country=="United States"){echo "selected";}?>><?php  echo $country?></option>
-                                                                                                        <?php  }?>
+                                                                                                        <?foreach($g_countries as $country){?>
+                                                                                                        <option <?if($country=="United States"){echo "selected";}?>><?echo $country?></option>
+                                                                                                        <?}?>
                                                                                                     </select>
 
                                                                                                 </span>
@@ -567,7 +529,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                             <p class="form-row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
                                                                                                 <label for="billing_email" class="">Email address&nbsp;<abbr class="required" title="required">*</abbr></label>
                                                                                                 <span class="woocommerce-input-wrapper">
-                                                                                                    <input type="email" class="input-text" name="billing_email" id="billing_email" placeholder="" value="<?php echo $session_email?>" autocomplete="email username" />
+                                                                                                    <input type="email" class="input-text" name="billing_email" id="billing_email" placeholder="" value="<?echo $session_email?>" autocomplete="email username" />
                                                                                                 </span>
                                                                                             </p>
                                                                                                 
@@ -703,9 +665,9 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                                         readonly="readonly"
                                                                                                     />-->
                                                                                                     <select type="text" class="input-text" name="c_billing_postcode" id="billing_postcode" placeholder="" value="" autocomplete="postal-code" >
-                                                                                                        <?php  foreach($g_countries as $country){?>
-                                                                                                        <option <?php  if($country=="United States"){echo "selected";}?>><?php  echo $country?></option>
-                                                                                                        <?php  }?>
+                                                                                                        <?foreach($g_countries as $country){?>
+                                                                                                        <option <?if($country=="United States"){echo "selected";}?>><?echo $country?></option>
+                                                                                                        <?}?>
                                                                                                     </select>
 
                                                                                                 </span>
@@ -720,7 +682,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                             <p class="form-row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
                                                                                                 <label for="billing_email" class="">Email address&nbsp;<abbr class="required" title="required">*</abbr></label>
                                                                                                 <span class="woocommerce-input-wrapper">
-                                                                                                    <input type="email" class="input-text" name="c_billing_email1" id="billing_email" placeholder="" value="<?php echo $session_email?>" autocomplete="email username" />
+                                                                                                    <input type="email" class="input-text" name="c_billing_email1" id="billing_email" placeholder="" value="<?echo $session_email?>" autocomplete="email username" />
                                                                                                 </span>
                                                                                             </p>
                                                                                             <div class="woocommerce-additional-fields">
@@ -745,7 +707,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                         
                                                                                     </div>
                                                                                 
-                                                                                    <?php  if($logged==0){?>
+                                                                                    <?if($logged==0){?>
                                                                                    <div class="woocommerce-account-fields">
                                                                                         <div class="create-account">
                                                                                             <p class="form-row validate-required" id="account_password_field" data-priority="">
@@ -758,7 +720,7 @@ $tax = round(($subbtotal * 0.04712), 2)  ;
                                                                                             <div class="clear"></div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <?php  }?>
+                                                                                    <?}?>
                                                                                     
                                                                                     
                                                                                   <!--  
@@ -1258,7 +1220,7 @@ PURCHASE*</span>
                                                                                     <table class="shop_table woocommerce-checkout-review-order-table">
                                                                                         <tbody>
                                                                                             
-                                                                                            <?php  
+                                                                                            <?
                                                                                             foreach($_SESSION['product_id'] as $pidinfo){
                                                                                                 
                                                                                                 $pid = $pidinfo['id'];
@@ -1279,30 +1241,30 @@ PURCHASE*</span>
                                                                         		   $desc = $rowd['additional_info'];
                                                                                 }?>
                                                                                             <tr class="cart_item">
-                                                                                                <td class="product-name"><?php  echo $p_name?><strong class="product-quantity">×&nbsp;1</strong></td>
+                                                                                                <td class="product-name"><?echo $p_name?><strong class="product-quantity">×&nbsp;1</strong></td>
                                                                                                 <td class="product-total">
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $p_price?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $p_price?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                            <?php  }?>
+                                                                                            <?}?>
                                                                                             <style>
                                                                                                 .woocommerce #order_review .woocommerce-checkout-review-order-table tbody tr:last-child td {
                                                                                                     width: 50%;
                                                                                                     float: left;
                                                                                                 }
                                                                                             </style>
-                                                                                            <?php  if($Prescription_Lenses_cost_total!=0){?>
+                                                                                            <?if($Prescription_Lenses_cost_total!=0){?>
                                                                                             <tr class="cart_item">
                                                                                                 <td class="product-name">Prescription Lenses&nbsp; <strong class="product-quantity">×&nbsp;1</strong></td>
                                                                                                 <td class="product-total">
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $Prescription_Lenses_cost_total?>.00</bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $Prescription_Lenses_cost_total?>.00</bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                            <?php  }?>
+                                                                                            <?}?>
                                                                                             
                                                                                             <!--<tr class="cart_item component_container_table_item">
                                                                                                 <td class="product-name">&nbsp; <strong class="product-quantity">×&nbsp;1</strong></td>
@@ -1316,25 +1278,25 @@ PURCHASE*</span>
                                                                                         </tbody>
                                                                                         <tfoot>
                                                                                             
-                                                                                            <?php  
+                                                                                            <?
                                                                                             // var_dump($myaccessories);
                                                                                             
                                                                                             foreach($myaccessories as $ass){?>
                                                                                             <tr class="cart-subtotal">
-                                                                                                <th><?php  echo $ass[0]?> x <?php  echo $ass[2]?></th>
+                                                                                                <th><?echo $ass[0]?> x <?echo $ass[2]?></th>
                                                                                                 <td>
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $ass[1] * $ass[2]?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $ass[1] * $ass[2]?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                            <?php  }?>
+                                                                                            <?}?>
                                                                                             
                                                                                             <tr class="cart-subtotal">
                                                                                                 <th>Subtotal</th>
                                                                                                 <td>
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $subbtotal?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $subbtotal?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
@@ -1350,7 +1312,7 @@ PURCHASE*</span>
                                                                                                 <th>
                                                                                                     Discount<br />
                                                                                                 </th>
-                                                                                                <td data-title="Shipping">$<span class="woocommerce-Price-amount amount"><?php  echo $discount?></span></td>
+                                                                                                <td data-title="Shipping">$<span class="woocommerce-Price-amount amount"><?echo $discount?></span></td>
                                                                                             </tr>
                                                                                             
                                                                                             
@@ -1359,7 +1321,7 @@ PURCHASE*</span>
                                                                                                 <th>Tax</th>
                                                                                                 <td>
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $tax;?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $tax;?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
@@ -1368,9 +1330,9 @@ PURCHASE*</span>
                                                                                                 <th>Order Total</th>
                                                                                                 <td>
                                                                                                     <strong>
-                                                                                                        <input name="total" value="<?php  echo round(($tax+ $subbtotal + 9+$assTotal) - $discount, 2)?>" hidden>
+                                                                                                        <input name="total" value="<?echo round(($tax+ $subbtotal + 9+$assTotal) - $discount, 2)?>" hidden>
                                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo round(($tax+ $subbtotal + 9+$assTotal) - $discount, 2)?></bdi>
+                                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo round(($tax+ $subbtotal + 9+$assTotal) - $discount, 2)?></bdi>
                                                                                                         </span>
                                                                                                     </strong>
                                                                                                 </td>
@@ -1387,11 +1349,11 @@ PURCHASE*</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 </form>
-                                                                                <?php  if($m!=""){?>
+                                                                                <?if($m!=""){?>
                                                                         <div class="woocommerce-message" role="alert">
-                                                                    		<?php  echo $m?>
+                                                                    		<?echo $m?>
                                                                     		</div>
-                                                                        <?php  }?>
+                                                                        <?}?>
                                                                         
     
                                                                                 <!--<div class="extra-info">

@@ -5,15 +5,9 @@
 // $user_pass='sandeep@123';
 // $database_in_use='anomozco_decend';
 
-// $host='localhost';
-// $username='anomozco_decend';
-// $user_pass='rWg#M$vFYk]+';
-// $database_in_use='anomozco_decend';
-
-
 $host='localhost';
-$username='root';
-$user_pass='';
+$username='anomozco_decend';
+$user_pass='rWg#M$vFYk]+';
 $database_in_use='anomozco_decend';
 
 $con = mysqli_connect($host,$username,$user_pass,$database_in_use);

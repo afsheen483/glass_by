@@ -15,7 +15,7 @@ if($logged==0){
 <html lang="en-US">
 <head>
     
-<?php  
+<?
 if(!isset($_GET['print'])){
 require("./includes/head.php");
 }
@@ -57,11 +57,11 @@ itemtype="https://schema.org/WebPage"
 <div class="fl-module-content fl-node-content">
 <div class="pp-heading-content">
 <div class="pp-heading pp-left">
-    <?php  if(!isset($_GET['print'])){ ?>
+    <?if(!isset($_GET['print'])){ ?>
 <h2 class="heading-title">
     <span class="title-text pp-primary-title">My Account</span>
 </h2>
-<?php  }?>
+<?}?>
 </div>
 </div>
 </div>
@@ -90,7 +90,7 @@ include('./includes/sidebar.php');} ?>
                 <!-- end alert section -->
                 
                 <h5>Addresses</h5>
-                <?php  if(true){?>
+                <?if(true){?>
                 <style>
                     #DataTables_Table_0_wrapper{
                         overflow:auto !important;
@@ -100,7 +100,7 @@ include('./includes/sidebar.php');} ?>
                 <table >
                     <thead>
                         <tr>
-                            <?php  
+                            <?
                             
                             $myOrderIds = array();
                             $query = "SELECT *, o.id order_id from glassBuy_order o inner join glassBuy_glasses g on g.glass_id=o.product_id where o.user_id='$session_userId' and isPaid='1';";
@@ -118,38 +118,38 @@ include('./includes/sidebar.php');} ?>
                                     if(!in_array($r, array("product_name", "product_id", "order_id", "id", "product_price", "create_password", "order_date"))){
                                         $presRows[] = $r;
                                         ?>
-                                         <th><?php  echo $r?></th>
-                                        <?php  
+                                         <th><?echo $r?></th>
+                                        <?
                                     }
                                 }
                             }
                             ?>
                         </tr>
                         <tbody>
-                            <?php  
+                            <?
                             $query = "SELECT * from glassBuy_order_details where order_id in $myOrderIds;";
                             $od = getAll($con, $query);
                             foreach($od as $row){
-                                ?><tr><?php  
+                                ?><tr><?
                                 foreach($presRows as $pr){
                                     ?>
                                     <td>
-                                        <?php  if($pr!="file_name"){?>
-                                        <?php  echo $row[$pr]?>
-                                        <?php  }else{?>
-                                        <a href="./uploads/<?php  echo $row[$pr]?>" target="_blank">View file</a>
-                                        <?php  }?>
+                                        <?if($pr!="file_name"){?>
+                                        <?echo $row[$pr]?>
+                                        <?}else{?>
+                                        <a href="./uploads/<?echo $row[$pr]?>" target="_blank">View file</a>
+                                        <?}?>
                                     
                                     </td>
-                                    <?php  
+                                    <?
                                 }
-                                ?></tr><?php  
+                                ?></tr><?
                             }?>
                         </tbody>
                     </thead>
                     
                 </table>
-                <?php  }?>
+                <?}?>
                 
         </div>
     </div>
@@ -188,9 +188,9 @@ include('./includes/sidebar.php');} ?>
         })
     });
     
-    <?php  if(isset($_GET['print'])){?>
+    <?if(isset($_GET['print'])){?>
     print();
-    <?php  }?>
+    <?}?>
 </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
-// ini_set('session.cookie_lifetime', 60 * 60 * 24 * 100);
-// ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 100);
-// ini_set('session.save_path', '/tmp');
+ini_set('session.cookie_lifetime', 60 * 60 * 24 * 100);
+ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 100);
+ini_set('session.save_path', '/tmp');
 
 session_start();
 
@@ -264,8 +264,7 @@ $g_orderStatus = array("NOT STARTED", "IN PROGRESS", "COMPLETE", "DELIVERED", "R
 include_once("./includes/core/dbmodel.php");
 include_once("./includes/core/session.php");
 
-//$g_project_url = "http://dev.olaglasses.com/";
-$g_project_url = "http://localhost/glassBuyfinal/";
+$g_project_url = "https://projects.anomoz.com/ke/glassBuy1/";
 
 
 $params = array(
