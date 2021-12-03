@@ -25,13 +25,7 @@ if(isset($_FILES['webmasterfile'])){
 $id = $_GET['product_id'];
 $sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
 $img_data = $con->query($sql);
-if($img_data->num_rows > 0){
-  $rowd = $img_data->fetch_assoc();
-  $img = $rowd['name'];
-}
-else{
-    $img = "https://dummyimage.com/600x400/000/fff.jpg";
-}
+ 
 
 
 $sql ="SELECT * FROM glassBuy_glasses where glass_id='$id'";
@@ -69,7 +63,23 @@ if(isset($_POST['wccp_component_selection'])){
     
     header("Location: ./cart.php");
   }
+
+
+  $pro_id = $_GET['product_id'];
+  $get_color = "SELECT * FROM `glassbuy_glasses` WHERE `glass_id` = '$pro_id'";
+  $get_color_fire = mysqli_query($con,$get_color);
+  $get_color_row = mysqli_fetch_assoc($get_color_fire);
+  $color = $get_color_row['colour'];
+  $query = "SELECT * FROM `glassbuy_glass_variations` WHERE `glass_id` = '$pro_id' AND `color_1` = '$color' OR `color_2` = '$color'";
+  $fire = mysqli_query($con,$query);
+  $row_variation = mysqli_fetch_assoc($fire);
+  //Fdd($color);
+
 ?>
+<input type="text" style="display:none" name="frame_a_width" id="frame_a_width" value="<?php echo $row_variation['frame_a_width']  ?>">
+<input type="text" style="display:none" name="frame_b_height" id="frame_b_height" value="<?php echo $row_variation['frame_b_height']  ?>">
+<input type="text" style="display:none" name="frame_ed" id="frame_ed" value="<?php echo $row_variation['frame_ed']  ?>">
+<input type="text" style="display:none" name="frame_db_bridge" id="frame_db_bridge" value="<?php echo $row_variation['frame_db_bridge']  ?>">
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -93,7 +103,9 @@ if(isset($_POST['wccp_component_selection'])){
     
 }*/
 
-
+.element_link{
+     pointer-events: none;
+}
 .wc-pao-addon-container.wc-pao-addon.wc-pao-addon-save-your-prescription-for-future-use {
     float: left;
     width: 40%;
@@ -125,8 +137,8 @@ if(isset($_POST['wccp_component_selection'])){
 
 /* BOOSTRAP MEDIA BREAKPOINTS */
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {  
-  #image_pd_video
+@media only screen and (max-width: 600px) {
+  #image_pd_video{
  display: block;
     position: fixed;
     margin-left: inherit;
@@ -135,30 +147,31 @@ if(isset($_POST['wccp_component_selection'])){
     font-size: 14px;
     color: rgba(255, 255, 255, 1.0);
     cursor: pointer;
-    width: 50%;
-    height: 54%;
+    width: 65% !important;
+    height: 30%;
     z-index: 1;
+    margin-top: 23%;
 }
 }
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-    #image_pd_video
- display: block;
+@media only screen and (min-width: 600px) {
+    #image_pd_video{
+    display: block;
     position: fixed;
     margin-left: inherit;
-    margin-right: auto;
+    /* margin-right: auto; */
     border: 1px solid rgba(255, 255, 255, 0.7);
     font-size: 14px;
     color: rgba(255, 255, 255, 1.0);
     cursor: pointer;
-    width: 83% !important;
-    height: 48%;
+    width: 65% !important;
+    height: 50%;
     z-index: 1;
 }
 }
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    #image_pd_video
+@media only screen and (min-width: 768px) { 
+       #image_pd_video{
  display: block;
     position: fixed;
     margin-left: inherit;
@@ -174,9 +187,8 @@ if(isset($_POST['wccp_component_selection'])){
 
 }
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-      #image_pd_video
+@media only screen and (min-width: 992px) {
+      #image_pd_video{
  display: block;
     position: fixed;
     margin-left: inherit;
@@ -185,9 +197,26 @@ if(isset($_POST['wccp_component_selection'])){
     font-size: 14px;
     color: rgba(255, 255, 255, 1.0);
     cursor: pointer;
-    width: 19.5% !important;
-    height: 31%;
+    width: 25% !important;
+    height: 40%;
     z-index: 1;
+    margin-top: 1.7%;
+}
+}
+@media only screen and (min-width: 1200px) {
+          #image_pd_video{
+ display: block;
+    position: fixed;
+    margin-left: inherit;
+    margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1.0);
+    cursor: pointer;
+    width: 25% !important;
+    height: 40%;
+    z-index: 1;
+    margin-top: 1.7%;
 }
 
 }
@@ -202,8 +231,10 @@ if(isset($_POST['wccp_component_selection'])){
 </style>
 
 </head>
+<span class="error"></span>
 <form action="" method="post" enctype="multipart/form-data">
     <input type="submit"  hidden class="wc-pao-addon-heading" name="first_submit" value="confirm" style="top: 0px !important;">
+   
 <body class="product-template-default single single-product postid-394 theme-bb-theme woocommerce woocommerce-page woocommerce-js fl-theme-builder-header fl-theme-builder-footer fl-theme-builder-singular woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active woo-3 woo-products-per-page-16 fl-builder-breakpoint-large" itemscope="itemscope" itemtype="https://schema.org/WebPage">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJ5Q9NM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -303,7 +334,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                         					<span class="element_inner">
                                                         						<span class="element_index">1</span>
                                                         						<span class="element_title">
-                                                        							<a class="element_link " href="#vision" rel="nofollow" onclick="viewStage(1)">Vision</a>
+                                                        							<a class="element_link first_stage  " href="#vision" rel="nofollow" onclick="viewStage(1)" id="first_stage">Vision</a>
                                                         						</span>
                                                         					</span>
                                                         				</li>
@@ -312,7 +343,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                         					<span class="element_inner">
                                                         						<span class="element_index">2</span>
                                                         						<span class="element_title">
-                                                        							<a class="element_link " href="#lens-type" rel="nofollow" onclick="viewStage(2)">Lens Type</a>
+                                                        							<a class="element_link second_stage" href="#lens-type" rel="nofollow" onclick="viewStage(2)" id="second_stage">Lens Type</a>
                                                         						</span>
                                                         					</span>
                                                         				</li>
@@ -321,7 +352,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                         					<span class="element_inner">
                                                         						<span class="element_index">3</span>
                                                         						<span class="element_title">
-                                                        							<a class="element_link " href="#enhance" rel="nofollow" onclick="viewStage(4)">Enhance</a>
+                                                        							<a class="element_link " href="#enhance" rel="nofollow" onclick="viewStage(4)" id="third_stage">Enhance</a>
                                                         						</span>
                                                         					</span>
                                                         				</li>
@@ -330,7 +361,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                         					<span class="element_inner">
                                                         						<span class="element_index">4</span>
                                                         						<span class="element_title">
-                                                        							<a class="element_link inactive" href="#review" rel="nofollow" onclick="viewStage(5)">Review and Purchase</a>
+                                                        							<a class="element_link inactive" href="#review" rel="nofollow" onclick="viewStage(5)" id="forth_stage">Review and Purchase</a>
                                                         						</span>
                                                         					</span>
                                                         				</li>
@@ -396,7 +427,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select Distance Single Vision">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" id="distance" aria-label="Select Distance Single Vision">Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -435,7 +466,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select Reading Single Vision">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" id="single" aria-label="Select Reading Single Vision">Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -488,7 +519,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select No Prescription">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" id="no_pres" aria-label="Select No Prescription">Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -698,13 +729,13 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                         <label for="addon-1584107435-1-sph-0" class="wc-pao-addon-name" data-addon-name="SPH" data-has-per-person-pricing="" data-has-per-block-pricing="">SPH </label>
                                                         
                                                                                                                         <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-1-sph-0">
-                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-sph-0" id="addon-1584107435-1-sph-0">
+                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select select_right_sph" name="addon-1584107435-1-sph-0" id="addon-1584107435-1-sph-0">
                                                                                                                                 <option value="0.00">0.00</option>
                                                             
-                                                                                                                                <?$points = +8.00;
+                                                                                                                                <?php  $points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['r_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                                                                                             </select>
                                                                                                                         </p>
@@ -719,10 +750,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-cyl-1" id="addon-1584107435-1-cyl-1">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                <?$points = +3.00;
+                                                                                                                                <?php  $points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php if($points==$presDeets['r_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                                                                                             </select>
                                                                                                                         </p>
@@ -755,10 +786,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-add-3" id="addon-1584107435-1-add-3">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?$points = +0.25;
+                                                                                                                                <?php  $points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['r_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.25;
                                                                                                                                 }?>
                                                                                                                                 
                                                                                                                                 </select>
@@ -774,10 +805,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-pd-4" id="addon-1584107435-1-pd-4">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?$points = 22.00;
+                                                                                                                                <?php  $points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.5;
+                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.5;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -830,13 +861,13 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                         <label for="addon-1584107435-2-sph-0" class="wc-pao-addon-name" data-addon-name="SPH" data-has-per-person-pricing="" data-has-per-block-pricing="">SPH </label>
                                                         
                                                                                                                         <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-2-sph-0">
-                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-sph-0" id="addon-1584107435-2-sph-0">
+                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select select_left_sph" name="addon-1584107435-2-sph-0" id="addon-1584107435-2-sph-0">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                               <?$points = +8.00;
+                                                                                                                               <?php  $points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -850,10 +881,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-cyl-1" id="addon-1584107435-2-cyl-1">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?$points = +3.00;
+                                                                                                                                <?php  $points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -885,10 +916,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-add-3" id="addon-1584107435-2-add-3">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?$points = +0.25;
+                                                                                                                                <?php  $points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.25;
                                                                                                                                 }?>
                                                                                                                                 </select>
                                                                                                                         </p>
@@ -903,10 +934,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-pd-4" id="addon-1584107435-2-pd-4">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?$points = 22.00;
+                                                                                                                                <?php  $points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.5;
+                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.5;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -956,13 +987,13 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <label for="addon-1584107435-pd-2" class="wc-pao-addon-name" data-addon-name="PD" data-has-per-person-pricing="" data-has-per-block-pricing="">PD </label>
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-pd-2">
-                                                                                                    <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-pd-2" id="addon-1584107435-pd-2">
+                                                                                                    <select class="wc-pao-addon-field wc-pao-addon-select select_pd" name="addon-1584107435-pd-2" id="addon-1584107435-pd-2 pd">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?$points = 44.00;
+                                                                                                        <?php  $points = 44.00;
                                                                                                         while($points<74.00){?>
-                                                                                                            <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 0, '.', '');?></option>
-                                                                                                        <?$points+=1;
+                                                                                                            <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 0, '.', '');?></option>
+                                                                                                        <?php  $points+=1;
                                                                                                         }?> </select>
                                                                                                 </p>
                                                                  
@@ -991,10 +1022,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                     <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-right-pd-3" id="addon-1584107435-right-pd-3">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?$points = 22.00;
+                                                                                                        <?php  $points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?$points+=0.5;
+                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?php  $points+=0.5;
                                                                                                         }?>
                                                                                                         </select>
                                                                                                 </p>
@@ -1009,10 +1040,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                     <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-left-pd-4" id="addon-1584107435-left-pd-4">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?$points = 22.00;
+                                                                                                        <?php  $points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?$points+=0.5;
+                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?php  $points+=0.5;
                                                                                                         }?></select>
                                                                                                 </p>
                                                         
@@ -1237,7 +1268,7 @@ color: #000;"
                                                                                                 <div class="clear"></div>
                                                                                             </div>
                                                                                             -->
-                                                                                            <div class="wc-pao-addon-container  wc-pao-addon wc-pao-addon-confirm" data-product-name="Enter Prescription Now" onclick="viewStage(4)">
+                                                                                            <div class="wc-pao-addon-container  wc-pao-addon wc-pao-addon-confirm" data-product-name="Enter Prescription Now" onclick="viewStage(4)" id="button">
                                                                                             	    <h3 class="wc-pao-addon-heading">Confirm</h3>
                                                                                             	<div class="clear"></div>
                                                                                             </div>
@@ -2116,7 +2147,7 @@ color: #000;"
                                                                     <div class="component_options_inner cp_clearfix">
                                                                         <div id="component_option_thumbnails_1584107439" class="component_option_thumbnails columns-3" data-component_option_columns="3" >
                                                                             <ul class="component_option_thumbnails_container cp_clearfix" style="list-style: none;">
-                                                                                <li onclick="viewStage(5); setSummary('summary_adons', 'Acuity Anti Reflection')" id="component_option_thumbnail_container_402" class="component_option_thumbnail_container first" style="margin-bottom: 20px;">
+                                                                                <li onclick="viewStage(5);  setSummary('summary_adons', 'Acuity Anti Reflection')" id="component_option_thumbnail_container_402 basic_enhance" class="component_option_thumbnail_container first" style="margin-bottom: 20px;">
                                                                                     <div id="component_option_thumbnail_402" class="cp_clearfix component_option_thumbnail" data-val="402">
                                                                                         <img src="./uploads/WhatsApp Image 2021-09-16 at 10.58.34 PM.jpeg" style="max-width: 1110px;width:100%;">
                                                                                        <!-- <div class="thumnail_title">
@@ -2245,7 +2276,7 @@ color: #000;"
                                                                                                             <tbody>
                                                                                                                 
                                                                                                                 
-                                                                                                                <?$myOrderIds = array();
+                                                                                                                <?php  $myOrderIds = array();
                                                                                                                 $orders = getAll($con, "SELECT *, o.id order_id from glassBuy_order o inner join glassBuy_glasses g on g.glass_id=o.product_id where o.user_id='$session_userId' and isPaid='1';");
                                                                                                                 foreach($orders as $row){
                                                                                                                     $myOrderIds[] = $row['order_id'];
@@ -2262,15 +2293,15 @@ color: #000;"
                                                                                                                         <p class="no-pres-text">You have no saved prescriptions.</p>
                                                                                                                     </td>
                                                                                                                 </tr>
-                                                                                                                <?}else{
+                                                                                                                <?php  }else{
                                                                                                                     foreach($od as $row){
                                                                                                                     if($row['prescription']!=""){?>
                                                                                                                     <tr>
-                                                                                                                        <td><?echo $row['prescription']?></td>
-                                                                                                                        <td class="" onclick="select_prescription('<?echo $row['id']?>')"><a class="button pres-btn pres-btn-<?echo $row['id']?>" >Select</a></td>
+                                                                                                                        <td><?php  echo $row['prescription']?></td>
+                                                                                                                        <td class="" onclick="select_prescription('<?php  echo $row['id']?>')"><a class="button pres-btn pres-btn-<?php  echo $row['id']?>" >Select</a></td>
                                                                                                                     </tr>
                                                                                                                 
-                                                                                                                <?}}}?>
+                                                                                                                <?php  }}}?>
                                                                                                             </tbody>
                                                                                                         </table>
                                                                                                     </div>
@@ -2391,11 +2422,15 @@ color: #000;"
                                                                         </div>
                                                                     </div>
                                                                 </li>
+                                                              
     </ul>
     <div class="composite_wrap" style="">
                                                     		<div class="composite_price" style="display: block;"><p class="price-label">PRESCRIPTION LENSES SUBTOTAL</p><p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><span class="Prescription_lenses_cost">0</span></span></p></div>
                                                         	
                                                         	</div>
+                                                            <div class="" style="display: block;">
+                                                            <p class="price-label">Extra Charges</p><p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><span class="extra_ch"></span></span></p>
+                                                            </div>
                                                         </div>
                                                         
                                                         
@@ -2414,24 +2449,25 @@ color: #000;"
                                                         
                                                             <h3>Summary</h3>
                                                             <div class="product-image">
-                                                                <img src="./uploads/<?echo $img?>" />
+                                                                <img src="./uploads/<?php  echo $img?>" />
                                                             </div>
                                                             <div class="title-price-area">
                                                                 <div class="product-title-frame">
-                                                                    <?echo $glassDeets['title']?> <br />
-                                                                    <span><?echo $glassDeets['available_sizes']?></span><br />
-                                                                    <span><?echo $glassDeets['description']?></span><br />
+                                                                    <?php  echo $glassDeets['title']?> <br />
+                                                                    <span><?php  echo $glassDeets['available_sizes']?></span><br />
+                                                                    <span><?php  echo $glassDeets['description']?></span><br />
                                                                 </div>
                                                                 <div class="product-price-frame">
                                                                     <span class="woocommerce-Price-amount amount">
-                                                                        <bdi><span class="woocommerce-Price-currencySymbol">&#36;</span><?echo $glassDeets['price']?></bdi>
+                                                                        <bdi><span class="woocommerce-Price-currencySymbol">&#36;</span><?php  echo $glassDeets['price']?></bdi>
                                                                     </span>
                                                                 </div>
-                                                                <input type="hidden" name="attribute_pa_size" id="pa_size" value="<?echo $glassDeets['available_sizes']?>" /><input type="hidden" name="attribute_pa_colour" id="pa_colour" value="<?echo $glassDeets['description']?>" />
+                                                                <input type="hidden" value=""  name="lens_type_details" id="lens_type_details">
+                                                                <input type="hidden" name="attribute_pa_size" id="pa_size" value="<?php  echo $glassDeets['available_sizes']?>" /><input type="hidden" name="attribute_pa_colour" id="pa_colour" value="<?php  echo $glassDeets['description']?>" />
                                                                 <input type="hidden" name="add-to-cart" value="21464" />
                                                                 <input type="hidden" name="product_id" id="product_id" value="21464" />
                                                                 <input type="hidden" name="variation_id" id="variation_id" value="21465" />
-                                                                <input type="hidden" name="frame_product_url" id="frame_product_url" value="./product.php?id=<?echo $glassDeets['glass_id']?>" />
+                                                                <input type="hidden" name="frame_product_url" id="frame_product_url" value="./product.php?id=<?php  echo $glassDeets['glass_id']?>" />
                                                                 <input type="hidden" id="quantity_5da9955a5ab80" class="qty" name="quantity" value="1" />
                                                                 <button type="submit" class="single_add_to_cart_button button alt disabled wc-variation-selection-needed" style="display: none;">Add to cart</button>
                                                             </div>
@@ -2453,6 +2489,9 @@ color: #000;"
                                                         <p class="summary_adons">
                                                             
                                                         </p>
+                                                        <p class="extra_charges">
+                                                            
+                                                            </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2829,9 +2868,9 @@ display: block;">I am ready</button>
                 <video id="video" style="max-width: 400px;width:100%;
     height: 300px;">Video stream not available.</video>
             </div>
-          -->
+          --> 
           
-            <img id="image_pd_video" src="./js/camera-overlay.png" style="display: block;position: fixed;margin-left: inherit;margin-right: auto;border: 1px solid rgba(255, 255, 255, 0.7);font-size: 14px;color: rgba(255, 255, 255, 1.0);cursor: pointer;width: 400px;height: 300px;z-index: 1;top: 285px;">
+            <img id="image_pd_video" src="./js/camera-overlay.png" >
 
 
             <div><button id="startbutton" type="button" onclick="takepicture_timer()">Take photo</button></div>
@@ -2839,26 +2878,36 @@ display: block;">I am ready</button>
   
             <canvas id="canvas"></canvas>
   
-            <div class="output" style="display:none; width:100%;">
-                <img id="photo" alt="The screen capture will appear in this box.">
-            </div>
+           
         
         </div>
+
+        <div class="output" style="display:none; width:100%;">
+                <img id="photo" alt="The screen capture will appear in this box.">
+                <br>
+                 <a href="#" id="retake">Retake</a>
+            </div>
+            <div class="buttons" style="display:none">
+               
+            </div>
+
+
+        
         
         
     <a href="#" rel="modal:close">Close</a>
 </div>
 
-<!-- Link to open the modal -->
+ <!-- Link to open the modal --> 
 
 
 
-<!-- .fl-page-content -->
+<!-- .fl-page-content --> 
 <?php require("./includes/footer.php");?>
 </div>
 <!-- .fl-page -->
 <?php require("./includes/comman/select_lenses/footerjs.php");?>
-<!-- WooCommerce JavaScript -->
+ <!-- WooCommerce JavaScript --> 
 </body>
 
 <input name="vision" class="vision" hidden>
@@ -2866,7 +2915,12 @@ display: block;">I am ready</button>
 
 </form>
 </html>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+    $("#startbutton").click(function(){
+
+    });
 $(".composite_button").hide()
 pdPicUploaded = "";
     vision = "";
@@ -2963,6 +3017,7 @@ pdPicUploaded = "";
             jQuery("#component_1584107435").show();
             
             jQuery(".pagination_element_1584107434").addClass("pagination_element_current")
+          
             
         }else if(stageNo==2){
             jQuery("#component_options_1584107435component_options_1584107435").show();
@@ -3003,19 +3058,40 @@ pdPicUploaded = "";
 		
 		viewStage(1);
 		// //Enter prescription
+        
 		
 		
 		// //stage 1 click
 		jQuery("#component_options_1584107434").click(function(){
             // viewStage(2);
+            //alert("second");
+            //$("#first_stage").removeClass("elemet_link");
+            $("#first_stage").css("pointer-events","auto");
+
+            //$("#first").removeClass("elemet_link");
+            
         });
 
         //stage 2 click
         jQuery("#component_options_1584107435component_options_1584107435").click(function(){
-            
+            //alert("3");
             // viewStage(3);
             //stage 3 form
+            $("#second_stage").css("pointer-events","auto");
             
+            
+        });
+        jQuery("#button").click(function(){
+            //alert("4");
+            // viewStage(3);
+            //stage 3 form
+            $("#third_stage").css("pointer-events","auto");
+            
+            
+        });
+        jQuery("#component_1584107439_inner").click(function(){
+            //alert("5");
+            $("#forth_stage").css("pointer-events","auto");
         });
 
 	});
@@ -3131,6 +3207,7 @@ pdPicUploaded = "";
             startbutton.addEventListener('click', function(ev) {
                 takepicture_timer();
                 ev.preventDefault();
+               
             }, false);
 
             clearphoto();
@@ -3159,6 +3236,8 @@ pdPicUploaded = "";
         function takepicture() {
             var context = canvas.getContext('2d');
             width = 320;
+            $("#imready").hide();
+            $(".output").show();
             height = width / (4 / 3);
             if (width && height) {
                 canvas.width = width;
@@ -3172,6 +3251,7 @@ pdPicUploaded = "";
                 
                 photo.setAttribute('src', data);
                 jQuery("#pictureTaken").show();
+               
                 
                 
                 var formData = new FormData();
@@ -3198,6 +3278,170 @@ pdPicUploaded = "";
             $("#imnotready").hide();
             startup();
         }
-    
+        $("#retake").click(function(){
+            $("#imready").show();
+            $(".output").hide();
+        });
+    //    alert("hi");
+
+$(".select_pd").change(function(){
+    var val = $(this).val();
+    //alert(val);
+    var frame_a = $("#frame_a_width").val();
+    //console.log("FRAME AAAA: "+frame_a);
+    var frame_b = $("#frame_b_height").val();
+    var frame_ed = $("#frame_ed").val();
+    var frame_db_bridge = $("#frame_db_bridge").val();
+
+    var val_s = $('.select_right_sph option:selected').val();
+    console.log(val_s);
+    if($('.select_right_sph option:selected').val() > 0){
+        var sum = (Number(frame_a) + Number(frame_db_bridge) + Number(frame_ed)) - Number(65);
+        if (val > sum) {
+            console.log("sum"+sum);
+        }else{
+            Swal.fire({
+  title: 'The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values?',
+  text: "If you continue with this you have to pay extra $15!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Continue!'
+}).then((result) => {
+    $(".extra_charges").text("Extra Charges: $15");
+    $(".extra_ch").text("15");
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Extra Charges!',
+      'Has been added.',
+      'success'
+    )
+  }
+})
+        //$(".error").text("The Combination of your prescription and PD value is not suitable for this product.<br>Please select another product that supports a wide range of PD values");
+    }
         
+    }
+    if($('.select_right_sph option:selected').val() < 0){
+        var sum = Number(frame_a) + Number(frame_db_bridge) + Number(frame_ed) - 75;
+        console.log("sum"+sum);
+        if (val > sum) {
+            console.log("sum"+sum);
+        }else{
+            Swal.fire({
+  title: 'The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values?',
+  text: "If you continue with this you have to pay extra $15!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Continue!'
+}).then((result) => {
+    $(".extra_charges").text("Extra Charges: $15");
+    $(".extra_ch").text("15");
+
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Extra Charges!',
+      'Has been added.',
+      'success'
+    )
+  }
+})
+        //$(".error").text("The Combination of your prescription and PD value is not suitable for this product.<br>Please select another product that supports a wide range of PD values");
+    }
+    }
+
+
+    var val_l = $('.select_left_sph option:selected').val();
+    console.log(val_l);
+    if($('.select_left_sph option:selected').val() > 0){
+        var sum_l = (Number(frame_a) + Number(frame_db_bridge) + Number(frame_ed)) - Number(65);
+        if (val > sum_l) {
+            console.log("sum"+sum_l);
+        }else{
+            Swal.fire({
+  title: 'The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values?',
+  text: "If you continue with this you have to pay extra $15!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Continue!'
+}).then((result) => {
+    $(".extra_charges").text("Extra Charges: $15");
+
+  if (result.isConfirmed) {
+    $(".extra_ch").text("$15");
+    Swal.fire(
+      'Extra Charges!',
+      'Has been added.',
+      'success'
+    )
+  }
+})
+        // $(".error").text("The Combination of your prescription and PD value is not suitable for this product.<br>Please select another product that supports a wide range of PD values");
+        // alert("The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values");
+
+    }
+        
+    }
+    if($('.select_left_sph option:selected').val() < 0){
+        var sum = Number(frame_a) + Number(frame_db_bridge) + Number(frame_ed) - 75;
+        console.log("sum"+sum_l);
+        if (val > sum_l) {
+            console.log("sum"+sum_l);
+        }else{
+            Swal.fire({
+  title: 'The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values?',
+  text: "If you continue with this you have to pay extra $15!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Continue!'
+}).then((result) => {
+    $(".extra_charges").text("Extra Charges: $15");
+    $(".extra_ch").text("$15");
+
+  if (result.isConfirmed) {
+
+    Swal.fire(
+      'Extra Charges!',
+      'Has been added.',
+      'success'
+    )
+  }
+})
+        //$(".error").text("The Combination of your prescription and PD value is not suitable for this product.<br>Please select another product that supports a wide range of PD values");
+        //alert("The Combination of your prescription and PD value is not suitable for this product.Please select another product that supports a wide range of PD values");
+    }
+    }
+
+    
+});
+$("#distance").click(function(){
+   // alert("distance");
+    var distance = "Distance";
+    $("#lens_type_details").val(distance);
+});  
+$("#single").click(function(){
+   // alert("distance");
+    var single = "Single";
+    $("#lens_type_details").val(single);
+});       
+$("#no_pres").click(function(){
+   // alert("distance");
+    var no_pres = "No Prescription";
+    $("#lens_type_details").val(no_pres);
+});   
+
+$("#basic_enhance").click(function(){
+    alert(hi);
+    var basic_enhance = "basic_enhance";
+    alert(basic_enhance);
+});
     </script>
+
+

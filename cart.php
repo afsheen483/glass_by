@@ -151,13 +151,13 @@ if(isset($_POST['coupon'])){
                                                                     </div>
                                                                     
                                                                     
-                                                                    <?if(count($_SESSION['product_id'])>0){?>
+                                                                    <?php  if(count($_SESSION['product_id'])>0){?>
                                                                     
                                                                     <div class="woocommerce-cart-form" action="" method="post">
                                                                         <div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
                                                                            
                                                                            
-                                                                            <?
+                                                                            <?php  
                                                                             
 
                                                                             $subbtotal = 0;
@@ -194,11 +194,11 @@ if(isset($_POST['coupon'])){
                                                                            
                                                                             <div class="product-container">
                                                                            
-                                                                           <?if($p_name!=""){?>      <div class="header-area">
+                                                                           <?php  if($p_name!=""){?>      <div class="header-area">
                                                                                     <div class="prescription-name"></div>
                                                                                     <div class="product-removea">
                                                                                         <a
-                                                                                            href="?remove=<?echo $pid?>"
+                                                                                            href="?remove=<?php  echo $pid?>"
                                                                                             class="removea"
                                                                                         >
                                                                                             <!--<img src="./wp-content/uploads/2020/08/del-icon.png">-->
@@ -236,9 +236,9 @@ if(isset($_POST['coupon'])){
                                                                                                 <span class="item-title"><?php echo $p_name; ?></span>
                                                                                                 <dl class="variation">
                                                                                                     <dt class="variation-Size">Size:</dt>
-                                                                                                    <dd class="variation-Size"><p><?echo $rowd['available_sizes']?></p></dd>
+                                                                                                    <dd class="variation-Size"><p><?php  echo $rowd['available_sizes']?></p></dd>
                                                                                                     <dt class="variation-Colour">Colour:</dt>
-                                                                                                    <dd class="variation-Colour"><p><?echo $rowd['colour']?></p></dd>
+                                                                                                    <dd class="variation-Colour"><p><?php  echo $rowd['colour']?></p></dd>
                                                                                                 </dl>
                                                                                             </div>
                                                                                             <div class="product-price">
@@ -334,7 +334,7 @@ if(isset($_POST['coupon'])){
                                                                                             </div>
                                                                                         </div>
                                                                                         
-                                                                                        <?if($pidinfo['frame-only']!="frame-only"){?>
+                                                                                        <?php  if($pidinfo['frame-only']!="frame-only"){?>
                                                                                         <div class="subtotal-area">
                                                                                             
                                                                                             <div class="subtotal-wrapper">
@@ -346,17 +346,17 @@ if(isset($_POST['coupon'])){
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <?}?>
+                                                                                        <?php }?>
                                                                                         
                                                                                         
                                                                                         
                                                                                     </div>
                                                                                 </div>
                                                                                 
-                                                                                <?}?>
+                                                                                <?php  }?>
                                                                             </div>
                                                                             
-                                                                            <?}?>
+                                                                            <?php  }?>
                                                                             
                                                                             
                                                                             
@@ -384,23 +384,23 @@ if(isset($_POST['coupon'])){
                                                                                           }
                                                                                           //$img_row = $img_data->fetch_assoc();
                                                                                        ?>
-                                                                                 <div class="col-md-4 <?if(count($myaccessories[$id])==2){echo ' img-thumbnail';}?>">
+                                                                                 <div class="col-md-4 <?php  if(count($myaccessories[$id])==2){echo ' img-thumbnail';}?>">
                                                                                      <div class="pp-content-post pp-content-carousel-post pp-grid-custom post-<?php echo $id; ?> product type-product status-publish has-post-thumbnail product_cat-collection product_cat-glasses product_cat-men-glasses product_cat-pz-optical-glasses product_cat-women-glasses pa_brand-pz-optical pa_collection-glasses pa_colour-brown-light-brown pa_gender-men pa_gender-women pa_material-plastic pa_primary-colour-brown pa_shape-cat-eye pa_size-54-17-140 pa_supplier-direct-vision pa_virtual-try-on-yes first instock sold-individually taxable shipping-taxable purchasable product-type-variable" itemscope data-id="<?php echo $id; ?>">
                                                                                         <a style="margin: 1px auto;
 justify-content: center;
-display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primary button">Add to Cart</a>
+display: flex;" href="./cart.php?accessoryId=<?php  echo $id?>" class="btn btn-primary button">Add to Cart</a>
                                                                                         <div  class="prod-img">
-                                                                                            <a target="_blank" href="./product.php?id=<?echo $id?>" title="">
+                                                                                            <a target="_blank" href="./product.php?id=<?php  echo $id?>" title="">
                                                                                                 <img width="750" height="1400" src="uploads/<?php echo $img; ?>" class=" wp-post-image" alt="" loading="lazy" itemprop="image"></a>
                                                                                         </div>
-                                                                                        <h3 class="prod-title"><a target="_blank" href="./product.php?id=<?echo $id?>" title=""><?php echo $row['title']; ?></a></h3>
+                                                                                        <h3 class="prod-title"><a target="_blank" href="./product.php?id=<?php  echo $id?>" title=""><?php echo $row['title']; ?></a></h3>
                                                                                         <span class="prod-price">
                                                                                            <span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $row['price']; ?></bdi></span></span>
                                                                                        </span>
                                                                                        <span class="extras"><?php echo $row['additional_info']; ?></span>
                                                                                    </div>
                                                                                  </div>
-                                                                                 <?}}?>
+                                                                                 <?php  }}?>
                                                                              </div>
                                                                             
 
@@ -418,20 +418,20 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                                 <th>Subtotal</th>
                                                                                                 <td data-title="Subtotal">
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $subbtotal?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $subbtotal?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                            <?if($Prescription_Lenses_cost_total!=0){?>
+                                                                                            <?php  if($Prescription_Lenses_cost_total!=0){?>
                                                                                             <!--<tr class="cart-subtotal">-->
                                                                                             <!--    <th>Prescription Lenses</th>-->
                                                                                             <!--    <td data-title="Subtotal">-->
                                                                                             <!--        <span class="woocommerce-Price-amount amount">-->
-                                                                                            <!--            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $Prescription_Lenses_cost_total?></bdi>-->
+                                                                                            <!--            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $Prescription_Lenses_cost_total?></bdi>-->
                                                                                             <!--        </span>-->
                                                                                             <!--    </td>-->
                                                                                             <!--</tr>-->
-                                                                                            <?}?>
+                                                                                            <?php  }?>
                                                                                             
                                                                                             
 
@@ -441,7 +441,7 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                                 </th>
                                                                                                 <td data-title="Shipping"><span class="woocommerce-Price-amount amount">$ 9</span></td>
                                                                                             </tr>
-                                                                                            <?
+                                                                                            <?php  
                                                                                             
                                                                                             foreach($myaccessories as $i=>$ass){
                                                                                                 // var_dump($ass);
@@ -449,18 +449,18 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                             <tr class="woocommerce-shipping-totals shipping">
                                                                                                 <th style="width:100% !important">
                                                                                                     <div style="display: flex;flex-flow: row wrap;align-items: center;">
-                                                                                                        <label for="asd"><?echo $ass[0]?></label>
-                                                                                                        <input name="quantity[<?echo $i?>]" value="<?echo $ass[2]?>" min="0" class="form-control" id="asd" required style="    width: 60px;margin-left: 5px;" type="number">
+                                                                                                        <label for="asd"><?php  echo $ass[0]?></label>
+                                                                                                        <input name="quantity[<?php  echo $i?>]" value="<?php  echo $ass[2]?>" min="0" class="form-control" id="asd" required style="    width: 60px;margin-left: 5px;" type="number">
                                                                                                     </div>
                                                                                                 </th>
-                                                                                                <td data-title="<?echo $ass[0]?>"><span class="woocommerce-Price-amount amount">$ <?echo $ass[1] * $ass[2]?></span></td>
+                                                                                                <td data-title="<?php  echo $ass[0]?>"><span class="woocommerce-Price-amount amount">$ <?php  echo $ass[1] * $ass[2]?></span></td>
                                                                                             </tr>
-                                                                                            <?}?>
+                                                                                            <?php  }?>
                                                                                             <tr class="tax-total">
                                                                                                 <th>Tax</th>
                                                                                                 <td data-title="Tax">
                                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $tax = round(($subbtotal * 0.04712), 2)?></bdi>
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $tax = round(($subbtotal * 0.04712), 2)?></bdi>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
@@ -469,7 +469,7 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                                 <td data-title="Tax">
                                                                                                     <span class="woocommerce-Price-amount amount">
                                                                                                         
-                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">- $</span><?
+                                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">- $</span><?php  
                                                                                                         $discount = round(($_SESSION['coupon_discount']/100) * ($subbtotal+$assTotal), 2);
                                                                                                         
                                                                                                         echo $discount?></bdi>
@@ -482,7 +482,7 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                                 <td data-title="Total">
                                                                                                     <strong>
                                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo round(($tax+ $subbtotal + 9 + $assTotal) - $discount, 2)?></bdi>
+                                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo round(($tax+ $subbtotal + 9 + $assTotal) - $discount, 2)?></bdi>
                                                                                                         </span>
                                                                                                     </strong>
                                                                                                 </td>
@@ -500,6 +500,7 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                     </form>
                                                                                     <div class="wc-proceed-to-checkout">
                                                                                         <form action="./checkout.php" method="get">
+                                                                                            <!-- in -->
                                                                                             <button  style="width: 100%;" type="submit" class="checkout-button button alt wc-forward"> Proceed to checkout</button>
                                                                                         </form>
                                                                                     </div>
@@ -539,11 +540,11 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                             </div>
                                                                             </form>
                                                                             
-                                                                            <?if($m!=""){?>
+                                                                            <?php  if($m!=""){?>
                                                                         <div class="woocommerce-message" role="alert">
-                                                                    		<?echo $m?>
+                                                                    		<?php  echo $m?>
                                                                     		</div>
-                                                                        <?}?>
+                                                                        <?php  }?>
 
                                                                         </div>
                                                                     </div>
@@ -564,14 +565,14 @@ display: flex;" href="./cart.php?accessoryId=<?echo $id?>" class="btn btn-primar
                                                                                 });
                                                                         })(jQuery);
                                                                     </script>
-                                                                    <?}else{?>
+                                                                    <?php  }else{?>
                                                                     
                                                                     <p class="cart-empty woocommerce-info">Your cart is currently empty.</p>
                                                                     <p class="return-to-shop">
                                                                 		<a class="button wc-backward" href="./shop.php">
                                                                 			Return to shop		</a>
                                                                 	</p>
-                                                                    <?}?>
+                                                                    <?php  }?>
                                                                     
                                                                     
                                                                     

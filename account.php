@@ -23,6 +23,7 @@ itemtype="https://schema.org/WebPage"
 <a aria-label="Skip to content" class="fl-screen-reader-text" href="#fl-main-content">Skip to content</a>
 <div class="fl-page">
     <?php require("./includes/header.php");?>
+    
     <div id="fl-main-content" class="fl-page-content" itemprop="mainContentOfPage" role="main">
         <div class="fl-content-full container">
             <div class="row">

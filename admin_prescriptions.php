@@ -110,7 +110,7 @@ foreach($od as $row){
 <html lang="en-US">
 <head>
     
-<?
+<?php  
 if(!isset($_GET['print'])){
 require("./includes/head.php");
 }
@@ -156,11 +156,11 @@ itemtype="https://schema.org/WebPage"
 <div class="fl-module-content fl-node-content">
 <div class="pp-heading-content">
 <div class="pp-heading pp-left">
-    <?if(!isset($_GET['print'])){ ?>
+    <?php  if(!isset($_GET['print'])){ ?>
 <h2 class="heading-title">
     <span class="title-text pp-primary-title">My Account</span>
 </h2>
-<?}?>
+<?php  }?>
 </div>
 </div>
 </div>
@@ -190,14 +190,14 @@ include('./includes/sidebar.php');} ?>
                 
                 <h5>Prescription</h5>
                 <a href="?id=new" class="button">Add Prescription</a>
-                <?if(true){?>
+                <?php  if(true){?>
                 
-                <?if($session_role=="admin"){?>
+                <?php  if($session_role=="admin"){?>
                 <a target="_blank" class="button" href="./export.php?table=prescription&format=excel">Export</a>
-                <?}?>
+                <?php  }?>
                 
-                <?if(!isset($_GET['id'])){?>
-                <table >
+                <?php  if(!isset($_GET['id'])){?>
+                <table class="table">
                     <thead>
                         <tr>
                             <td>Title</td>
@@ -206,7 +206,7 @@ include('./includes/sidebar.php');} ?>
                             <td>Action</td>
                         </tr>
                         <tbody>
-                            <?
+                            <?php  
                             $myOrderIds = array();
                             
                             $orders = getAll($con, "SELECT *, o.id order_id from glassBuy_order o inner join glassBuy_glasses g on g.glass_id=o.product_id where o.user_id='$session_userId' and isPaid='1';");
@@ -220,25 +220,25 @@ include('./includes/sidebar.php');} ?>
                             $od = getAll($con, $query);
                             foreach($od as $row){
                                 ?><tr>
-                                    <td><?echo $row['fname']?> <?echo $row['lname']?></td>
-                                    <td><?echo $row['prescription']?></td>
-                                    <td><?echo $row['timeAdded']?></td>
+                                    <td><?php  echo $row['fname']?> <?php  echo $row['lname']?></td>
+                                    <td><?php  echo $row['prescription']?></td>
+                                    <td><?php  echo $row['timeAdded']?></td>
                                     <td>
-                                        <?if($row['file_name']!=""){?>
-                                        <a href="./uploads/<?echo $row['file_name']?>" target="_blank">View file</a>
-                                        <?}?>
-                                        <a class="button" href="?id=<?echo $row['id']?>&enc=<?echo md5($row['id'])?>">Edit</a>
-                                        <a class="button" href="?delete=<?echo $row['id']?>&enc=<?echo md5($row['id'])?>">Delete</a>
+                                        <?php  if($row['file_name']!=""){?>
+                                        <a href="./uploads/<?php  echo $row['file_name']?>" target="_blank">View file</a>
+                                        <?php  }?>
+                                        <a class="button" href="?id=<?php  echo $row['id']?>&enc=<?php  echo md5($row['id'])?>">Edit</a>
+                                        <a class="button" href="?delete=<?php  echo $row['id']?>&enc=<?php  echo md5($row['id'])?>">Delete</a>
                                     </td>
-                                </tr><?
+                                </tr><?php  
                             }?>
                         </tbody>
                     </thead>
                     
                 </table>
-                <?}}?>
+                <?php  }}?>
                 
-                <?if(isset($_GET['id'])){?>
+                <?php  if(isset($_GET['id'])){?>
                 
                 <form action="" method="post" enctype="multipart/form-data">
 
@@ -309,7 +309,7 @@ include('./includes/sidebar.php');} ?>
                                                         
                                                                                                                         <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-1-sph-0">
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-sph-0" id="addon-1584107435-1-sph-0">
-                                                                                                                                <?
+                                                                                                                                <?php  
                                                                                                                                 // function formatNum($num){
                                                                                                                                 //     return sprintf("%+f",$num);
                                                                                                                                 // }
@@ -321,8 +321,8 @@ include('./includes/sidebar.php');} ?>
 
                                                                                                                                 $points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['r_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                         
                                                                                                                                 </select>
@@ -338,10 +338,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-cyl-1" id="addon-1584107435-1-cyl-1">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                <?$points = +3.00;
+                                                                                                                                <?php  $points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['r_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                         
                                                                                                                             </select>
@@ -354,7 +354,7 @@ include('./includes/sidebar.php');} ?>
                                                                                                                         <label for="addon-1584107435-1-axis-2" class="wc-pao-addon-name" data-addon-name="Axis" data-has-per-person-pricing="" data-has-per-block-pricing="">Axis </label>
                                                         
                                                                                                                         <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-1-axis-2">
-                                                                                                                            <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-1-axis-2" id="addon-1584107435-1-axis-2" data-price-type="flat_fee" value="<?echo $presDeets['r_axis']?>" ><small class="wc-pao-addon-chars-remaining"><span>5</span> characters remaining</small>
+                                                                                                                            <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-1-axis-2" id="addon-1584107435-1-axis-2" data-price-type="flat_fee" value="<?php  echo $presDeets['r_axis']?>" ><small class="wc-pao-addon-chars-remaining"><span>5</span> characters remaining</small>
                                                                                                                             <small class="wc-pao-addon-chars-remaining"><span>5</span> characters remaining</small>
                                                                                                                         </p>
                                                         
@@ -368,10 +368,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-add-3" id="addon-1584107435-1-add-3">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                <?$points = +0.25;
+                                                                                                                                <?php  $points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['r_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['r_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php $points+=0.25;
                                                                                                                                 }?>
                                                         
                                                                                                                             </select>
@@ -387,10 +387,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-pd-4" id="addon-1584107435-1-pd-4">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                 <?$points = 22.00;
+                                                                                                                                 <?php $points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.5;
+                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.5;
                                                                                                                                 }?>
                                                                                                                                </select>
                                                                                                                         </p>
@@ -425,10 +425,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-sph-0" id="addon-1584107435-2-sph-0">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                <?$points = +8.00;
+                                                                                                                                <?php  $points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                                                                                                
                                                                                                                             </select>
@@ -444,10 +444,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-cyl-1" id="addon-1584107435-2-cyl-1">
                                                                                                                                 <option value="">0.0</option>
                                                         
-                                                                                                                                <?$points = +3.00;
+                                                                                                                                <?php  $points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points-=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points-=0.25;
                                                                                                                                 }?>
                                                                                                                                 </select>
                                                                                                                         </p>
@@ -473,10 +473,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-add-3" id="addon-1584107435-2-add-3">
                                                                                                                                 <option value="">0.0</option>
                                                         
-                                                                                                                                    <?$points = +0.25;
+                                                                                                                                    <?php  $points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['l_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.25;
+                                                                                                                                    <option <?php  if($points==$presDeets['l_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.25;
                                                                                                                                 }?>
                                                                                                                             </select>
                                                                                                                         </p>
@@ -491,10 +491,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-pd-4" id="addon-1584107435-2-pd-4">
                                                                                                                                 <option value="">0.0</option>
                                                         
-                                                                                                                                <?$points = 22.00;
+                                                                                                                                <?php  $points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?$points+=0.5;
+                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?php  $points+=0.5;
                                                                                                                                 }?>
                                                                                                                                 
                                                                                                                             </select>
@@ -538,10 +538,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                         
                                                         
                                                                                                         <option data-raw-price="" data-price="" data-price-type="flat_fee" value="0-1" data-label="0">0 </option>
-                                                                                                        <?$points = 44.00;
+                                                                                                        <?php  $points = 44.00;
                                                                                                         while($points<74.00){?>
-                                                                                                            <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 0, '.', '');?></option>
-                                                                                                        <?$points+=1;
+                                                                                                            <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 0, '.', '');?></option>
+                                                                                                        <?php  $points+=1;
                                                                                                         }?>
                                                                                                         
                                                                                                     </select>
@@ -557,10 +557,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                     <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-right-pd-3" id="addon-1584107435-right-pd-3">
                                                                                                         <option value="">0.0</option>
                                                                                                         
-                                                                                                        <?$points = 22.00;
+                                                                                                        <?php  $points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?$points+=0.5;
+                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?php  $points+=0.5;
                                                                                                         }?>
                                                         
                                                                                                       
@@ -578,10 +578,10 @@ include('./includes/sidebar.php');} ?>
                                                                                                         <option value="">0.0</option>
                                                                                                         
                                                                                                         <option data-raw-price="" data-price="" data-price-type="flat_fee" value="0-00-1" data-label="0.00">0.00 </option>
-                                                                                                        <?$points = 22.00;
+                                                                                                        <?php  $points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?$points+=0.5;
+                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?php  $points+=0.5;
                                                                                                         }?>
                                                                                                         </select>
                                                                                                 </p>
@@ -642,7 +642,7 @@ include('./includes/sidebar.php');} ?>
                                                                                                 </label>
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-first-name-8">
-                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-first-name-8" id="addon-1584107435-first-name-8" data-price-type="flat_fee" value="<?echo $presDeets['fname']?>" maxlength="20" pattern="[A-Za-z0-9-]+" title="Only letters and numbers" required=""><small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
+                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-first-name-8" id="addon-1584107435-first-name-8" data-price-type="flat_fee" value="<?php  echo $presDeets['fname']?>" maxlength="20" pattern="[A-Za-z0-9-]+" title="Only letters and numbers" required=""><small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
                                                                                                     <small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
                                                                                                 </p>
                                                         
@@ -655,7 +655,7 @@ include('./includes/sidebar.php');} ?>
                                                                                                 </label>
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-last-name-9">
-                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-last-name-9" id="addon-1584107435-last-name-9" data-price-type="flat_fee" value="<?echo $presDeets['lname']?>" maxlength="20" pattern="[A-Za-z0-9-]+" title="Only letters and numbers" required=""><small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
+                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-last-name-9" id="addon-1584107435-last-name-9" data-price-type="flat_fee" value="<?php  echo $presDeets['lname']?>" maxlength="20" pattern="[A-Za-z0-9-]+" title="Only letters and numbers" required=""><small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
                                                                                                     <small class="wc-pao-addon-chars-remaining"><span>20</span> characters remaining</small>
                                                                                                 </p>
                                                         
@@ -675,7 +675,7 @@ include('./includes/sidebar.php');} ?>
                                                                                                 <!--<div class="wc-pao-addon-description"><p>e.g. Prescription name</p></div>-->
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-save-your-prescription-for-future-11">
-                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-save-your-prescription-for-future-11" id="addon-1584107435-save-your-prescription-for-future-11" data-price-type="flat_fee" value="<?echo $presDeets['prescription']?>" pattern="[A-Za-z0-9-]+" title="Only letters and numbers">
+                                                                                                    <input type="text" class="input-text wc-pao-addon-field wc-pao-addon-custom-text" data-raw-price="" data-price="" name="addon-1584107435-save-your-prescription-for-future-11" id="addon-1584107435-save-your-prescription-for-future-11" data-price-type="flat_fee" value="<?php  echo $presDeets['prescription']?>" pattern="[A-Za-z0-9-]+" title="Only letters and numbers">
                                                                                                 </p>
                                                         
                                                                                                 <div class="clear"></div>
@@ -688,7 +688,7 @@ include('./includes/sidebar.php');} ?>
                                                                                                 <div class="wc-pao-addon-description"><p>mm/dd/yyyy</p></div>
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-date-of-prescription-12">
-                                                                                                    <input type="date" class="" data-raw-price="" data-price=""  name="addon-1584107435-date-of-prescription-12" id="addon-1584107435-date-of-prescription-12" data-price-type="flat_fee" value="<?echo $presDeets['timeAdded']?>" maxlength="10" style="border-radius: 3px;
+                                                                                                    <input type="date" class="" data-raw-price="" data-price=""  name="addon-1584107435-date-of-prescription-12" id="addon-1584107435-date-of-prescription-12" data-price-type="flat_fee" value="<?php  echo $presDeets['timeAdded']?>" maxlength="10" style="border-radius: 3px;
 border: 1px solid #c0c0c0;
 background: transparent;
 height: 49px;
@@ -719,7 +719,7 @@ color: #000;">
                                                                                                 </p>
                                                         
                                                                                                 <div class="clear"></div>
-                                                                                                <br><img id="output" class="<?if($presDeets['file_name']==""){echo 'hide';}?>" width="200" src="./uploads/<?echo $presDeets['file_name']?>" /><br>
+                                                                                                <br><img id="output" class="<?php  if($presDeets['file_name']==""){echo 'hide';}?>" width="200" src="./uploads/<?php  echo $presDeets['file_name']?>" /><br>
                                                                                             </div>
                                                         
                                                                                            
@@ -869,7 +869,7 @@ color: #000;">
                                                             </div>
                                                         </div>
                 </form>   
-                <?}?>
+                <?php  }?>
                 
                 
                 
@@ -913,15 +913,15 @@ color: #000;">
 
 <script type="text/javascript">
     $(document).ready(function(e){
-        $("table").dataTable({"bPaginate": false});
+        $(".table").dataTable({"bPaginate": false});
         $("form.deleteGlass").on('submit',function(e){
             return confirm("do you want to delete this record?");
         })
     });
     
-    <?if(isset($_GET['print'])){?>
+    <?php  if(isset($_GET['print'])){?>
     print();
-    <?}?>
+    <?php  }?>
     
     
     function submitform(){

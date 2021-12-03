@@ -46,6 +46,8 @@ $result = $con->query($sql);
   <!-- End Google Tag Manager (noscript) -->
   <a aria-label="Skip to content" class="fl-screen-reader-text" href="#fl-main-content">Skip to content</a>
   <div class="fl-page">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <?php require("./includes/header.php");?>
 
     <div id="fl-main-content" class="fl-page-content" itemprop="mainContentOfPage" role="main">
@@ -100,13 +102,34 @@ $result = $con->query($sql);
                                         <div class="facetwp-bb-module">
                                             <h4 class="facetwp-facet-title">Type</h4>
                                             <div class="facetwp-facet facetwp-facet-collection facetwp-type-checkboxes" data-name="collection" data-type="checkboxes">
-                                                <div class="facetwp-checkbox" data-value="glasses">Glasses <span class="facetwp-counter">(32)</span></div>
-                                                <div class="facetwp-checkbox" data-value="sunglasses">Sunglasses <span class="facetwp-counter">(2)</span></div>
+                                                <!-- <div class="facetwp-checkbox" data-value="glasses">Glasses <span class="facetwp-counter">(32)</span></div>
+                                                <div class="facetwp-checkbox" data-value="sunglasses">Sunglasses <span class="facetwp-counter">(2)</span></div> -->
+
+                                                <select name="type" id="" class="form-control">
+                                                    <?php if ($_GET['type'] == 'Glasses') {
+                                                       ?>
+                                                       <option value="Glasses" selected>Glasses</option>
+                                                        <option value="SunGlasses">SunGlasses</option>
+                                                       <?php 
+                                                    }elseif ($_GET['type'] == 'SunGlasses') {
+                                                        ?>
+                                                             <option value="Glasses" >Glasses</option>
+                                                             <option value="SunGlasses" selected>SunGlasses</option>
+                                                        <?php
+                                                    }else{
+                                                        ?><option value="Glasses">Glasses</option>
+                                                        <option value="SunGlasses">SunGlasses</option>
+
+                                                        <?php
+                                                    } ?>
+                                                </select>
+    
                                             </div>
                                             
                                             
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="fl-module-content fl-node-content">
                                         <div class="facetwp-bb-module">
                                             <h4 class="facetwp-facet-title">PD Range</h4>
@@ -135,11 +158,37 @@ $result = $con->query($sql);
                                         <div class="facetwp-bb-module">
                                             <h4 class="facetwp-facet-title">Gender</h4>
                                             <div class="facetwp-facet facetwp-facet-gender facetwp-type-checkboxes" data-name="gender" data-type="checkboxes">
-                                                <div class="facetwp-checkbox" data-value="men">Men <span class="facetwp-counter">(24)</span></div>
+                                                <!-- <div class="facetwp-checkbox" data-value="men">Men <span class="facetwp-counter">(24)</span></div>
                                                 <div class="facetwp-checkbox" data-value="women">Women <span class="facetwp-counter">(27)</span></div>
                                                 <div class="facetwp-checkbox" data-value="unisex">Unisex <span class="facetwp-counter">(27)</span></div>
-                                                
-                                                
+                                                 -->
+                                                <select name="gender" id="" class="form-control">
+                                                   <?php if ($_GET['gender'] == 'Men') {
+                                                       ?>
+                                                    <option value="Men" selected>Men</option>
+                                                    <option value="Women">Women</option>
+                                                    <option value="unisex">Unisex</option>
+                                                    <?php
+                                                   }elseif ($_GET['gender'] == 'Women') {
+                                                    ?>
+                                                 <option value="Men">Men</option>
+                                                 <option value="Women" selected>Women</option>
+                                                 <option value="unisex">Unisex</option>
+                                                 <?php
+                                                }elseif ($_GET['gender'] == 'unisex') {
+                                                    ?>
+                                                 <option value="Men">Men</option>
+                                                 <option value="Women">Women</option>
+                                                 <option value="unisex" selected>Unisex</option>
+                                                 <?php
+                                                }else {
+                                                    ?>
+                                                 <option value="Men">Men</option>
+                                                 <option value="Women">Women</option>
+                                                 <option value="unisex">Unisex</option>
+                                                 <?php
+                                                } ?>
+                                                </select>
                                             
                                             
                                             </div>
@@ -163,12 +212,23 @@ $result = $con->query($sql);
                                     <div class="fl-module-content fl-node-content">
                                         <div class="facetwp-bb-module">
                                             <!--<h4 class="facetwp-facet-title">Colour</h4>-->
-                                            <select class=" form-control" name="colour" data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1">
+                                            <select class="js-example-basic-multiple form-control"  name="colour[]" data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1"  multiple="multiple">
                                                 <option value="">Select Color</option>
-                                                <?$cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.colour;");
+                                                <?php $cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.colour;");
+                                               
                                                 foreach( $cols as $col ){?>
-                                                <option><?echo $col['colour']?></option>
-                                                <?}?>
+                                                    <?php foreach ($_GET['colour'] as $color) {
+                                                        if ($color == $col['colour']) {
+                                                            ?>
+                                                            <option value="<?php echo $col['colour']?>" selected><?php echo $col['colour']?></option>
+                                                            <?php
+                                                        }
+                                                       
+                                                        
+                                                    } ?>
+                                                        <option ><?php echo $col['colour']?></option>
+
+                                                <?php }?>
                                             </select>
                                             
                                         </div>
@@ -177,12 +237,21 @@ $result = $con->query($sql);
                                 <div class="fl-module fl-module-class-facet fl-node-5eb3b9be561d9 shape grouped" data-node="5eb3b9be561d9">
                                     <div class="fl-module-content fl-node-content">
                                         <div class="facetwp-bb-module">
-                                            <select class=" form-control" name="shape"  data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1">
+                                            <select class="js-example-basic-multiple form-control" name="shape[]"  data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1" multiple="multiple">
                                                 <option value="">Select Shape</option>
-                                                <?$cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.shape;");
+                                                <?php $cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.shape;");
                                                 foreach( $cols as $col ){?>
-                                                <option><?echo $col['shape']?></option>
-                                                <?}?>
+                                                 <?php foreach ($_GET['shape'] as $shape) {
+                                                        if ($shape == $col['shape']) {
+                                                            ?>
+                                                            <option value="<?php echo $col['shape']?>" selected><?php echo $col['shape']?></option>
+                                                            <?php
+                                                        }
+                                                       
+                                                        
+                                                    } ?>
+                                                <option><?php echo $col['shape']?></option>
+                                                <?php }?>
                                             </select>
                                         </div>
                                     </div>
@@ -190,31 +259,40 @@ $result = $con->query($sql);
                                 <div class="fl-module fl-module-class-facet fl-node-5eb3b9be56216 material grouped" data-node="5eb3b9be56216">
                                     <div class="fl-module-content fl-node-content">
                                         <div class="facetwp-bb-module">
-                                            <select class=" form-control" name="material"  data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1">
+                                            <select class="js-example-basic-multiple form-control" name="material[]"  data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1" multiple="multiple">
                                                 <option value="">Select Material</option>
-                                                <?$cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.material;");
+                                                <?php $cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.material;");
                                                 foreach( $cols as $col ){?>
-                                                <option><?echo $col['material']?></option>
-                                                <?}?>
+                                                 <?php foreach ($_GET['material'] as $material) {
+                                                        if ($material == $col['material']) {
+                                                            ?>
+                                                            <option value="<?php echo $col['material']?>" selected><?php echo $col['material']?></option>
+                                                            <?php
+                                                        }
+                                                       
+                                                        
+                                                    } ?>
+                                                <option><?php echo $col['material']?></option>
+                                                <?php }?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="fl-module fl-module-class-facet fl-node-5eb3b9be56253 brand grouped" data-node="5eb3b9be56253">
+                                <!-- <div class="fl-module fl-module-class-facet fl-node-5eb3b9be56253 brand grouped" data-node="5eb3b9be56253">
                                     <div class="fl-module-content fl-node-content">
                                         <div class="facetwp-bb-module">
                                             <select class=" form-control" name="brand"  data-type="checkboxes" style="overflow: hidden; outline: currentcolor none medium;" tabindex="1">
                                                 <option value="">Select Brand</option>
-                                                <?$cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.brand;");
+                                                <?php $cols = getAll($con, "SELECT * from glassBuy_glasses g group by g.brand;");
                                                 foreach( $cols as $col ){?>
-                                                <option><?echo $col['brand']?></option>
-                                                <?}?>
+                                                <option><?php echo $col['brand']?></option>
+                                                <?php }?>
                                             </select>
                                             
                                         </div>
                                         
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                         </div>
@@ -368,13 +446,13 @@ $result = $con->query($sql);
                                                         </div>
                                                         <div class="product-wrap pt-2">
                                                             <div class="prod-img">
-                                                                <?if($ratingCount[$id][0]!=""){?>
+                                                                <?php if($ratingCount[$id][0]!=""){?>
                                                                 <span style="position: absolute;
 background: white;
 padding: 4px;
 border-radius: 3px;
-top: 5px;"><?echo $ratingCount[$id][0]?> stars (<?echo $ratingCount[$id][1]?>)</span>
-<?}?>
+top: 5px;"><?php echo $ratingCount[$id][0]?> stars (<?php echo $ratingCount[$id][1]?>)</span>
+<?php }?>
 
 
 
@@ -390,15 +468,15 @@ top: 5px;"><?echo $ratingCount[$id][0]?> stars (<?echo $ratingCount[$id][1]?>)</
                                                                     />
                                                                 </a>
                                                                 
-                                                                <?if($row['ribboon_text']!=""){?>
+                                                                <?php if($row['ribboon_text']!=""){?>
                                                                 <span style="position: absolute;
-background: <?echo $row['ribboon_color']?>;
+background: <?php echo $row['ribboon_color']?>;
 padding: 4px;
 border-radius: 3px;
 top: 5px;
 color:black;
-right:10px;"><?echo $row['ribboon_text']?></span>
-<?}?>
+right:10px;"><?php echo $row['ribboon_text']?></span>
+<?php }?>
 
                                                             </div>
 
@@ -414,9 +492,9 @@ right:10px;"><?echo $row['ribboon_text']?></span>
                                                             </div>
                                                             
                                                             <div class="vto-btns">
-                                                                <?if($row['productCategory']!="Accessories"){?>
+                                                                <?php if($row['productCategory']!="Accessories"){?>
                                                                 <div class="btn-vto"><a href="#" class="try-on" data-try_on="566956">TRY - ON</a></div>
-                                                                <?}?>
+                                                                <?php }?>
 
                                                                 <a href="./product.php?id=<?php echo $id; ?>" class="btn-details">Buy Now</a>
                                                             </div>
@@ -427,7 +505,7 @@ right:10px;"><?echo $row['ribboon_text']?></span>
 													  }  //while sandeep
 												  }
 												  else{
-													// NO DATA FOUND
+													echo "NO DATA FOUND";
 												  }
 												?>
 												<!-- sandeep code end -->	
@@ -546,7 +624,10 @@ right:10px;"><?echo $row['ribboon_text']?></span>
     jQuery(".facetwp-checkbox[data-value='unisex']").click(function() {
           window.location="?gender=unisex";
         })
-        
+        $(document).ready(function() {
+            $.noConflict();
+    $('.js-example-basic-multiple').select2();
+});
         
 </script>
 <!-- WooCommerce JavaScript -->

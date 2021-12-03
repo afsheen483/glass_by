@@ -59,7 +59,7 @@ if(isset($_GET['c'])){
 <html lang="en-US">
 <head>
     
-<?
+<?php  
 if(!isset($_GET['print'])){
 require("./includes/head.php");
 }
@@ -68,6 +68,8 @@ require("./includes/head.php");
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body
 class="page-template-default page page-id-317 theme-bb-theme fl-builder woocommerce-account woocommerce-page woocommerce-no-js fl-theme-builder-header fl-theme-builder-footer woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active"
@@ -101,11 +103,11 @@ itemtype="https://schema.org/WebPage"
 <div class="fl-module-content fl-node-content">
 <div class="pp-heading-content">
 <div class="pp-heading pp-left">
-    <?if(!isset($_GET['print'])){ ?>
+    <?php  if(!isset($_GET['print'])){ ?>
 <h2 class="heading-title">
     <span class="title-text pp-primary-title">My Account</span>
 </h2>
-<?}?>
+<?php  }?>
 </div>
 </div>
 </div>
@@ -115,7 +117,7 @@ itemtype="https://schema.org/WebPage"
 <div class="fl-rich-text">
 <div>
 <div class="woocommerce">
-    <?php if(!isset($_GET['print'])){
+    <?php  if(!isset($_GET['print'])){
 include('./includes/sidebar.php');} ?>
 
             <div class="woocommerce-MyAccount-content">
@@ -133,17 +135,18 @@ include('./includes/sidebar.php');} ?>
                 <?php } ?>
                 <!-- end alert section -->
                 
-                <?if(isset($_GET['prescription'])){?>
+                <?php  if(isset($_GET['prescription'])){?>
                 <style>
                     #DataTables_Table_0_wrapper{
                         overflow:auto !important;
                     }
                 </style>
                 
-                <table >
+
+                <table class="table">
                     <thead>
                         <tr>
-                            <?
+                            <?php  
                             $presRows = array();
                             $od = getAll($con, "SELECT * from glassBuy_prescription limit 1;");
                             foreach($od as $row){
@@ -152,40 +155,62 @@ include('./includes/sidebar.php');} ?>
                                     if(!in_array($r, array("quantity", "product_id", "order_id", "id"))){
                                         $presRows[] = $r;
                                         ?>
-                                         <th><?echo $r?></th>
-                                        <?
+                                         <th><?php  echo $r?></th>
+                                        <?php  
                                     }
                                 }
                             }
                             ?>
                         </tr>
                         <tbody>
-                            <?
+                            <?php  
                             $order_id = $_GET['prescription'];
                             $od = getAll($con, "SELECT * from glassBuy_prescription where order_id='$order_id';");
                             foreach($od as $row){
-                                ?><tr><?
+                                ?><tr><?php  
                                 foreach($presRows as $pr){
                                     ?>
                                     <td>
-                                        <?if($pr!="file_name"){?>
-                                        <?echo $row[$pr]?>
-                                        <?}else{?>
-                                        <a href="./uploads/<?echo $row[$pr]?>" target="_blank">View file</a>
-                                        <?}?>
+                                        <?php  if($pr!="file_name"){?>
+                                        <?php  echo $row[$pr]?>
+                                        <?php  }else{?>
+                                        <a href="./uploads/<?php  echo $row[$pr]?>" target="_blank">View file</a>
+                                        <?php  }?>
                                     
                                     </td>
-                                    <?
+                                    <?php  
                                 }
-                                ?></tr><?
+                                ?></tr><?php  
                             }?>
                         </tbody>
                     </thead>
                     
                 </table>
-                <?}?>
-                <h5>Orders</h5>
-                <table >
+                <?php  }?>
+                <h2>Orders</h2>
+                
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                        <select class="form-control" name="order_status">
+                            <option value="All">All</option>
+                                        <?php  foreach($g_orderStatus as $col){
+                                            if ($_GET['order_status'] == $col) {?>
+                                             <option value="<?php  echo $col?>" selected><?php  echo $col?></option>
+                                             <?php
+                                               
+                                            }else{?>
+                                                 <option value="<?php  echo $col?>"><?php  echo $col?></option>
+
+                                        <?php } }?>
+                        </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                <button names="src" type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>OrderId</th>
@@ -198,7 +223,7 @@ include('./includes/sidebar.php');} ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?
+                        <?php  
                         $orderDetails = array();
                         $od = getAll($con, "SELECT * from glassBuy_order_details;");
                         foreach($od as $row){
@@ -220,55 +245,123 @@ include('./includes/sidebar.php');} ?>
                         else{
                             $orders = getAll($con, "SELECT *, o.id order_id from glassBuy_order o left outer join glassBuy_glasses g on g.glass_id=o.product_id where o.user_id='$session_userId' and isPaid='1';");
                         }
-                        
-                        
-                        foreach($orders as $row){
+                        if (isset($_GET['order_status'])) {
+                            $order_status = $_GET['order_status'];
+                            $query = "SELECT * FROM glassbuy_order o JOIN glassbuy_order_details d ON d.order_id = o.id JOIN glassbuy_prescription p ON p.order_id = o.id JOIN glassbuy_glasses g ON g.glass_id = o.product_id WHERE o.status = '$order_status' Group By o.id ORDER BY o.id DESC";
+
+                            if ($order_status == 'All') {
+                                $query = "SELECT * FROM glassbuy_order o JOIN glassbuy_order_details d ON d.order_id = o.id JOIN glassbuy_prescription p ON p.order_id = o.id JOIN glassbuy_glasses g ON g.glass_id = o.product_id Group By o.id ORDER BY o.id DESC";
+
+                            }
+                        }else{
+                            $query = "SELECT * FROM glassbuy_order o JOIN glassbuy_order_details d ON d.order_id = o.id JOIN glassbuy_prescription p ON p.order_id = o.id JOIN glassbuy_glasses g ON g.glass_id = o.product_id Group By o.id ORDER BY o.id DESC";
+ 
+                        }
+                        $fire = mysqli_query($con,$query);
+                        //$row = mysqli_fetch_assoc($fire);
+                        while( $row = mysqli_fetch_assoc($fire)){
+                        //foreach($orders as $row){
                         ?>
                         <tr>
-                            <td>#<?echo $row['order_id']?></td>
+                            <td>#<?php  echo $row['order_id']?></td>
                             <td>
                                 <div>
-                                    <p><b>Glass Id</b> : #<?echo $row['product_id']?></p>
-                                    <p><b>Colour</b> : <?echo $row['colour']?></p>
-                                    <p><b>Type </b> : <?echo $row['type']?></p>
-                                    <p><b>Material </b> : <?echo $row['material']?></p>
-                                    <p><b>Brand  </b> : <?echo $row['brand']?></p>
+                                    <p><b>Glass Id</b> : #<?php  echo $row['product_id']?></p>
+                                    <p><b>Colour</b> : <?php  echo $row['colour']?></p>
+                                    <p><b>Type </b> : <?php  echo $row['productCategory']?></p>
+                                    <p><b>Material </b> : <?php  echo $row['material']?></p>
                                 </div>
                             </td>
                             <td>
-                                <span><?echo $orderDetails[$row['order_id']]['fname']?> <?echo $orderDetails[$row['order_id']]['lname']?></span>
+                                <span><?php  echo $orderDetails[$row['order_id']]['fname']?> <?php  echo $orderDetails[$row['order_id']]['lname']?></span>
                             </td>
                             <td>
-                                <?echo $orderDetails[$row['order_id']]['address']?>
+                                <?php  echo $orderDetails[$row['order_id']]['address']?>
                             </td>
-                            <td><?echo $orderDetails[$row['order_id']]['order_date']?></td>
-                            <td><?echo $row['status']?></td>
+                            <td><?php  echo $orderDetails[$row['order_id']]['order_date']?></td>
                             <td>
-                                <?if(!isset($_GET['print'])){?>
-                                <?if($session_role=="admin"){?>
-                                <form action="" method="get">
-                                    <input name="order_id" value="<?echo $row['order_id']?>" hidden>
-                                    <select class="form-control" name="status">
-                                        <?foreach($g_orderStatus as $col){?>
-                                        <option><?echo $col?></option>
-                                        <?}?>
+                                
+                            <select class="form-control" name="status" style='display:none' onchange="receive_unreceive_order(this.value,<?php  echo $row['order_id']?>)" id="select_lens_status_<?php  echo $row['order_id']?>" data-labStatus="<?php  echo $row['order_id']?>">
+                                        <?php  foreach($g_orderStatus as $col){?>
+                                        <option><?php  echo $col?></option>
+                                        <?php  }?>
+                                    </select>
+                            
+                                    <h5><span data-id="<?php  echo $row['order_id']?>" class="badge badge-success edit_able" id="lable_lens_status_<?php  echo $row['order_id']?>" onclick="lens_status_toggle(<?php  echo $row['order_id']?>)" style="cursor: pointer;"><?php  echo $row['status']?></span></h5>
+
+                            
+                            
+                        </td>
+                            <td>
+                                <?php  if(!isset($_GET['print'])){?>
+                                <?php  if($session_role=="admin"){?>
+                                <!-- <form action="" method="get">
+                                    <input name="order_id" value="<?php  echo $row['order_id']?>" id="<?php  echo $row['order_id']?>" class="order_id" hidden>
+                                    <select class="form-control" name="status" id>
+                                        <?php  foreach($g_orderStatus as $col){?>
+                                        <option><?php  echo $col?></option>
+                                        <?php  }?>
                                     </select>
                                     <button type="submit">Change Status</button>
-                                </form>
+                                </form> -->
                                 
-                                <?}?>
+                                <?php  }?>
                                 <form action="./view_order.php" method="get">
-                                    <input name="id" value="<?echo $row['order_id']?>" hidden >
+                                    <input name="pId" value="<?php  echo $row['order_id']?>" hidden >
                                     <button type="submit">View Order Details</button>
                                 </form>
+                                <!-- <?php
+                                //  if ($row['productCategory'] == 'Accessories') {
+                                  ?>
+                                         <form action="./order_details_frame_accessories.php" method="get">
+                                    <input name="id" value="<?php  //echo $row['order_id']?>" hidden >
+                                    <button type="submit">Frame + Accessory</button>
+                                </form>
+                                  <?php
+
+                                } 
+                                
+                               // if ($row['productCategory'] == 'Accessories' || $row['productCategory'] == 'Glasses') {
+                                ?>
+                               
+                                
+                                <form action="./order_sunglasses_accessory.php" method="get">
+                                    <input name="id" value="<?php // echo $row['order_id']?>" hidden >
+                                    <button type="submit">Sunglasses + Accessory</button>
+                                </form>
+
+                                <?php
+                                //}
+                            
+                                ?>
+                                <?php
+                                 //if ($row['productCategory'] == 'Accessories') {
+                                  ?>
+                                <form action="./order_details_accessory.php" method="get">
+                                    <input name="id" value="<?php // echo $row['order_id']?>" hidden >
+                                    <button type="submit">Accessories Only</button>
+                                </form>
+                                <?php // }
+                               // if ($row['productCategory'] == 'Accessories' || $row['productCategory'] == 'Glasses') {
+                                    
+                                
+                                ?>
+                                <form action="./order_glasses_accessories.php" method="get">
+                                    <input name="id" value="<?php  //echo $row['order_id']?>" hidden >
+                                    <button type="submit">Glasses + Accessories</button>
+                                </form>
+                                <?php
+                              //  }
+                            
+                                ?> -->
                                 
                                 <!--<button>-->
-                                <!--    <a target="_blank"  href="?print=<?echo $row['order_id']?>" style="color:white;">Print</a>-->
+                                <!--    <a target="_blank"  href="?print=<?php  //echo $row['order_id']?>" style="color:white;">Print</a>-->
                                 <!--</button>-->
-                                <?}?>
+                               
                             </td>
                         </tr>
-                        <?}?>
+                        <?php  }?>
                     </tbody>
                 </table>
         </div>
@@ -301,16 +394,43 @@ include('./includes/sidebar.php');} ?>
 <?php require("./includes/footerjs.php");?>
 
 <script type="text/javascript">
-    $(document).ready(function(e){
-        $("table").dataTable();
-        $("form.deleteGlass").on('submit',function(e){
-            return confirm("do you want to delete this record?");
-        })
-    });
+  
     
-    <?if(isset($_GET['print'])){?>
-    print();
-    <?}?>
+    
+
+
+    function lens_status_toggle(id){
+    $("#select_lens_status_"+id).show();
+    $("#lable_lens_status_"+id).hide();
+   }
+   function receive_unreceive_order(order_status, id) {
+                $("#lable_lens_status_"+id).text($("#select_lens_status_"+id).find(":selected").text());
+         
+                $("#select_lens_status_"+id).hide();
+                $("#lable_lens_status_"+id).show();
+       
+                    console.log(id)
+                    console.log(order_status)
+                    var url = "orders_status_update.php";
+                    
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        cache: false,
+                        data: {
+                            order_status: order_status,
+                            id:id
+                        },
+                        success: function(response) {
+                            console.log("success");
+                            location.reload();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("update request failure");
+                            //errorFunction(); 
+                        }
+                    });
+            }                 
 </script>
 </body>
 </html>

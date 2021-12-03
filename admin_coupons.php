@@ -17,14 +17,17 @@ if(isset($_POST['coupon'])){
     $description = $_POST['description'];
     $status = $_POST['status'];
     $discount = $_POST['discount'];
+    $text = $_POST['text'];
+    $link = $_POST['link'];
+    $color = $_POST['color'];
     if(!isset($_GET['edit'])){
         $id = generateRandomString();
-        $sql  = "INSERT INTO glassBuy_coupons set id='$id', coupon='$coupon', discount='$discount', description='$description', status='$status'";
+        $sql  = "INSERT INTO glassBuy_coupons set id='$id', coupon='$coupon', discount='$discount', description='$description', status='$status',text='$text',color='$color',link='$link'";
            
             
     }else{
         $id = $_GET['edit'];
-        $sql= "update glassBuy_coupons set coupon='$coupon', discount='$discount', description='$description', status='$status' where id='$id'";
+        $sql= "update glassBuy_coupons set coupon='$coupon', discount='$discount', description='$description', status='$status',text='$text',color='$color',link='$link' where id='$id'";
     }
     if (!mysqli_query($con, $sql)) {
                 echo "account notcreated";
@@ -111,45 +114,55 @@ itemtype="https://schema.org/WebPage"
                 
                 <form method="post" action="" enctype="multipart/form-data">
                     <div class="form-wrap">
-                        <?
+                        <?php  
                         $edit = $_GET['edit'];
                         $getGlasses_sql = "SELECT * FROM `glassBuy_coupons` where id='$edit'";
                         $getGlass = getAll($con,$getGlasses_sql)[0];?>
                         <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
                             <label for="type">Coupon<span class="required">*</span></label>
-                            <input class="input-text" name="coupon" value="<?echo $getGlass['coupon']?>" id="type" required>
+                            <input class="input-text" name="coupon" value="<?php  echo $getGlass['coupon']?>" id="type" required>
                         </p>
                         <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
                             <label for="type">Discount<span class="required">*</span></label>
-                            <input class="input-text" name="discount" value="<?echo $getGlass['discount']?>" id="type" type="number" min="0" max="100" required>
+                            <input class="input-text" name="discount" value="<?php  echo $getGlass['discount']?>" id="type" type="number" min="0" max="100" required>
                         </p>
                         <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-first">
                             <label for="type">Description<span class="required">*</span></label>
-                            <input class="input-text" name="description" value="<?echo $getGlass['description']?>" id="type" type="text"  required>
+                            <input class="input-text" name="description" value="<?php  echo $getGlass['description']?>" id="type" type="text"  required>
                         </p>
+
                         <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
                             <label for="type">Status<span class="required">*</span></label>
                             <select class="input-text" name="status" >
-                                <option <?if( $getGlass['status']=="active"){echo "selected";}?> >active</option>
-                                <option <?if( $getGlass['status']=="de-active"){echo "selected";}?> >de-active</option>
+                                <option <?php  if( $getGlass['status']=="active"){echo "selected";}?> >active</option>
+                                <option <?php  if( $getGlass['status']=="de-active"){echo "selected";}?> >de-active</option>
                             </select>
                         </p>
-                        
-                        
-                        <p>
-                            <button class="btn-link" type="submit">Submit</button>
+                        <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-first">
+                            <label for="type">Text<span class="required">*</span></label>
+                            <input class="input-text" name="text" value="<?php  echo $getGlass['text']?>" id="type" type="text"  required>
                         </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+                            <label for="type">Link<span class="required">*</span></label>
+                            <input class="input-text" name="link" value="<?php  echo $getGlass['link']?>" id="type" type="text"  required>
+                        </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
+                            <label for="type">Color<span class="required">*</span></label>
+                            <input class="input-text" name="color" value="<?php  echo $getGlass['color']?>" id="type" type="text"  required>
+                        </p> 
+                        </div>
+                        <div >
                         
-                        
+                            <button class="btn-link" type="submit">Submit</button>
                         
                         </div>
                     </form>
                     
-                    <?if($session_role=="admin"){?>
-                <a target="_blank" class="button" href="./export.php?table=coupons&format=excel">Export</a>
-                <?}?>
+                    <?php  if($session_role=="admin"){?>
+                <a target="_blank" class="button" href="./export.php?table=coupons&format=excel" style="margin-top: 1px;">Export</a>
+                <?php  }?>
                 
-                <table >
+                <table class="table">
                     <thead>
                         <tr>
                             
@@ -158,6 +171,9 @@ itemtype="https://schema.org/WebPage"
                             <th>Discount</th>
                             <th>Times Used</th>
                             <th>Description</th>
+                            <th>Text</th>
+                            <th>Link</th>
+                            <th>Color</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -171,7 +187,10 @@ itemtype="https://schema.org/WebPage"
 
                             <td><?php echo $glass['discount'];?></td>
                             <td><?php echo $glass['timesUsed'];?></td>
-                            <td><?echo $glass['description']?></td>
+                            <td><?php echo $glass['description']?></td>
+                            <td><?php echo $glass['text']?></td>
+                            <td><?php echo $glass['link']?></td>
+                            <td><?php echo $glass['color']?></td>
                            
                             <td>
                                 <a class="btn-link" href="?edit=<?php echo $glass['id'];?>">Edit</a>
@@ -213,7 +232,7 @@ itemtype="https://schema.org/WebPage"
 
 <script type="text/javascript">
     $(document).ready(function(e){
-        $("table").dataTable();
+        $(".table").dataTable();
         $("form.deleteGlass").on('submit',function(e){
             return confirm("Do you want to delete this record?");
         })
