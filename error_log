@@ -1,0 +1,125 @@
+[14-Aug-2021 11:51:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:7
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 7
+[14-Aug-2021 11:52:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:7
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 7
+[14-Aug-2021 11:52:51 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[14-Aug-2021 11:53:41 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[14-Aug-2021 11:53:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[14-Aug-2021 11:56:21 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[14-Aug-2021 11:56:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[14-Aug-2021 12:19:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php:14
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php(26): logout()
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/index.php on line 14
+[16-Aug-2021 10:09:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php:148
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php on line 148
+[16-Aug-2021 10:11:26 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php:148
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php on line 148
+[16-Aug-2021 10:15:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php:148
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/admin_cms.php on line 148
+[16-Aug-2021 17:09:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function generateRandomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php on line 9
+[16-Aug-2021 17:10:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function generateRandomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php on line 9
+[16-Aug-2021 17:10:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function generateRandomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php on line 9
+[16-Aug-2021 17:10:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function generateRandomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/test.php on line 9
+[16-Aug-2021 18:17:28 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1579
+[19-Aug-2021 16:59:37 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 16:59:42 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 16:59:50 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:00:04 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:00:04 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/shop.php on line 495
+[19-Aug-2021 17:00:09 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:00:09 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/shop.php on line 495
+[19-Aug-2021 17:00:25 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:00:44 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/shop.php on line 495
+[19-Aug-2021 17:00:51 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:00:54 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:00:56 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:01:01 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:01:05 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:01:37 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:01:42 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:01:45 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:02:00 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:02:04 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/includes/header.php on line 146
+[19-Aug-2021 17:02:04 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/shop.php on line 495
+[19-Aug-2021 17:02:08 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:04:34 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1681
+[19-Aug-2021 17:05:59 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:06:03 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:08:47 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:08:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:09:11 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:09:37 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1679
+[19-Aug-2021 17:09:46 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:17:29 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:19:11 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1680
+[19-Aug-2021 17:20:19 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1649
+[19-Aug-2021 17:20:20 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1649
+[19-Aug-2021 17:20:42 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1635
+[19-Aug-2021 17:20:46 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1635
+[19-Aug-2021 17:21:21 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1564
+[19-Aug-2021 17:21:22 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1564
+[19-Aug-2021 17:21:23 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1564
+[19-Aug-2021 17:21:24 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/product.php on line 1564
+[20-Sep-2021 12:58:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function randomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/forgot_password.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/forgot_password.php on line 8
+[20-Sep-2021 12:58:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function randomString() in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/forgot_password.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy1/forgot_password.php on line 8
+[15-Oct-2021 18:53:37 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/anomozco/projects.anomoz.com/ke/glassBuy/product.php:13
+Stack trace:
+#0 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy/product.php on line 13
+[15-Oct-2021 19:25:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/anomozco/projects.anomoz.com/ke/glassBuy/includes/core/dbmodel.php:161
+Stack trace:
+#0 /home2/anomozco/projects.anomoz.com/ke/glassBuy/view_order.php(14): getAll(false, 'SELECT * from g...')
+#1 {main}
+  thrown in /home2/anomozco/projects.anomoz.com/ke/glassBuy/includes/core/dbmodel.php on line 161

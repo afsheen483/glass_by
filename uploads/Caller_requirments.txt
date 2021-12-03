@@ -1,0 +1,11 @@
+Flyamaze-Caller Module
+1-call log updated datetime double check
+2-double check on remarks
+3-Cards should be clickable
+user clicks on 'Completed' Cards
+System should show contacts where status = completed and callerid = caller that is login to the system.
+4- Assign Caller should be remove...
+5- Adjust allignment of create new contact and choose file functionality
+6- When status is completed
+    a-create lead
+    b-remarks , ticket info and visa info should be concat and save in newley created lead remarks. 

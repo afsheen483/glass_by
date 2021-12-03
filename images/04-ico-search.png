@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
+    <script type='text/javascript'>
+        var is_shop_as_customer = false;
+        </script> 
+	<!-- This site is optimized with the Yoast SEO plugin v15.0 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Page not found | Direct Vision</title>
+	<meta name="robots" content="noindex, follow" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:title" content="Page not found | Direct Vision" />
+	<meta property="og:site_name" content="Direct Vision" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://directvisioneyewear.ca/#organization","name":"Direct Vision","url":"https://directvisioneyewear.ca/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://directvisioneyewear.ca/#logo","inLanguage":"en-US","url":"https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo.png","width":257,"height":30,"caption":"Direct Vision"},"image":{"@id":"https://directvisioneyewear.ca/#logo"}},{"@type":"WebSite","@id":"https://directvisioneyewear.ca/#website","url":"https://directvisioneyewear.ca/","name":"Direct Vision","description":"","publisher":{"@id":"https://directvisioneyewear.ca/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://directvisioneyewear.ca/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Direct Vision &raquo; Feed" href="https://directvisioneyewear.ca/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Direct Vision &raquo; Comments Feed" href="https://directvisioneyewear.ca/comments/feed/" />
+		<script>
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/directvisioneyewear.ca\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.5.5"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://directvisioneyewear.ca/wp-includes/css/dist/block-library/style.min.css?ver=5.5.5' media='all' />
+<link rel='stylesheet' id='wp-block-library-theme-css'  href='https://directvisioneyewear.ca/wp-includes/css/dist/block-library/theme.min.css?ver=5.5.5' media='all' />
+<link rel='stylesheet' id='wc-block-vendors-style-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/vendors-style.css?ver=3.1.0' media='all' />
+<link rel='stylesheet' id='wc-block-style-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/style.css?ver=3.1.0' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=4.5.2' media='all' />
+<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=4.5.2' media='only screen and (max-width: 767px)' />
+<link rel='stylesheet' id='woocommerce-general-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=4.5.2' media='all' />
+<style id='woocommerce-inline-inline-css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' id='woopack-frontend-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woopack/assets/css/frontend.css?ver=1.3.9.5' media='all' />
+<link rel='stylesheet' id='wc-composite-css-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce-composite-products/assets/css/frontend/woocommerce.css?ver=6.2.2' media='all' />
+<link rel='stylesheet' id='font-awesome-5-css'  href='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/fonts/fontawesome/5.14.0/css/all.min.css?ver=2.4.0.5' media='all' />
+<link rel='stylesheet' id='foundation-icons-css'  href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css?ver=2.4.0.5' media='all' />
+<link rel='stylesheet' id='fl-builder-layout-bundle-775b362702614132ba966346ab3903d1-css'  href='https://directvisioneyewear.ca/wp-content/uploads/bb-plugin/cache/775b362702614132ba966346ab3903d1-layout-bundle.css?ver=2.4.0.5-1.3.2.3' media='all' />
+<link rel='stylesheet' id='sv-wc-payment-gateway-payment-form-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce-gateway-moneris/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/assets/css/frontend/sv-wc-payment-gateway-payment-form.min.css?ver=5.5.1' media='all' />
+<link rel='stylesheet' id='woo-variation-swatches-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woo-variation-swatches/assets/css/frontend.min.css?ver=1.0.85' media='all' />
+<style id='woo-variation-swatches-inline-css'>
+.variable-item:not(.radio-variable-item) { width : 30px; height : 30px; } .wvs-style-squared .button-variable-item { min-width : 30px; } .button-variable-item span { font-size : 16px; }
+</style>
+<link rel='stylesheet' id='woo-variation-swatches-theme-override-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woo-variation-swatches/assets/css/wvs-theme-override.min.css?ver=1.0.85' media='all' />
+<link rel='stylesheet' id='woo-variation-swatches-tooltip-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woo-variation-swatches/assets/css/frontend-tooltip.min.css?ver=1.0.85' media='all' />
+<link rel='stylesheet' id='wc-bundle-style-css'  href='https://directvisioneyewear.ca/wp-content/plugins/woocommerce-product-bundles/assets/css/frontend/woocommerce.css?ver=6.2.3' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/fonts/fontawesome/5.14.0/css/v4-shims.min.css?ver=2.4.0.5' media='all' />
+<link rel='stylesheet' id='jquery-magnificpopup-css'  href='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/css/jquery.magnificpopup.min.css?ver=2.4.0.5' media='all' />
+<link rel='stylesheet' id='base-css'  href='https://directvisioneyewear.ca/wp-content/themes/bb-theme/css/base.min.css?ver=1.7.7' media='all' />
+<link rel='stylesheet' id='fl-automator-skin-css'  href='https://directvisioneyewear.ca/wp-content/uploads/bb-theme/skin-5f85a96833a6f.css?ver=1.7.7' media='all' />
+<link rel='stylesheet' id='fl-child-theme-css'  href='https://directvisioneyewear.ca/wp-content/themes/bb-theme-child/style.css?ver=5.5.5' media='all' />
+<link rel='stylesheet' id='vs-styles-css'  href='https://directvisioneyewear.ca/wp-content/themes/bb-theme-child/assets/css/vs_style.css?ver=1585162320' media='' />
+<link rel='stylesheet' id='pp-animate-css'  href='https://directvisioneyewear.ca/wp-content/plugins/bbpowerpack/assets/css/animate.min.css?ver=3.5.1' media='all' />
+<link rel='stylesheet' id='fl-builder-google-fonts-3712a7a876f4e54fb42d83ae6e00db02-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A600%2C300%2C400%2C700%7CPublic+Sans%3A600%2C400%2C700&#038;ver=5.5.5' media='all' />
+<script type="text/javascript">(function(a,d){if(a._nsl===d){a._nsl=[];var c=function(){if(a.jQuery===d)setTimeout(c,33);else{for(var b=0;b<a._nsl.length;b++)a._nsl[b].call(a,a.jQuery);a._nsl={push:function(b){b.call(a,a.jQuery)}}}};c()}})(window);</script><script src='https://directvisioneyewear.ca/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp' id='jquery-core-js'></script>
+<script src='https://directvisioneyewear.ca/wp-includes/js/imagesloaded.min.js?ver=5.5.5' id='imagesloaded-js'></script>
+<link rel="https://api.w.org/" href="https://directvisioneyewear.ca/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://directvisioneyewear.ca/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://directvisioneyewear.ca/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.5.5" />
+<meta name="generator" content="WooCommerce 4.5.2" />
+		<script>
+			var bb_powerpack = {
+				ajaxurl: 'https://directvisioneyewear.ca/wp-admin/admin-ajax.php'
+			};
+		</script>
+				<script type="text/javascript">
+			var woopack_config = {"ajaxurl":"https:\/\/directvisioneyewear.ca\/wp-admin\/admin-ajax.php","page":0,"current_page":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/bb-plugin\/cache\/wp-content\/uploads\/2020\/04\/ico-search.png","woo_url":"https:\/\/directvisioneyewear.ca\/wp-content\/plugins\/woocommerce\/"};
+		</script>
+			<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<script type="text/javascript">
+window.metrilo||(window.metrilo=[]),window.metrilo.q=[],mth=["identify","track","event","pageview","purchase","debug","atr"],sk=function(e){return function(){a=Array.prototype.slice.call(arguments);a.unshift(e);window.metrilo.q.push(a)}};for(var i=0;mth.length>i;i++){window.metrilo[mth[i]]=sk(mth[i])}window.metrilo.load=function(e){var t=document,n=t.getElementsByTagName("script")[0],r=t.createElement("script");r.type="text/javascript";r.async=true;r.src="//t.metrilo.com/j/"+e+".js";n.parentNode.insertBefore(r,n)};
+window.metrilo.ensure_cbuid = "d2b6bc4040d76677ed702a909cef9dd31557486245";
+</script>
+<script type="text/javascript">
+			metrilo.pageview();
+	</script>
+<style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><link rel="icon" href="https://directvisioneyewear.ca/wp-content/uploads/2020/04/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://directvisioneyewear.ca/wp-content/uploads/2020/04/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://directvisioneyewear.ca/wp-content/uploads/2020/04/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://directvisioneyewear.ca/wp-content/uploads/2020/04/cropped-favicon-270x270.png" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WJ5Q9NM');</script>
+<!-- End Google Tag Manager -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<style>
+    @font-face{
+        font-family:'FontAwesome';
+        src:url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0');
+        src:url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+        url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+        url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+        url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+        url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+        font-weight:normal;
+        font-style:normal
+    }
+</style>
+</head>
+<body class="error404 theme-bb-theme woocommerce-no-js fl-theme-builder-header fl-theme-builder-footer woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJ5Q9NM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><a aria-label="Skip to content" class="fl-screen-reader-text" href="#fl-main-content">Skip to content</a><div class="fl-page">
+	<header class="fl-builder-content fl-builder-content-19 fl-builder-global-templates-locked" data-post-id="19" data-type="header" data-sticky="0" data-sticky-breakpoint="medium" data-shrink="0" data-overlay="0" data-overlay-bg="transparent" data-shrink-image-height="50px" itemscope="itemscope" itemtype="http://schema.org/WPHeader"><div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5ea7ee5eeffd0 fl-visible-desktop-medium" data-node="5ea7ee5eeffd0">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea7ee5ef1018 fl-col-group-equal-height fl-col-group-align-center" data-node="5ea7ee5ef1018">
+			<div class="fl-col fl-node-5ea7ee5ef113a" data-node="5ea7ee5ef113a">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea7eed5ea61b" data-node="5ea7eed5ea61b">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-left">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title"></span>
+			
+			
+		</h2>
+
+	</div>
+				<div class="pp-sub-heading">
+			<p>Free Shipping &amp; Returns &nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp; 30 Day Money-back Guarantee</p>		</div>
+	
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea7ee5ef117e fl-col-small" data-node="5ea7ee5ef117e">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea7f17a61b96" data-node="5ea7f17a61b96">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-right">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title"></span>
+			
+			
+		</h2>
+
+	</div>
+				<div class="pp-sub-heading">
+			<p><a style="color: #e1e1e1;" href="/contact-us/">Need Help? <span style="font-weight: 400;">Contact us here</span></a></p>		</div>
+	
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea7f3dbe5b14 fl-visible-desktop-medium" data-node="5ea7f3dbe5b14">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea7f3dbe7d73 fl-col-group-custom-width" data-node="5ea7f3dbe7d73">
+			<div class="fl-col fl-node-5ea7f3dbe7e80 fl-col-small" data-node="5ea7f3dbe7e80">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-widget fl-node-5ea7f465b460b" data-node="5ea7f465b460b">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-widget">
+<div class="widget woocommerce widget_product_search"><form role="search" method="get" class="woocommerce-product-search" action="https://directvisioneyewear.ca/">
+	<label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>
+	<input type="search" id="woocommerce-product-search-field-0" class="search-field" placeholder="SEARCH" value="" name="s" />
+	<button type="submit" value="Search">Search</button>
+	<input type="hidden" name="post_type" value="product" />
+</form>
+</div></div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea7f3dbe7ebf fl-col-small" data-node="5ea7f3dbe7ebf">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-image fl-node-5ea7f4055b2c8" data-node="5ea7f4055b2c8">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-photo-container">
+	<div class="pp-photo pp-photo-align-center pp-photo-align-responsive-default" itemscope itemtype="http://schema.org/ImageObject">
+		<div class="pp-photo-content ">
+			<div class="pp-photo-content-inner">
+									<a href="https://directvisioneyewear.ca" target="_self" itemprop="url">
+										<img loading="lazy" width="514" height="59" class="pp-photo-img wp-image-21516 size-full" src="https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-1.png" alt="logo" itemprop="image" srcset="https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-1.png 514w, https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-1-300x34.png 300w, https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-1-150x17.png 150w" sizes="(max-width: 514px) 100vw, 514px" />
+						<div class="pp-overlay-bg"></div>
+															</a>
+															</div>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea7f3dbe7efd fl-col-small text-right" data-node="5ea7f3dbe7efd">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-smart-button fl-node-5ebceead842f8 inline-items" data-node="5ebceead842f8">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-button-wrap pp-button-width-auto">
+	<a href="/my-account/" target="_self" class="pp-button" role="button" aria-label="Login">
+				<span class="pp-button-text">Login</span>
+			</a>
+</div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-5ea80935ab5f3 inline-items" data-node="5ea80935ab5f3">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<div class="cart-link"><a href="/cart/">Cart</a>         <div class="fl-cart-count">
+                <a class="js-cart" href="https://directvisioneyewear.ca/cart/" title="View your shopping cart">
+                <i class=""></i>
+                <span class="cart-menu-items">0</span>
+            </a>
+        </div> </div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea803ddf02f0 fl-visible-desktop-medium" data-node="5ea803ddf02f0">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea803ddf35cf" data-node="5ea803ddf35cf">
+			<div class="fl-col fl-node-5ea803ddf36f3" data-node="5ea803ddf36f3">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-advanced-menu fl-node-5ea80427c2c7f" data-node="5ea80427c2c7f">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-advanced-menu pp-advanced-menu-accordion-collapse pp-menu-default">
+   	<div class="pp-advanced-menu-mobile-toggle hamburger"><div class="pp-hamburger"><div class="pp-hamburger-box"><div class="pp-hamburger-inner"></div></div></div></div>   <div class="pp-clear"></div>
+
+		
+	   	<ul id="menu-main-menu" class="menu pp-advanced-menu-horizontal pp-toggle-arrows"><li id="menu-item-21584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">About Us<span class="pp-menu-toggle"></span></span></a></div>
+<ul class="sub-menu">
+	<li id="menu-item-19462" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">Our Story</span></a></li>
+	<li id="menu-item-670" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/how-we-do-it/" tabindex="0" role="link"><span class="menu-item-text">How we do it</span></a></li>
+</ul>
+</li>
+<li id="menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=glasses" tabindex="0" role="link"><span class="menu-item-text">EYEGLASSES</span></a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=sunglasses" tabindex="0" role="link"><span class="menu-item-text">Sunglasses</span></a></li>
+<li id="menu-item-22028" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/news/" tabindex="0" role="link"><span class="menu-item-text">News</span></a></li>
+</ul>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5ea922351f8e8 fl-visible-mobile" data-node="5ea922351f8e8">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea922351fa53 fl-col-group-equal-height fl-col-group-align-center" data-node="5ea922351fa53">
+			<div class="fl-col fl-node-5ea922351fa97" data-node="5ea922351fa97">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea922351fad8" data-node="5ea922351fad8">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-center">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title"></span>
+			
+			
+		</h2>
+
+	</div>
+				<div class="pp-sub-heading">
+			<p>Free Shipping &amp; Returns + 30 Day Money-back Guarantee</p>		</div>
+	
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea922dd47a47 fl-visible-mobile" data-node="5ea922dd47a47">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea922dd4eeb4 fl-col-group-custom-width" data-node="5ea922dd4eeb4">
+			<div class="fl-col fl-node-5ea922dd4eff7" data-node="5ea922dd4eff7">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-widget fl-node-5ea923474915c" data-node="5ea923474915c">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-widget">
+<div class="widget woocommerce widget_product_search"><form role="search" method="get" class="woocommerce-product-search" action="https://directvisioneyewear.ca/">
+	<label class="screen-reader-text" for="woocommerce-product-search-field-1">Search for:</label>
+	<input type="search" id="woocommerce-product-search-field-1" class="search-field" placeholder="SEARCH" value="" name="s" />
+	<button type="submit" value="Search">Search</button>
+	<input type="hidden" name="post_type" value="product" />
+</form>
+</div></div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea922dd4f03c fl-col-small text-right" data-node="5ea922dd4f03c">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-icon fl-node-5ea92b61a65a5 inline-items" data-node="5ea92b61a65a5">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+								<a href="/my-account/" target="_self">
+							<i class="fas fa-user" aria-hidden="true"></i>
+						</a>
+			</span>
+			<div id="fl-icon-text-5ea92b61a65a5" class="fl-icon-text fl-icon-text-empty">
+						<a href="/my-account/" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
+												</a>
+					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-5ea923dd83a4e inline-items" data-node="5ea923dd83a4e">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<div class="cart-link"><a href="/cart/"><i class="fas fa-shopping-basket"></i></a>         <div class="fl-cart-count">
+                <a class="js-cart" href="https://directvisioneyewear.ca/cart/" title="View your shopping cart">
+                <i class=""></i>
+                <span class="cart-menu-items">0</span>
+            </a>
+        </div> </div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea92ec952d54 fl-visible-mobile" data-node="5ea92ec952d54">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea92ec95b7fc fl-col-group-equal-height fl-col-group-align-center fl-col-group-custom-width" data-node="5ea92ec95b7fc">
+			<div class="fl-col fl-node-5ea92ec95b95e fl-col-small" data-node="5ea92ec95b95e">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-advanced-menu fl-node-5ea92ef26c357" data-node="5ea92ef26c357">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-advanced-menu pp-advanced-menu-accordion-collapse pp-menu-default">
+   	   <div class="pp-clear"></div>
+
+		
+	   	<ul id="menu-main-menu-1" class="menu pp-advanced-menu-horizontal pp-toggle-arrows"><li id="menu-item-21584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">About Us<span class="pp-menu-toggle"></span></span></a></div>
+<ul class="sub-menu">
+	<li id="menu-item-19462" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">Our Story</span></a></li>
+	<li id="menu-item-670" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/how-we-do-it/" tabindex="0" role="link"><span class="menu-item-text">How we do it</span></a></li>
+</ul>
+</li>
+<li id="menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=glasses" tabindex="0" role="link"><span class="menu-item-text">EYEGLASSES</span></a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=sunglasses" tabindex="0" role="link"><span class="menu-item-text">Sunglasses</span></a></li>
+<li id="menu-item-22028" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/news/" tabindex="0" role="link"><span class="menu-item-text">News</span></a></li>
+</ul>
+		</div>
+<div class="pp-advanced-menu-mobile-toggle hamburger"><div class="pp-hamburger"><div class="pp-hamburger-box"><div class="pp-hamburger-inner"></div></div></div></div><div class="pp-advanced-menu pp-advanced-menu-accordion-collapse off-canvas">
+	<div class="pp-clear"></div>
+	<div class="pp-off-canvas-menu pp-menu-left">
+		<div class="pp-menu-close-btn">×</div>
+
+		
+		<ul id="menu-main-menu-2" class="menu pp-advanced-menu-horizontal pp-toggle-arrows"><li id="menu-item-21584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">About Us<span class="pp-menu-toggle"></span></span></a></div>
+<ul class="sub-menu">
+	<li id="menu-item-19462" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">Our Story</span></a></li>
+	<li id="menu-item-670" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/how-we-do-it/" tabindex="0" role="link"><span class="menu-item-text">How we do it</span></a></li>
+</ul>
+</li>
+<li id="menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=glasses" tabindex="0" role="link"><span class="menu-item-text">EYEGLASSES</span></a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/shop/?_collection=sunglasses" tabindex="0" role="link"><span class="menu-item-text">Sunglasses</span></a></li>
+<li id="menu-item-22028" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/news/" tabindex="0" role="link"><span class="menu-item-text">News</span></a></li>
+</ul>
+		
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea92ec95b9a6 fl-col-small" data-node="5ea92ec95b9a6">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-image fl-node-5ea92ed9d0d82" data-node="5ea92ed9d0d82">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-photo-container">
+	<div class="pp-photo pp-photo-align-center pp-photo-align-responsive-center" itemscope itemtype="http://schema.org/ImageObject">
+		<div class="pp-photo-content ">
+			<div class="pp-photo-content-inner">
+									<a href="https://directvisioneyewear.ca" target="_self" itemprop="url">
+										<img loading="lazy" width="257" height="30" class="pp-photo-img wp-image-19540 size-full" src="https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-new.png" alt="logo-new" itemprop="image" srcset="https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-new.png 257w, https://directvisioneyewear.ca/wp-content/uploads/2020/04/logo-new-150x18.png 150w" sizes="(max-width: 257px) 100vw, 257px" />
+						<div class="pp-overlay-bg"></div>
+															</a>
+															</div>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea92ec95b9ea fl-col-small" data-node="5ea92ec95b9ea">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-icon fl-node-5ea92f43ac2aa" data-node="5ea92f43ac2aa">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+								<a href="tel:1-000-000-000" target="_self">
+							<i class="fi-telephone" aria-hidden="true"></i>
+						</a>
+			</span>
+			<div id="fl-icon-text-5ea92f43ac2aa" class="fl-icon-text fl-icon-text-empty">
+						<a href="tel:1-000-000-000" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
+												</a>
+					</div>
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</header>	<div id="fl-main-content" class="fl-page-content" itemprop="mainContentOfPage" role="main">
+
+		
+<div class="container">
+	<div class="row">
+		<div class="fl-content col-md-12">
+						<article class="fl-post fl-404">
+				<header class="fl-post-header" role="banner">
+					<h2 class="fl-post-title">Sorry! That page doesn't seem to exist.</h2>
+				</header><!-- .fl-post-header -->
+								<div class="fl-post-content clearfix">
+					<form aria-label="Search" method="get" role="search" action="https://directvisioneyewear.ca/" title="Type and press Enter to search.">
+	<input aria-label="Search" type="search" class="fl-search-input form-control" name="s" value="Search" onfocus="if (this.value === 'Search') { this.value = ''; }" onblur="if (this.value === '') this.value='Search';" />
+</form>
+				</div><!-- .fl-post-content -->
+							</article>
+						<!-- .fl-post -->
+		</div>
+	</div>
+</div>
+
+
+	</div><!-- .fl-page-content -->
+	<footer class="fl-builder-content fl-builder-content-21 fl-builder-global-templates-locked" data-post-id="21" data-type="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter"><div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea81140f34e8 footer-row" data-node="5ea81140f34e8">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea811410088b fl-col-group-custom-width" data-node="5ea811410088b">
+			<div class="fl-col fl-node-5ea81141009b4 fl-col-small" data-node="5ea81141009b4">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea811c25ac22" data-node="5ea811c25ac22">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-left">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title">About Us</span>
+			
+			
+		</h2>
+
+	</div>
+		
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-pp-advanced-menu fl-node-5ea8134874d19" data-node="5ea8134874d19">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-advanced-menu pp-advanced-menu-accordion-collapse pp-menu-default">
+   	<div class="pp-advanced-menu-mobile-toggle hamburger"><div class="pp-hamburger"><div class="pp-hamburger-box"><div class="pp-hamburger-inner"></div></div></div></div>   <div class="pp-clear"></div>
+
+		
+	   	<ul id="menu-about" class="menu pp-advanced-menu-vertical pp-toggle-arrows"><li id="menu-item-19488" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/our-story/" tabindex="0" role="link"><span class="menu-item-text">Our Story</span></a></li>
+<li id="menu-item-764" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/terms-conditions/" tabindex="0" role="link"><span class="menu-item-text">Terms &#038; Conditions</span></a></li>
+</ul>
+		</div>
+	</div>
+</div>
+<div class="fl-module fl-module-html fl-node-5f33fa34031c5 policy-links" data-node="5f33fa34031c5">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-html">
+	<a href="/privacy-policy/">Privacy Policy</a> | <a href="https://www.iubenda.com/privacy-policy/54770787/cookie-policy" class="iubenda-nostyle iubenda-embed" title="Cookie Policy ">Cookie Policy</a><!-- <a href="/cookie-policy/">Cookie Policy</a> -->
+<script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-60000ecbd7138" data-node="60000ecbd7138">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p><a title="mailto:info@directvisioneyewear.com" href="mailto:info@directvisioneyewear.com">info@directvisioneyewear.com</a></p>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea81141009f8 fl-col-small" data-node="5ea81141009f8">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea814bc29589" data-node="5ea814bc29589">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-left">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title">Customer Service</span>
+			
+			
+		</h2>
+
+	</div>
+		
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-pp-advanced-menu fl-node-5ea814d14e62a" data-node="5ea814d14e62a">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-advanced-menu pp-advanced-menu-accordion-collapse pp-menu-default">
+   	<div class="pp-advanced-menu-mobile-toggle hamburger"><div class="pp-hamburger"><div class="pp-hamburger-box"><div class="pp-hamburger-inner"></div></div></div></div>   <div class="pp-clear"></div>
+
+		
+	   	<ul id="menu-customer-service" class="menu pp-advanced-menu-vertical pp-toggle-arrows"><li id="menu-item-19539" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/my-account/" tabindex="0" role="link"><span class="menu-item-text">My Account</span></a></li>
+<li id="menu-item-774" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/faqs/" tabindex="0" role="link"><span class="menu-item-text">FAQs</span></a></li>
+<li id="menu-item-766" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/shipping-and-returns/" tabindex="0" role="link"><span class="menu-item-text">Return Policy</span></a></li>
+<li id="menu-item-22085" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://directvisioneyewear.ca/contact-us/" tabindex="0" role="link"><span class="menu-item-text">Contact Us</span></a></li>
+</ul>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea8114100a70 fl-col-small" data-node="5ea8114100a70">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea8151061b14 fl-visible-desktop-medium" data-node="5ea8151061b14">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-left">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title">Social</span>
+			
+			
+		</h2>
+
+	</div>
+		
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-heading fl-node-5f218f2e203f7" data-node="5f218f2e203f7">
+	<div class="fl-module-content fl-node-content">
+		<h5 class="fl-heading">
+		<span class="fl-heading-text">Follow us</span>
+	</h5>
+	</div>
+</div>
+<div class="fl-module fl-module-pp-social-icons fl-node-5ea81e132b562" data-node="5ea81e132b562">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-social-icons pp-social-icons-left pp-social-icons-horizontal pp-responsive-center">
+	<span class="pp-social-icon" itemscope itemtype="http://schema.org/Organization">
+		<link itemprop="url" href="https://directvisioneyewear.ca">
+		<a itemprop="sameAs" href="https://www.facebook.com/DirectVisionEyewear" target="_blank" title="Facebook" aria-label="Facebook" role="button" rel="noopener" >
+							<i class="fab fa-facebook-f"></i>
+					</a>
+	</span>
+		<span class="pp-social-icon" itemscope itemtype="http://schema.org/Organization">
+		<link itemprop="url" href="https://directvisioneyewear.ca">
+		<a itemprop="sameAs" href="https://www.instagram.com/directvisioneyewear/" target="_blank" title="Instagram" aria-label="Instagram" role="button" rel="noopener" >
+							<i class="fab fa-instagram"></i>
+					</a>
+	</span>
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea8114100a34 fl-col-small" data-node="5ea8114100a34">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-heading fl-node-5f2190ad9c044" data-node="5f2190ad9c044">
+	<div class="fl-module-content fl-node-content">
+		<h3 class="fl-heading">
+		<span class="fl-heading-text">Need Help?</span>
+	</h3>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-5f2190e24c9bd" data-node="5f2190e24c9bd">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<div>We are here to answer your questions and help you choose the perfect frames</div>
+</div>
+	</div>
+</div>
+<div class="fl-module fl-module-pp-smart-button fl-node-5f21915bd9d84" data-node="5f21915bd9d84">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-button-wrap pp-button-width-auto">
+	<a href="/contact-us/" target="_self" class="pp-button" role="button" aria-label="Click here">
+				<span class="pp-button-text">Click here</span>
+			</a>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5ea81f9f7dff5" data-node="5ea81f9f7dff5">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5ea81f9f85910 fl-col-group-equal-height fl-col-group-align-center fl-col-group-custom-width" data-node="5ea81f9f85910">
+			<div class="fl-col fl-node-5ea81f9f85b14" data-node="5ea81f9f85b14">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-heading fl-node-5ea81fb5344f9" data-node="5ea81fb5344f9">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-heading-content">
+		<div class="pp-heading  pp-left">
+
+		<h2 class="heading-title">
+
+			
+			<span class="title-text pp-primary-title"></span>
+			
+			
+		</h2>
+
+	</div>
+				<div class="pp-sub-heading">
+			<p>© 2020 Direct Vision all rights reserved. Website Designed and Developed by <a style="color: #ccc;" href="https://www.opticommerce.co.uk/" target="_blank" rel="noopener">Opticommerce</a></p>		</div>
+	
+	</div>
+	</div>
+</div>
+	</div>
+</div>
+			<div class="fl-col fl-node-5ea81f9f85b6e fl-col-small" data-node="5ea81f9f85b6e">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-pp-image fl-node-5ea8213168494" data-node="5ea8213168494">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-photo-container">
+	<div class="pp-photo pp-photo-align-right pp-photo-align-responsive-center" itemscope itemtype="http://schema.org/ImageObject">
+		<div class="pp-photo-content ">
+			<div class="pp-photo-content-inner">
+										<img loading="lazy" width="148" height="19" class="pp-photo-img wp-image-70 size-full" src="https://directvisioneyewear.ca/wp-content/uploads/2020/04/ico-payment.jpg" alt="ico-payment" itemprop="image"  />
+						<div class="pp-overlay-bg"></div>
+																					</div>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5f7b1505233e1 browser-msg-row" data-node="5f7b1505233e1">
+	<div class="fl-row-content-wrap">
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5f7b1505233dd" data-node="5f7b1505233dd">
+			<div class="fl-col fl-node-5f7b1505233df" data-node="5f7b1505233df">
+	<div class="fl-col-content fl-node-content">
+	<div class="fl-module fl-module-html fl-node-5f7b1505233e0" data-node="5f7b1505233e0">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-html">
+	<div class="browser-msg">    
+    <a class="close" href="#"></a>    
+    <h4>Your Browser is Not Fully Supported</h4>    
+    <p>Currently, we support all main stream browsers including Microsoft Edge, Google Chrome, Apple Safari and Mozilla Firefox. <a href="#" class="more-link">More Information.</a></p>  
+    <div class="more-info">
+        <p>Unfortunately, we are unable to ensure optimal functionality of certain features (such as Virtual Try On or PD Measurement) in any unsupported browser.</p>        
+        <p>To download a supported browser, use on one of the links below: </p>       
+        <p>Google Chrome - <a target="_bank" href="https://www.google.com/chrome/">https://www.google.com/chrome/</a> <br> Microsoft Edge - <a target="_bank" href="https://www.microsoft.com/en-us/edge">https://www.microsoft.com/en-us/edge</a> <br> Apple Safari - <a target="_bank" href="https://support.apple.com/downloads/safari">https://support.apple.com/downloads/safari</a> <br> Mozilla Firefox - <a target="_bank" href="https://www.mozilla.org/en-US/exp/firefox/new/">https://www.mozilla.org/en-US/exp/firefox/new/</a></p>   
+    </div>
+</div></div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</footer>	</div><!-- .fl-page -->
+
+<script src="https://static.fittingbox.com/api/v1/fitmix.js" type="text/javascript"></script>
+<div class="woopack-modal" style="display: none;">
+    <div class="woopack-modal-overlay" style="background-image: url(https://directvisioneyewear.ca/wp-content/plugins/woopack/assets/images/loader.gif);"></div>
+    <div class="woopack-modal-inner">
+        <div class="woopack-modal-close">×</div>
+        <div class="woopack-modal-content"></div>
+    </div>
+</div>
+<a href="#" id="fl-to-top"><span class="sr-only">Scroll To Top</span><i class="fas fa-chevron-up" aria-hidden="true"></i></a>	<script type="text/javascript">
+		var c = document.body.className;
+		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+		document.body.className = c;
+	</script>
+	<script id='ajax-login-script-js-extra'>
+var ajax_login_object = {"ajaxurl":"https:\/\/directvisioneyewear.ca\/wp-admin\/admin-ajax.php","redirecturl":"https:\/\/directvisioneyewear.ca","loadingmessage":"Sending user info, please wait..."};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/themes/bb-theme-child/assets/js/ajax-login-script.js?ver=1601906525' id='ajax-login-script-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70' id='jquery-blockui-js'></script>
+<script id='wc-add-to-cart-js-extra'>
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/directvisioneyewear.ca\/cart\/","is_cart":"","cart_redirect_after_add":"yes"};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=4.5.2' id='wc-add-to-cart-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4' id='js-cookie-js'></script>
+<script id='woocommerce-js-extra'>
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=4.5.2' id='woocommerce-js'></script>
+<script id='wc-cart-fragments-js-extra'>
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_633822a51e2a6d5acea01e864322a9d0","fragment_name":"wc_fragments_633822a51e2a6d5acea01e864322a9d0","request_timeout":"5000"};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=4.5.2' id='wc-cart-fragments-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woopack/assets/js/frontend.js?ver=1.3.9.5' id='woopack-frontend-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/js/jquery.ba-throttle-debounce.min.js?ver=2.4.0.5' id='jquery-throttle-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/uploads/bb-plugin/cache/d63181d39ede5a3e34132402ddf041b6-layout-bundle.js?ver=2.4.0.5-1.3.2.3' id='fl-builder-layout-bundle-d63181d39ede5a3e34132402ddf041b6-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce/assets/js/jquery-payment/jquery.payment.min.js?ver=3.0.0' id='jquery-payment-js'></script>
+<script id='sv-wc-payment-gateway-payment-form-js-extra'>
+var sv_wc_payment_gateway_payment_form_params = {"card_number_missing":"Card number is missing","card_number_invalid":"Card number is invalid","card_number_digits_invalid":"Card number is invalid (only digits allowed)","card_number_length_invalid":"Card number is invalid (wrong length)","cvv_missing":"Card security code is missing","cvv_digits_invalid":"Card security code is invalid (only digits are allowed)","cvv_length_invalid":"Card security code is invalid (must be 3 or 4 digits)","card_exp_date_invalid":"Card expiration date is invalid","check_number_digits_invalid":"Check Number is invalid (only digits are allowed)","check_number_missing":"Check Number is missing","drivers_license_state_missing":"Drivers license state is missing","drivers_license_number_missing":"Drivers license number is missing","drivers_license_number_invalid":"Drivers license number is invalid","account_number_missing":"Account Number is missing","account_number_invalid":"Account Number is invalid (only digits are allowed)","account_number_length_invalid":"Account number is invalid (must be between 5 and 17 digits)","routing_number_missing":"Routing Number is missing","routing_number_digits_invalid":"Routing Number is invalid (only digits are allowed)","routing_number_length_invalid":"Routing number is invalid (must be 9 digits)"};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woocommerce-gateway-moneris/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/assets/js/frontend/sv-wc-payment-gateway-payment-form.min.js?ver=5.5.1' id='sv-wc-payment-gateway-payment-form-js'></script>
+<script src='https://directvisioneyewear.ca/wp-includes/js/underscore.min.js?ver=1.8.3' id='underscore-js'></script>
+<script id='wp-util-js-extra'>
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+</script>
+<script src='https://directvisioneyewear.ca/wp-includes/js/wp-util.min.js?ver=5.5.5' id='wp-util-js'></script>
+<script id='woo-variation-swatches-js-extra'>
+var woo_variation_swatches_options = {"is_product_page":""};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/woo-variation-swatches/assets/js/frontend.min.js?ver=1.0.85' id='woo-variation-swatches-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/js/jquery.magnificpopup.min.js?ver=2.4.0.5' id='jquery-magnificpopup-js'></script>
+<script src='https://directvisioneyewear.ca/wp-content/plugins/bb-plugin/js/jquery.fitvids.min.js?ver=1.2' id='jquery-fitvids-js'></script>
+<script id='fl-automator-js-extra'>
+var themeopts = {"medium_breakpoint":"1024","mobile_breakpoint":"768"};
+</script>
+<script src='https://directvisioneyewear.ca/wp-content/themes/bb-theme/js/theme.min.js?ver=1.7.7' id='fl-automator-js'></script>
+<script src='https://directvisioneyewear.ca/wp-includes/js/wp-embed.min.js?ver=5.5.5' id='wp-embed-js'></script>
+<!-- WooCommerce JavaScript -->
+<script type="text/javascript">
+jQuery(function($) { 
+
+			$( '.add_to_cart_button:not(.product_type_variable, .product_type_grouped)' ).on( 'click', function() {
+				gtag( 'event', 'add_to_cart', { 'event_category': 'ecommerce', 'event_label': ($(this).data('product_sku')) ? ($(this).data('product_sku')) : ('#' + $(this).data('product_id')), 'items': [ {'id': ($(this).data('product_sku')) ? ($(this).data('product_sku')) : ('#' + $(this).data('product_id')),'quantity': $(this).data('quantity')} ] } );
+			});
+		
+ });
+</script>
+
+<script type="text/javascript">
+
+        function tryOn(a) {
+            jQuery("#my-fitmix-container").remove();
+            jQuery("#my-fitmix-wrapper").append('<div id="my-fitmix-container"></div>');
+            var myFitmixWidget = FitMix.createWidget(
+                'my-fitmix-container',
+                {apiKey: '3p0n1cO5EoNQ0yQdqcBPHkZdgiojZgQTXoDjFDH6',
+                    sku: a,
+                    liveAutostart: false,
+                },
+                function () {
+                    console.log('myFitmixWidget creation complete !');
+                }
+            );
+        }
+
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha256-LJkWYMcB83+zN8VO3EnSoNYHiBo93miOF47ZfsPSNDQ=" crossorigin="anonymous"></script></body>
+</html>
