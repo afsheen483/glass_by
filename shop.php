@@ -409,21 +409,21 @@ $result = $con->query($sql);
                                                     <!--fwp-loop-->
 
                                                      
-													    <!-- sandeep code -->                               <?php 
-														  if ($result->num_rows > 0) {
-															  while($row = $result->fetch_assoc()) {
-															   $id = $row['glass_id'];  
-															$sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
-																  $img_data = $con->query($sql);
-																  if($img_data->num_rows > 0){
-																	  $rowd = $img_data->fetch_assoc();
-																	  $img = $rowd['name'];
-																  }
-																  else{
-																	$img = "https://dummyimage.com/600x400/000/fff.jpg";
-																  }
-																  //$img_row = $img_data->fetch_assoc();
-															   ?>
+                                                        <!-- sandeep code -->                               <?php 
+                                                          if ($result->num_rows > 0) {
+                                                              while($row = $result->fetch_assoc()) {
+                                                               $id = $row['glass_id'];  
+                                                            $sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
+                                                                  $img_data = $con->query($sql);
+                                                                  if($img_data->num_rows > 0){
+                                                                      $rowd = $img_data->fetch_assoc();
+                                                                      $img = $rowd['name'];
+                                                                  }
+                                                                  else{
+                                                                    $img = "https://dummyimage.com/600x400/000/fff.jpg";
+                                                                  }
+                                                                  //$img_row = $img_data->fetch_assoc();
+                                                               ?>
                                                     
                                                     <div
                                                         class="pp-content-post pp-content-grid-post pp-grid-custom post-<?php echo $id; ?> product type-product status-publish has-post-thumbnail product_cat-brooklyn-heights-glasses product_cat-collection product_cat-glasses product_cat-women-glasses pa_brand-brooklyn-heights pa_collection-glasses pa_colour-gold pa_gender-women pa_material-metal pa_primary-colour-gold pa_shape-oval pa_size-48-23-145 pa_supplier-direct-vision pa_virtual-try-on-yes first instock sold-individually taxable shipping-taxable purchasable product-type-variable"
@@ -500,20 +500,20 @@ right:10px;"><?php echo $row['ribboon_text']?></span>
                                                             </div>
                                                         </div>
                                                     </div>
-													  
-													<?php
-													  }  //while sandeep
-												  }
-												  else{
-													echo "NO DATA FOUND";
-												  }
-												?>
-												<!-- sandeep code end -->	
-													    
-														   
-														
-													 
-													
+                                                      
+                                                    <?php
+                                                      }  //while sandeep
+                                                  }
+                                                  else{
+                                                    echo "NO DATA FOUND";
+                                                  }
+                                                ?>
+                                                <!-- sandeep code end -->   
+                                                        
+                                                           
+                                                        
+                                                     
+                                                    
                                                     <div class="pp-grid-space"></div>
                                                 </div>
 
@@ -529,7 +529,7 @@ right:10px;"><?php echo $row['ribboon_text']?></span>
                 </div>
             </div>
         </div>
-		<!-- pagination code -->
+        <!-- pagination code -->
        <!-- <div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5eb3f27087433" data-node="5eb3f27087433">
             <div class="fl-row-content-wrap">
                 <div class="fl-row-content fl-row-fixed-width fl-node-content">
@@ -550,7 +550,7 @@ right:10px;"><?php echo $row['ribboon_text']?></span>
                 </div>
             </div>
         </div>
-		-->
+        -->
         
     </div>
 </div>
