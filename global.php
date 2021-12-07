@@ -1,7 +1,7 @@
 <?php
-// ini_set('session.cookie_lifetime', 60 * 60 * 24 * 100);
-// ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 100);
-// ini_set('session.save_path', '/tmp');
+ini_set('session.cookie_lifetime', 60 * 60 * 24 * 100);
+ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 100);
+ini_set('session.save_path', '/tmp');
 
 session_start();
 
@@ -35,7 +35,9 @@ if (isset($_SESSION['email']) && isset($_SESSION['password']))
                 $session_about = $row['about'];
                 $session_data = $row;
                 $session_role = $row['role'];
-                
+                  
+                //  $_SESSION['userId_saad'] = $session_userId;
+         
             }
             
         }
@@ -259,13 +261,12 @@ $glass_atts_public = array("eyeA","temple","color1","color2","width","ed","rim",
 $g_colors = array("amber","ash","asphalt","auburn","avocado","aquamarine","azure","beige","bisque","black","blue","bone","bordeaux","brass","bronze","brown","burgundy","camel","caramel","canary","celeste","cerulean","champagne","charcoal","chartreuse","chestnut","chocolate","citron","claret","coal","cobalt","coffee","coral","corn","cream","crimson","cyan","denim","desert","ebony","ecru","emerald","feldspar","fuchsia","gold","gray","green","heather","indigo","ivory","jet","khaki","lime","magenta","maroon","mint","navy","olive","orange","pink","plum","purple","red","rust","salmon","sienna","silver","snow","steel","tan","teal","tomato","violet","white","yellow");
 $g_project_name = "Glass Buy"          ;
 
-$g_orderStatus = array("NOT STARTED", "IN PROGRESS", "COMPLETE", "DELIVERED", "REMAKE");
+$g_orderStatus = array("Confirm PD & RX", "IN PROGRESS - Lab", "Shipping Completed", "Archived", "REMAKE");
 
 include_once("./includes/core/dbmodel.php");
 include_once("./includes/core/session.php");
 
-//$g_project_url = "http://dev.olaglasses.com/";
-$g_project_url = "http://localhost/glassBuyfinal/";
+$g_project_url = "https://projects.anomoz.com/ke/glassBuy1/";
 
 
 $params = array(

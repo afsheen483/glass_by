@@ -3,6 +3,15 @@ include_once("global.php");
 
 $l_glassId = $_GET['id'];
 
+if(isset($_GET['like'])){
+    $id = generateRandomString();
+    $commentId = $_GET['like'];
+    $sql ="insert into glassBuy_glass_reviews_likes set id='$id', commentId='$commentId', userId='$session_userId'";
+    $result = $con->query($sql);
+    header("Location: ./product.php?id=$l_glassId");
+    exit();
+}
+
 if(!isset($_GET['id'])){
     header("./shop.php");
 }
@@ -89,6 +98,12 @@ if(isset($_POST['DELETE_REVIEW'])){
     }
 }
 /*end::delete review*/
+$likes = [];
+$rows = getAll($con, "select commentId, count(id) cnt from glassBuy_glass_reviews_likes l group by commentId");
+foreach($rows as $row){
+    $likes[$row['commentId']] = $row['cnt'];
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -172,7 +187,7 @@ height: 200px;
 </style>
     </head>
     <body
-        class="product-template-default single single-product postid-<?php  echo $glassDeets['glass_id']?> theme-bb-theme woocommerce woocommerce-page woocommerce-no-js fl-theme-builder-header fl-theme-builder-footer fl-theme-builder-singular woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active woo-3 woo-products-per-page-16"
+        class="product-template-default single single-product postid-<?echo $glassDeets['glass_id']?> theme-bb-theme woocommerce woocommerce-page woocommerce-no-js fl-theme-builder-header fl-theme-builder-footer fl-theme-builder-singular woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active woo-3 woo-products-per-page-16"
         itemscope="itemscope"
         itemtype="https://schema.org/WebPage"
     >
@@ -226,7 +241,7 @@ height: 200px;
                                                                                             <div class="fl-col-group fl-node-5e7cc79f74996" data-node="5e7cc79f74996">
                                                                                                 <div class="fl-col fl-node-5e7cc79f7499b fl-col-small" data-node="5e7cc79f7499b">
                                                                                                     <div class="fl-col-content fl-node-content">
-                                                                                                        <?php  if(true){?>
+                                                                                                        <?if(true){?>
                                                                                                         <div class="fl-module fl-module-pp-heading fl-node-5e7cc79f7499e" data-node="5e7cc79f7499e">
                                                                                                             <div class="fl-module-content fl-node-content">
                                                                                                                 <div class="pp-heading-content">
@@ -281,7 +296,7 @@ height: 200px;
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <?php  }?>
+                                                                                                        <?}?>
                                                                                                         
                                                                                                         
                                                                                                     </div>
@@ -354,7 +369,7 @@ height: 200px;
                                             </div>
                                             <div class="fl-module fl-module-fl-woo-breadcrumb fl-node-5eba5de7135f1" data-node="5eba5de7135f1">
                                                 <div class="fl-module-content fl-node-content">
-                                                    <nav class="woocommerce-breadcrumb"><a href="directvisioneyewear.html">Home</a>&nbsp;/&nbsp;<a href="glasses.html">Glasses</a>&nbsp;/&nbsp;<?php  echo $glassDeets['title']?></nav>
+                                                    <nav class="woocommerce-breadcrumb"><a href="directvisioneyewear.html">Home</a>&nbsp;/&nbsp;<a href="glasses.html">Glasses</a>&nbsp;/&nbsp;<?echo $glassDeets['title']?></nav>
                                                 </div>
                                             </div>
                                         </div>
@@ -381,14 +396,14 @@ height: 200px;
                                                         <figure class="woocommerce-product-gallery__wrapper">
                                                             
                                                              <div class="slideshow-container">
-                                                            <?php  $sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
+                                                            <?$sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
                                                               $img_data = $con->query($sql);
                                                               if($img_data->num_rows > 0){
                                                                   while($row = $img_data->fetch_assoc()) {?>
                                                               <div class="mySlides1">
                                                                 <img src="uploads/<?php echo $row['name']; ?>" style="width:100%">
                                                               </div>
-                                                              <?php  }}?>
+                                                              <?}}?>
                                                                 
                                                               <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
                                                               <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
@@ -466,12 +481,12 @@ height: 200px;
 <link rel="stylesheet" type="text/css" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css"/>
 <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
 <div class="owl-carousel owl-theme">
-    <?php  foreach($getReviews as $review){?>
+    <?foreach($getReviews as $review){?>
     <div class="item">
-        <img src="./uploads/<?php  echo $review['profile_pic']?>" >
+        <img src="./uploads/<?echo $review['profile_pic']?>" >
     </div>
-    <?php  }?>
-</div>	        
+    <?}?>
+</div>          
 
 <script>
                             $('.owl-carousel').owlCarousel({
@@ -480,8 +495,8 @@ height: 200px;
                             
                         })
                         </script>
-		        
-		        
+                
+                
 
 
                                             <div class="fl-module fl-module-html fl-node-5f48da58a6df9" data-node="5f48da58a6df9">
@@ -492,7 +507,7 @@ height: 200px;
                                                 </div>
                                             </div>
                                             <br><br><br><br><br><br>
-                                            <?php  if($glassDeets['productCategory']!="Accessories"){?>
+                                            <?if($glassDeets['productCategory']!="Accessories"){?>
                                             <div class="fl-module fl-module-html fl-node-5f479c2b9edbd text-center btn-vto" data-node="5f479c2b9edbd">
                                                 <div class="fl-module-content fl-node-content">
                                                     <div class="fl-html">
@@ -500,7 +515,7 @@ height: 200px;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php  }?>
+                                            <?}?>
                                         </div>
                                     </div>
                                     <div class="fl-col fl-node-5eb93cbf67da3 fl-col-small detail-sidebar" data-node="5eb93cbf67da3">
@@ -510,11 +525,11 @@ height: 200px;
                                                     <div class="pp-heading-content">
                                                         <div class="pp-heading pp-left">
                                                             <h1 class="heading-title">
-                                                                <span class="title-text pp-primary-title"><?php  echo $glassDeets['title']?></span>
+                                                                <span class="title-text pp-primary-title"><?echo $glassDeets['title']?></span>
                                                             </h1>
                                                         </div>
                                                         <div class="pp-sub-heading">
-                                                            <p><?php  echo $glassDeets['colour']?></p>
+                                                            <p><?echo $glassDeets['colour']?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -532,16 +547,16 @@ height: 200px;
                                                                 <span class="title-text pp-primary-title">
                                                                     <p class="price">
                                                                         <span class="woocommerce-Price-amount amount">
-                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $glassDeets['price']?></bdi>
+                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $glassDeets['price']?></bdi>
                                                                         </span>
                                                                     </p>
-                                                                    <!--<p><?php  echo $glassDeets['description']?></p>-->
+                                                                    <!--<p><?echo $glassDeets['description']?></p>-->
                                                                 </span>
                                                                 
                                                             </h3>
                                                         </div>
                                                         <div class="pp-sub-heading">
-                                                            <p><?php  echo $glassDeets['additional_info']?></p>
+                                                            <p><?echo $glassDeets['additional_info']?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -558,9 +573,9 @@ height: 200px;
                                                             <h4 class="heading-title">
                                                                 
                                                                 <span class="title-text pp-primary-title">Available Sizes
-                                                                <?php  if($glassDeets['productCategory']!="Accessories"){?>
+                                                                <?if($glassDeets['productCategory']!="Accessories"){?>
                                                                 <a href="#size-guide" style="float: right; text-transform: none; font-weight: 400;" class="modal">Guide</a>
-                                                                <?php  }?>
+                                                                <?}?>
                                                                 </span>
                                                             </h4>
                                                         </div>
@@ -573,10 +588,10 @@ height: 200px;
                                                         <div class="fl-woocommerce-product-glasses-cart-button">
                                                             <form
                                                                 class="variations_form cart"
-                                                                action="https://directvisioneyewear.ca/product/<?php  echo $glassDeets['title']?>-tortoise/"
+                                                                action="https://directvisioneyewear.ca/product/<?echo $glassDeets['title']?>-tortoise/"
                                                                 method="post"
                                                                 enctype="multipart/form-data"
-                                                                data-product_id="<?php  echo $glassDeets['glass_id']?>"
+                                                                data-product_id="<?echo $glassDeets['glass_id']?>"
                                                             >
                                                                                                                                 <!--removed-->
 
@@ -594,18 +609,18 @@ height: 200px;
                                                                                     data-show_option_none="yes"
                                                                                 >
                                                                                     <option value="">Choose an option</option>
-                                                                                    <option value="<?php  echo $glassDeets['available_sizes']?>"><?php  echo $glassDeets['available_sizes']?></option>
+                                                                                    <option value="<?echo $glassDeets['available_sizes']?>"><?echo $glassDeets['available_sizes']?></option>
                                                                                 </select>
                                                                                 <ul class="variable-items-wrapper button-variable-wrapper" data-attribute_name="attribute_pa_size">
                                                                                     <li
-                                                                                        data-wvstooltip="<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        class="variable-item button-variable-item button-variable-item-<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        title="<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        data-value="<?php  echo $glassDeets['available_sizes']?>"
+                                                                                        data-wvstooltip="<?echo $glassDeets['available_sizes']?>"
+                                                                                        class="variable-item button-variable-item button-variable-item-<?echo $glassDeets['available_sizes']?>"
+                                                                                        title="<?echo $glassDeets['available_sizes']?>"
+                                                                                        data-value="<?echo $glassDeets['available_sizes']?>"
                                                                                         role="button"
                                                                                         tabindex="0"
                                                                                     >
-                                                                                        <span class="variable-item-span variable-item-span-button"><?php  echo $glassDeets['available_sizes']?></span>
+                                                                                        <span class="variable-item-span variable-item-span-button"><?echo $glassDeets['available_sizes']?></span>
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>
@@ -648,6 +663,7 @@ height: 200px;
                                                                         <div class="quantity hidden">
                                                                             <input type="hidden" id="quantity_60a8f45502c86" class="qty" name="quantity" value="1" />
                                                                         </div>
+
                                                                         <br>
                                                                         <?php
                                                                                 $product_id = $glassDeets['glass_id'];
@@ -665,14 +681,14 @@ height: 200px;
         
                                                                                 }
                                                                         ?>
-                                                                        
+
                                                                         <button class="button-alt view-rx" id="sp-addprescription-lenses" onclick="return false;">ADD LENSES</button>
                                                                         <button class="button-alt bordered" id="sp-addframe-only">FRAME ONLY</button>
 
                                                                         <!--                    <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>-->
 
-                                                                        <input type="hidden" name="add-to-cart" value="<?php  echo $glassDeets['glass_id']?>" />
-                                                                        <input type="hidden" name="product_id" value="<?php  echo $glassDeets['glass_id']?>" />
+                                                                        <input type="hidden" name="add-to-cart" value="<?echo $glassDeets['glass_id']?>" />
+                                                                        <input type="hidden" name="product_id" value="<?echo $glassDeets['glass_id']?>" />
                                                                         <input type="hidden" name="variation_id" class="variation_id" value="0" />
                                                                     </div>
                                                                 </div>
@@ -681,11 +697,11 @@ height: 200px;
                                                             <form
                                                                 class="variations_form cart"
                                                                 style="display: none;"
-                                                                action="https://directvisioneyewear.ca/product/<?php  echo $glassDeets['title']?>-black/"
+                                                                action="https://directvisioneyewear.ca/product/<?echo $glassDeets['title']?>-black/"
                                                                 method="post"
                                                                 enctype="multipart/form-data"
                                                                 data-product_id="21470"
-                                                                data-product_variations='[{"attributes":{"attribute_pa_size":"<?php  echo $glassDeets['available_sizes']?>","attribute_pa_colour":"black"},"availability_html":"","backorders_allowed":false,"dimensions":{"length":"","width":"","height":""},"dimensions_html":"N\/A","display_price":<?php  echo $glassDeets['price']?>,"display_regular_price":<?php  echo $glassDeets['price']?>,"image":{"title":"EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front","caption":"","url":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front.jpg","alt":"","src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-1640x918.jpg","srcset":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-1640x918.jpg 1640w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-750x420.jpg 750w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-300x168.jpg 300w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-1024x573.jpg 1024w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-150x84.jpg 150w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-768x430.jpg 768w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-1536x860.jpg 1536w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-2048x1147.jpg 2048w","sizes":"(max-width: 1640px) 100vw, 1640px","full_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front.jpg","full_src_w":2500,"full_src_h":1400,"gallery_thumbnail_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-1024x573.jpg","gallery_thumbnail_src_w":1024,"gallery_thumbnail_src_h":573,"thumb_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front-750x420.jpg","thumb_src_w":750,"thumb_src_h":420,"src_w":1640,"src_h":918},"image_id":21473,"is_downloadable":false,"is_in_stock":true,"is_purchasable":true,"is_sold_individually":"yes","is_virtual":false,"max_qty":1,"min_qty":1,"price_html":"","sku":"wpid_151","variation_description":"","variation_id":21471,"variation_is_active":true,"variation_is_visible":true,"weight":"","weight_html":"N\/A"}]'
+                                                                data-product_variations='[{"attributes":{"attribute_pa_size":"<?echo $glassDeets['available_sizes']?>","attribute_pa_colour":"black"},"availability_html":"","backorders_allowed":false,"dimensions":{"length":"","width":"","height":""},"dimensions_html":"N\/A","display_price":<?echo $glassDeets['price']?>,"display_regular_price":<?echo $glassDeets['price']?>,"image":{"title":"EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front","caption":"","url":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front.jpg","alt":"","src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-1640x918.jpg","srcset":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-1640x918.jpg 1640w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-750x420.jpg 750w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-300x168.jpg 300w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-1024x573.jpg 1024w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-150x84.jpg 150w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-768x430.jpg 768w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-1536x860.jpg 1536w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-2048x1147.jpg 2048w","sizes":"(max-width: 1640px) 100vw, 1640px","full_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front.jpg","full_src_w":2500,"full_src_h":1400,"gallery_thumbnail_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-1024x573.jpg","gallery_thumbnail_src_w":1024,"gallery_thumbnail_src_h":573,"thumb_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/09\/EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front-750x420.jpg","thumb_src_w":750,"thumb_src_h":420,"src_w":1640,"src_h":918},"image_id":21473,"is_downloadable":false,"is_in_stock":true,"is_purchasable":true,"is_sold_individually":"yes","is_virtual":false,"max_qty":1,"min_qty":1,"price_html":"","sku":"wpid_151","variation_description":"","variation_id":21471,"variation_is_active":true,"variation_is_visible":true,"weight":"","weight_html":"N\/A"}]'
                                                             >
                                                                 <table class="variations" cellspacing="0">
                                                                     <tbody>
@@ -701,18 +717,18 @@ height: 200px;
                                                                                     data-show_option_none="yes"
                                                                                 >
                                                                                     <option value="">Choose an option</option>
-                                                                                    <option value="<?php  echo $glassDeets['available_sizes']?>"><?php  echo $glassDeets['available_sizes']?></option>
+                                                                                    <option value="<?echo $glassDeets['available_sizes']?>"><?echo $glassDeets['available_sizes']?></option>
                                                                                 </select>
                                                                                 <ul class="variable-items-wrapper button-variable-wrapper" data-attribute_name="attribute_pa_size">
                                                                                     <li
-                                                                                        data-wvstooltip="<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        class="variable-item button-variable-item button-variable-item-<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        title="<?php  echo $glassDeets['available_sizes']?>"
-                                                                                        data-value="<?php  echo $glassDeets['available_sizes']?>"
+                                                                                        data-wvstooltip="<?echo $glassDeets['available_sizes']?>"
+                                                                                        class="variable-item button-variable-item button-variable-item-<?echo $glassDeets['available_sizes']?>"
+                                                                                        title="<?echo $glassDeets['available_sizes']?>"
+                                                                                        data-value="<?echo $glassDeets['available_sizes']?>"
                                                                                         role="button"
                                                                                         tabindex="0"
                                                                                     >
-                                                                                        <span class="variable-item-span variable-item-span-button"><?php  echo $glassDeets['available_sizes']?></span>
+                                                                                        <span class="variable-item-span variable-item-span-button"><?echo $glassDeets['available_sizes']?></span>
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>
@@ -756,6 +772,8 @@ height: 200px;
                                                                             <input type="hidden" id="quantity_60a8f45509e73" class="qty" name="quantity" value="1" />
                                                                         </div>
 
+
+
                                                                         <button class="button-alt view-rx" id="sp-addprescription-lenses" onclick="return false;">ADD LENSES</button>
                                                                         <button class="button-alt bordered" id="sp-addframe-only">FRAME ONLY</button>
 
@@ -777,18 +795,18 @@ height: 200px;
                                                         <div class="fl-frame-form">
                                                             <div class="frame-validation"></div>
                                                             <form action="./select_lenses.php" method="get" class="frame_button">
-                                                                <input type="hidden" name="product_id" id="product_id" value="<?php  echo $glassDeets['glass_id']?>" />
+                                                                <input type="hidden" name="product_id" id="product_id" value="<?echo $glassDeets['glass_id']?>" />
                                                                 <input type="hidden" name="variation_id" id="variation_id" value="0" />
                                                                 <div class="pp-button-wrap pp-button-width-full">
                                                                     <button type="submit" name="frame-btn" value="frame-only" id="frame_btn" class="pp-button pp-button-text" >
-                                                                        <?php  if($glassDeets['productCategory']!="Accessories"){?>
+                                                                        <?if($glassDeets['productCategory']!="Accessories"){?>
                                                                         Frame Only
-                                                                        <?php  }else{?>
+                                                                        <?}else{?>
                                                                         Add to Cart
-                                                                        <?php  }?></button>
-                                                                    <?php  if($glassDeets['productCategory']!="Accessories"){?>
+                                                                        <?}?></button>
+                                                                    <?if($glassDeets['productCategory']!="Accessories"){?>
                                                                     <button type="submit" name="frame-btn"  id="frame_btn" class="pp-button pp-button-text" >Select Lenses</button>
-                                                                    <?php  }?>
+                                                                    <?}?>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -850,9 +868,9 @@ height: 200px;
                                                                             <p class="pp-infolist-title-text">
                                                                                 
                                                                                 Glass is Limited
-                                                                        <?php  $randNo = rand(30,80);
+                                                                        <?$randNo = rand(30,80);
                                                                         $randNo1 = rand(5, 20);?>
-                                                                        . <?php  echo $randNo?> - <?php  echo $randNo + $randNo1?> people reviewing ,looking at this pair
+                                                                        . <?echo $randNo?> - <?echo $randNo + $randNo1?> people reviewing ,looking at this pair
                                                                         
                                                                         
                                                                             </p>
@@ -873,8 +891,8 @@ height: 200px;
                                                         <div class="fl-clear"></div>
                                                         <div class="gls-colors"><ul></ul></div>
                                                         <script type="text/javascript">
-                                                            var alt_color_json_<?php  echo $glassDeets['glass_id']?> = [];
-                                                            var alt_color_sun_json_<?php  echo $glassDeets['glass_id']?> = [];
+                                                            var alt_color_json_<?echo $glassDeets['glass_id']?> = [];
+                                                            var alt_color_sun_json_<?echo $glassDeets['glass_id']?> = [];
                                                         </script>
                                                     </div>
                                                 </div>
@@ -906,7 +924,7 @@ height: 200px;
                         <div class="fl-row-content-wrap">
                             <div class="fl-row-content fl-row-fixed-width fl-node-content">
                                 
-                                <?php  $sql ="SELECT * FROM glassBuy_glasses where relatedTo='$id'";
+                                <?$sql ="SELECT * FROM glassBuy_glasses where relatedTo='$id'";
                                 $result = $con->query($sql);
                                 while($row = $result->fetch_assoc()) {
                                     $glassDeetsSec = $row;
@@ -924,7 +942,7 @@ height: 200px;
                                 ?>
                                 <div class="fl-col-group fl-node-5f47a48e11c97 fl-col-group-custom-width" data-node="5f47a48e11c97">
                                    <div class="fl-col fl-node-5f47a48e11f04" data-node="5f47a48e11f04">
-                                       <?php  if($glassDeetsSec['title']!=""){?>
+                                       <?if($glassDeetsSec['title']!=""){?>
                                         <div class="fl-col-content fl-node-content">
                                             <div class="fl-module fl-module-pp-heading fl-node-5f47a8efa3e1b" data-node="5f47a8efa3e1b">
                                                 <div class="fl-module-content fl-node-content">
@@ -950,13 +968,13 @@ height: 200px;
                                                             <ul>
                                                                 <li>
                                                                     <div class="fl-woocommerce-product-alt-colours-image">
-                                                                        <a href="./product.php?id=<?php  echo $glassDeetsSec['glass_id']?>" alt="<?php  echo $glassDeetsSec['title']?>">
+                                                                        <a href="./product.php?id=<?echo $glassDeetsSec['glass_id']?>" alt="<?echo $glassDeetsSec['title']?>">
                                                                             <div class="alt-wrapper" itemscope="" itemtype="https://schema.org/ImageObject">
                                                                                 <div class="fl-photo-content fl-photo-img-jpg">
                                                                                     <img
                                                                                         loading="lazy"
                                                                                         class="fl-photo-img size-full"
-                                                                                        src="./uploads/<?php  echo $imgSec?>"
+                                                                                        src="./uploads/<?echo $imgSec?>"
                                                                                         alt=""
                                                                                         itemprop="image"
                                                                                         data-no-lazy="1"
@@ -966,15 +984,15 @@ height: 200px;
                                                                                     />
                                                                                 </div>
                                                                                 <div class="product-title">
-                                                                                    <span class="product-title" style="display: none;"><?php  echo $glassDeetsSec['title']?></span><span class="color" style="display: inline-block;"><?php  echo $glassDeetsSec['title']?></span>
+                                                                                    <span class="product-title" style="display: none;"><?echo $glassDeetsSec['title']?></span><span class="color" style="display: inline-block;"><?echo $glassDeetsSec['title']?></span>
                                                                                     <span class="product-price">
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $glassDeetsSec['price']?></bdi>
+                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $glassDeetsSec['price']?></bdi>
                                                                                         </span>
                                                                                     </span>
                                                                                 </div>
                                                                                 <a href="javascript:void(0);" data-fb-code="566953" class="fb-code">Try</a>
-                                                                                <a href="./product.php?id=<?php  echo $glassDeetsSec['glass_id']?>" class="product-link">Frame Only</a>
+                                                                                <a href="./product.php?id=<?echo $glassDeetsSec['glass_id']?>" class="product-link">Frame Only</a>
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -982,13 +1000,13 @@ height: 200px;
 
                                                                 <li class="active">
                                                                     <div class="fl-woocommerce-product-alt-colours-image">
-                                                                        <a href="./product.php?id=<?php  echo $glassDeetsSec['glass_id']?>" alt="<?php  echo $glassDeetsSec['title']?>">
+                                                                        <a href="./product.php?id=<?echo $glassDeetsSec['glass_id']?>" alt="<?echo $glassDeetsSec['title']?>">
                                                                             <div class="alt-wrapper" itemscope="" itemtype="https://schema.org/ImageObject">
                                                                                 <div class="fl-photo-content fl-photo-img-jpg">
                                                                                     <img
                                                                                         loading="lazy"
                                                                                         class="fl-photo-img size-full"
-                                                                                        src="./uploads/<?php  echo $imgSec?>"
+                                                                                        src="./uploads/<?echo $imgSec?>"
                                                                                         alt=""
                                                                                         itemprop="image"
                                                                                         data-no-lazy="1"
@@ -998,15 +1016,15 @@ height: 200px;
                                                                                     />
                                                                                 </div>
                                                                                 <div class="product-title">
-                                                                                    <span class="product-title" style="display: none;"><?php  echo $glassDeetsSec['title']?></span><span class="color" style="display: inline-block;">Tortoise</span>
+                                                                                    <span class="product-title" style="display: none;"><?echo $glassDeetsSec['title']?></span><span class="color" style="display: inline-block;">Tortoise</span>
                                                                                     <span class="product-price">
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $glassDeetsSec['price']?></bdi>
+                                                                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $glassDeetsSec['price']?></bdi>
                                                                                         </span>
                                                                                     </span>
                                                                                 </div>
                                                                                 <a href="javascript:void(0);" data-fb-code="566954" class="fb-code">Try</a>
-                                                                                <a href="./product.php?id=<?php  echo $glassDeetsSec['glass_id']?>" class="product-link">Frame Only</a>
+                                                                                <a href="./product.php?id=<?echo $glassDeetsSec['glass_id']?>" class="product-link">Frame Only</a>
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -1017,12 +1035,12 @@ height: 200px;
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php  }?>
+                                        <?}?>
                                     </div>
                                     
                                     
                                     
-                                    <?php  if(false){?>
+                                    <?if(false){?>
                                     <div class="fl-col fl-node-5f47a804a723a fl-col-small" data-node="5f47a804a723a">
                                         <div class="fl-col-content fl-node-content">
                                             <div class="fl-module fl-module-pp-heading fl-node-5f47a823c8b5e" data-node="5f47a823c8b5e">
@@ -1051,38 +1069,38 @@ height: 200px;
 </tr>-->
                                                                 <tr>
                                                                     <td>Model:</td>
-                                                                    <td><?php  echo $glassDeets['title']?></td>
+                                                                    <td><?echo $glassDeets['title']?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Name:</td>
-                                                                    <td><?php  echo $glassDeets['title']?></td>
+                                                                    <td><?echo $glassDeets['title']?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Color:</td>
-                                                                    <td><?php  echo $glassDeets['colour']?></td>
+                                                                    <td><?echo $glassDeets['colour']?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Color Code:</td>
-                                                                    <td><?php  echo $glassDeets['colorCode']?></td>
+                                                                    <td><?echo $glassDeets['colorCode']?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Material:</td>
-                                                                    <td><?php  echo $glassDeets['material']?></td>
+                                                                    <td><?echo $glassDeets['material']?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Gender:</td>
-                                                                    <td><?php  echo $glassDeets['gender']?></td>
+                                                                    <td><?echo $glassDeets['gender']?></td>
                                                                 </tr>
                                                                 
                                                                 
                                                                 
-                                                               <!-- <?php  foreach($glass_atts_public as $col){
+                                                               <!-- <?foreach($glass_atts_public as $col){
                                                                 if($glassDeets[$col]!=""){?>
                                                                     <tr>
-                                                                        <td><?php  echo ucfirst($col)?>:</td>
-                                                                        <td><?php  echo $glassDeets[$col]?></td>
+                                                                        <td><?echo ucfirst($col)?>:</td>
+                                                                        <td><?echo $glassDeets[$col]?></td>
                                                                     </tr>
-                                                                <?php  }}?>-->
+                                                                <?}}?>-->
                                                                
                                                             </tbody>
                                                         </table>
@@ -1091,9 +1109,9 @@ height: 200px;
                                             </div>
                                         </div>
                                     </div>
-                                    <?php  }?>
+                                    <?}?>
                                 </div>
-                                <?php  }?>
+                                <?}?>
                                 
                                 <hr>
                     <h4>Reviews</h4>
@@ -1141,9 +1159,11 @@ height: 200px;
                               </div>
                               <?php } ?>
                               <!-- end auth check for remove comment -->
-                              <a href="./uploads/<?php echo $review['profile_pic']?>" target="_blank">
-                              <img src="./uploads/<?php  echo $review['profile_pic']?>" style="width:180px;">
+                              <a href="./uploads/<?echo $review['profile_pic']?>" target="_blank">
+                              <img src="./uploads/<?echo $review['profile_pic']?>" style="width:180px;">
                               </a>
+                              
+                              <a href="?id=<?echo $_GET['id']?>&like=<?echo $review['reviewId']?>" class="btn-link">Like (<?echo $likes[$review['reviewId']]?> Likes)</a>
             
             
                             
@@ -1160,10 +1180,10 @@ height: 200px;
                   }}
                 ?>
                 
-                <a class="btn " href="?id=<?php  echo $_GET['id']?>&showNReviews=<?php  echo $showNReviews+3?>">Show More</a>
+                <a class="btn " href="?id=<?echo $_GET['id']?>&showNReviews=<?echo $showNReviews+3?>">Show More</a>
                     
                     
-                    <?php   if(isset($session_userId) && !$isUserPostReview){ ?>
+                    <?php if(isset($session_userId) && !$isUserPostReview){ ?>
                     <form method="post" action="" enctype="multipart/form-data">
                     <div class="form-wrap">
                         
@@ -1304,7 +1324,7 @@ height: 200px;
                                                                             <div class="fl-row-content-wrap">
                                                                                 <div class="fl-row-content fl-row-fixed-width fl-node-content">
                                                                                     <div class="fl-col-group fl-node-5e7cc79f74996" data-node="5e7cc79f74996">
-                                                                                        <?php  if(false){?>
+                                                                                        <?if(false){?>
                                                                                         <div class="fl-col fl-node-5e7cc79f7499b fl-col-small" data-node="5e7cc79f7499b">
                                                                                             
                                                                                             <div class="fl-col-content fl-node-content">
@@ -1394,7 +1414,7 @@ height: 200px;
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <?php  }?>
+                                                                                        <?}?>
                                                                                         <img src="./images/size.png.jpg">
                                                                                     </div>
                                                                                 </div>
@@ -1510,7 +1530,7 @@ height: 200px;
                                                                             <meta itemprop="interactionType" content="https://schema.org/CommentAction" /><meta itemprop="userInteractionCount" content="0" />
                                                                         </div>
                                                                         <div class="prod-img">
-                                                                            <a href="./product.php?id=<?php  echo $row['glass_id']?>" title="Sandy">
+                                                                            <a href="./product.php?id=<?echo $row['glass_id']?>" title="Sandy">
                                                                                 <img
                                                                                     width="1024"
                                                                                     height="1024"
@@ -1523,16 +1543,16 @@ height: 200px;
                                                                             </a>
                                                                         </div>
 
-                                                                        <h3 class="prod-title"><a href="./product.php?id=<?php  echo $row['glass_id']?>" title="Sandy"><?php  echo $row['title']?></a></h3>
+                                                                        <h3 class="prod-title"><a href="./product.php?id=<?echo $row['glass_id']?>" title="Sandy"><?echo $row['title']?></a></h3>
                                                                         <span class="prod-price">
                                                                             <p class="price">
                                                                                 <span class="woocommerce-Price-amount amount">
-                                                                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $row['price']?></bdi>
+                                                                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $row['price']?></bdi>
                                                                                 </span>
                                                                             </p>
                                                                         </span>
                                                                     </div>
-                                                                    <?php  }}?>
+                                                                    <?}}?>
                                                                    
                                                                 </div>
                                                             </div>
@@ -1707,13 +1727,13 @@ height: 200px;
                                                         <ul>
                                                             <li>
                                                                 <div class="fl-woocommerce-product-alt-colours-image">
-                                                                    <a href="<?php  echo $glassDeets['title']?>" alt="<?php  echo $glassDeets['title']?>">
+                                                                    <a href="<?echo $glassDeets['title']?>" alt="<?echo $glassDeets['title']?>">
                                                                         <div class="alt-wrapper" itemscope="" itemtype="https://schema.org/ImageObject">
                                                                             <div class="fl-photo-content fl-photo-img-jpg">
                                                                                 <img
                                                                                     loading="lazy"
                                                                                     class="fl-photo-img size-full"
-                                                                                    src="images/direct_vision-EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-BLACK-<?php  echo $glassDeets['available_sizes']?>-Front.jpg"
+                                                                                    src="images/direct_vision-EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-BLACK-<?echo $glassDeets['available_sizes']?>-Front.jpg"
                                                                                     alt=""
                                                                                     itemprop="image"
                                                                                     data-no-lazy="1"
@@ -1723,15 +1743,15 @@ height: 200px;
                                                                                 />
                                                                             </div>
                                                                             <div class="product-title">
-                                                                                <span class="product-title" style="display: none;"><?php  echo $glassDeets['title']?></span><span class="color" style="display: inline-block;">Black</span>
+                                                                                <span class="product-title" style="display: none;"><?echo $glassDeets['title']?></span><span class="color" style="display: inline-block;">Black</span>
                                                                                 <span class="product-price">
                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $glassDeets['price']?></bdi>
+                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $glassDeets['price']?></bdi>
                                                                                     </span>
                                                                                 </span>
                                                                             </div>
                                                                             <a href="javascript:void(0);" data-fb-code="566953" class="fb-code">Try</a>
-                                                                            <a href="<?php  echo $glassDeets['title']?>" class="product-link">Frame Only</a>
+                                                                            <a href="<?echo $glassDeets['title']?>" class="product-link">Frame Only</a>
                                                                         </div>
                                                                     </a>
                                                                 </div>
@@ -1739,13 +1759,13 @@ height: 200px;
 
                                                             <li class="active">
                                                                 <div class="fl-woocommerce-product-alt-colours-image">
-                                                                    <a href="<?php  echo $glassDeets['title']?>-tortoise.html" alt="<?php  echo $glassDeets['title']?>">
+                                                                    <a href="<?echo $glassDeets['title']?>-tortoise.html" alt="<?echo $glassDeets['title']?>">
                                                                         <div class="alt-wrapper" itemscope="" itemtype="https://schema.org/ImageObject">
                                                                             <div class="fl-photo-content fl-photo-img-jpg">
                                                                                 <img
                                                                                     loading="lazy"
                                                                                     class="fl-photo-img size-full"
-                                                                                    src="images/direct_vision-EIGHTTOEIGHTY_<?php  echo $glassDeets['title']?>-O-TORTOISE-<?php  echo $glassDeets['available_sizes']?>-Front.jpg"
+                                                                                    src="images/direct_vision-EIGHTTOEIGHTY_<?echo $glassDeets['title']?>-O-TORTOISE-<?echo $glassDeets['available_sizes']?>-Front.jpg"
                                                                                     alt=""
                                                                                     itemprop="image"
                                                                                     data-no-lazy="1"
@@ -1755,15 +1775,15 @@ height: 200px;
                                                                                 />
                                                                             </div>
                                                                             <div class="product-title">
-                                                                                <span class="product-title" style="display: none;"><?php  echo $glassDeets['title']?></span><span class="color" style="display: inline-block;">Tortoise</span>
+                                                                                <span class="product-title" style="display: none;"><?echo $glassDeets['title']?></span><span class="color" style="display: inline-block;">Tortoise</span>
                                                                                 <span class="product-price">
                                                                                     <span class="woocommerce-Price-amount amount">
-                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?php  echo $glassDeets['price']?></bdi>
+                                                                                        <bdi><span class="woocommerce-Price-currencySymbol">$</span><?echo $glassDeets['price']?></bdi>
                                                                                     </span>
                                                                                 </span>
                                                                             </div>
                                                                             <a href="javascript:void(0);" data-fb-code="566954" class="fb-code">Try</a>
-                                                                            <a href="<?php  echo $glassDeets['title']?>-tortoise.html" class="product-link">Frame Only</a>
+                                                                            <a href="<?echo $glassDeets['title']?>-tortoise.html" class="product-link">Frame Only</a>
                                                                         </div>
                                                                     </a>
                                                                 </div>
@@ -1806,6 +1826,7 @@ function showSlides(n, no) {
   x[slideIndex[no]-1].style.display = "block";  
 }
 
+
 $(".fvrt").click(function(){
     var id = $(this).attr("id");
     //alert(id);
@@ -1819,6 +1840,7 @@ $(".fvrt").click(function(){
          }  
       }); 
 });
+
 $(".unfvrt").click(function(){
     var id = $(this).attr("id");
     //alert(id);
@@ -1833,8 +1855,6 @@ $(".unfvrt").click(function(){
          }  
       }); 
 });
-
-
 
 </script>
 

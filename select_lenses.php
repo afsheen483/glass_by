@@ -16,7 +16,7 @@ if(isset($_FILES['webmasterfile'])){
         file_put_contents('./uploads/'.$filename, $data);
         
         $_SESSION['pdImage'] = $filename;
-	
+    
     }
     
 }
@@ -25,7 +25,13 @@ if(isset($_FILES['webmasterfile'])){
 $id = $_GET['product_id'];
 $sql ="SELECT * FROM glassBuy_glass_picture WHERE glass_id='$id'";
 $img_data = $con->query($sql);
- 
+if($img_data->num_rows > 0){
+  $rowd = $img_data->fetch_assoc();
+  $img = $rowd['name'];
+}
+else{
+    $img = "https://dummyimage.com/600x400/000/fff.jpg";
+}
 
 
 $sql ="SELECT * FROM glassBuy_glasses where glass_id='$id'";
@@ -33,15 +39,16 @@ $result = $con->query($sql);
 while($row = $result->fetch_assoc()) {
     $glassDeets = $row;
 }
-if($_SESSION['product_id']==""){
+if($_SESSION['product_id']=="" || $_SESSION['product_id']==NULL){
     $_SESSION['product_id'] = array();
 }
 // $_SESSION['product_id'] = array();
 if($_GET['frame-btn']=="frame-only"){
-    $_SESSION['product_id'][] = array("id"=>$id, "frame-only"=>"frame-only");
-    // echo "sad";
+    $_SESSION['product_id'][] = array("id"=>$id, "frame-only"=>"frame-only", "quantity"=>1);
     header("Location: ./cart.php");
 }
+
+
 
 // var_dump($_POST);
 if(isset($_POST['wccp_component_selection'])){
@@ -49,6 +56,7 @@ if(isset($_POST['wccp_component_selection'])){
     // echo "redirecting...";
       $_SESSION['product_id'][] = array(
           "id"=>$id,
+           "quantity"=>1,
           "lensType" => mb_htmlentities($_POST['lensType']),
           "vision" => mb_htmlentities($_POST['vision']),
       );;
@@ -64,7 +72,6 @@ if(isset($_POST['wccp_component_selection'])){
     header("Location: ./cart.php");
   }
 
-
   $pro_id = $_GET['product_id'];
   $get_color = "SELECT * FROM `glassbuy_glasses` WHERE `glass_id` = '$pro_id'";
   $get_color_fire = mysqli_query($con,$get_color);
@@ -74,7 +81,6 @@ if(isset($_POST['wccp_component_selection'])){
   $fire = mysqli_query($con,$query);
   $row_variation = mysqli_fetch_assoc($fire);
   //Fdd($color);
-
 ?>
 <input type="text" style="display:none" name="frame_a_width" id="frame_a_width" value="<?php echo $row_variation['frame_a_width']  ?>">
 <input type="text" style="display:none" name="frame_b_height" id="frame_b_height" value="<?php echo $row_variation['frame_b_height']  ?>">
@@ -86,7 +92,6 @@ if(isset($_POST['wccp_component_selection'])){
   <?php require("./includes/comman/select_lenses/head.php");?>
   <style>
 /*      
-
 .fl-page button:visited, .fl-responsive-preview-content button:visited, .fl-button-lightbox-content button:visited, .fl-page input[type="button"], .fl-responsive-preview-content input[type="button"], .fl-button-lightbox-content input[type="button"], .fl-page input[type="submit"], .fl-responsive-preview-content input[type="submit"], .fl-button-lightbox-content input[type="submit"], .fl-page a.fl-button, .fl-responsive-preview-content a.fl-button, .fl-button-lightbox-content a.fl-button, .fl-page a.fl-button:visited, .fl-responsive-preview-content a.fl-button:visited, .fl-button-lightbox-content a.fl-button:visited, .fl-page a.button, .fl-responsive-preview-content a.button, .fl-button-lightbox-content a.button, .fl-page a.button:visited, .fl-responsive-preview-content a.button:visited, .fl-button-lightbox-content a.button:visited, .fl-page button.button, .fl-responsive-preview-content button.button, .fl-button-lightbox-content button.button, .fl-page button.button:visited, .fl-responsive-preview-content button.button:visited, .fl-button-lightbox-content button.button:visited, .fl-page .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle, .fl-responsive-preview-content .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle, .fl-button-lightbox-content .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle, .fl-page .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle:visited, .fl-responsive-preview-content .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle:visited, .fl-button-lightbox-content .fl-page-nav-toggle-button .fl-page-nav .navbar-toggle:visited {
     color: #fff;
     background-color: #ab8e47;
@@ -231,10 +236,8 @@ if(isset($_POST['wccp_component_selection'])){
 </style>
 
 </head>
-<span class="error"></span>
 <form action="" method="post" enctype="multipart/form-data">
     <input type="submit"  hidden class="wc-pao-addon-heading" name="first_submit" value="confirm" style="top: 0px !important;">
-   
 <body class="product-template-default single single-product postid-394 theme-bb-theme woocommerce woocommerce-page woocommerce-js fl-theme-builder-header fl-theme-builder-footer fl-theme-builder-singular woo-variation-swatches wvs-theme-bb-theme-child wvs-theme-child-bb-theme wvs-style-squared wvs-attr-behavior-blur wvs-tooltip wvs-css fl-framework-base fl-preset-default fl-full-width fl-scroll-to-top fl-search-active woo-3 woo-products-per-page-16 fl-builder-breakpoint-large" itemscope="itemscope" itemtype="https://schema.org/WebPage">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJ5Q9NM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -327,47 +330,55 @@ if(isset($_POST['wccp_component_selection'])){
                                                     
                                                     
                                                         <div id="composite_pagination_394" class="composite_pagination">
-                                                        	<nav class="pagination_elements_wrapper">
-                                                        		<ul class="pagination_elements" style="list-style:none">
-                                                        			
-                                                        				<li class="pagination_element pagination_element_1584107434 " data-item_id="1584107434">
-                                                        					<span class="element_inner">
-                                                        						<span class="element_index">1</span>
-                                                        						<span class="element_title">
-                                                        							<a class="element_link first_stage  " href="#vision" rel="nofollow" onclick="viewStage(1)" id="first_stage">Vision</a>
-                                                        						</span>
-                                                        					</span>
-                                                        				</li>
-                                                        			
-                                                        				<li class="pagination_element pagination_element_1584107436 " data-item_id="1584107436">
-                                                        					<span class="element_inner">
-                                                        						<span class="element_index">2</span>
-                                                        						<span class="element_title">
-                                                        							<a class="element_link second_stage" href="#lens-type" rel="nofollow" onclick="viewStage(2)" id="second_stage">Lens Type</a>
-                                                        						</span>
-                                                        					</span>
-                                                        				</li>
-                                                        			
-                                                        				<li class="pagination_element pagination_element_1584107439 " data-item_id="1584107439">
-                                                        					<span class="element_inner">
-                                                        						<span class="element_index">3</span>
-                                                        						<span class="element_title">
-                                                        							<a class="element_link " href="#enhance" rel="nofollow" onclick="viewStage(4)" id="third_stage">Enhance</a>
-                                                        						</span>
-                                                        					</span>
-                                                        				</li>
-                                                        			
-                                                        				<li class="pagination_element pagination_element_review " data-item_id="review">
-                                                        					<span class="element_inner">
-                                                        						<span class="element_index">4</span>
-                                                        						<span class="element_title">
-                                                        							<a class="element_link inactive" href="#review" rel="nofollow" onclick="viewStage(5)" id="forth_stage">Review and Purchase</a>
-                                                        						</span>
-                                                        					</span>
-                                                        				</li>
-                                                        			
-                                                        		</ul>
-                                                        	</nav>
+                                                            <nav class="pagination_elements_wrapper">
+                                                                <ul class="pagination_elements" style="list-style:none">
+                                                                    
+                                                                        <li class="pagination_element pagination_element_1584107434 " data-item_id="1584107434">
+                                                                            <span class="element_inner">
+                                                                                <span class="element_index">1</span>
+                                                                                <span class="element_title">
+                                                                                    <a class="element_link " href="#vision" rel="nofollow" onclick="viewStage(1)">Vision</a>
+                                                                                </span>
+                                                                            </span>
+                                                                        </li>
+                                                                    
+                                                                        <li class="pagination_element pagination_element_1584107436 " data-item_id="1584107436">
+                                                                            <span class="element_inner">
+                                                                                <span class="element_index">2</span>
+                                                                                <span class="element_title">
+                                                                                    <a class="element_link " href="#lens-type" rel="nofollow" onclick="viewStage(2)">Lens Type</a>
+                                                                                </span>
+                                                                            </span>
+                                                                        </li>
+                                                                    
+                                                                        <li class="pagination_element pagination_element_1584107439 " data-item_id="1584107439">
+                                                                            <span class="element_inner">
+                                                                                <span class="element_index">3</span>
+                                                                                <span class="element_title">
+                                                                                    <a class="element_link " href="#enhance" rel="nofollow" onclick="viewStage(4)">Enhance</a>
+                                                                                </span>
+                                                                            </span>
+                                                                        </li>
+                                                                        <li class="pagination_element pagination_elementuvstep_1584107439 " data-item_id="1584107439">
+                                                                            <span class="element_inner">
+                                                                                <span class="element_index">4</span>
+                                                                                <span class="element_title">
+                                                                                    <a class="element_link " href="#enhance" rel="nofollow" onclick="viewStage(5)">UV Protection</a>
+                                                                                </span>
+                                                                            </span>
+                                                                        </li>
+                                                                    
+                                                                        <li class="pagination_element pagination_element_review " data-item_id="review">
+                                                                            <span class="element_inner">
+                                                                                <span class="element_index">5</span>
+                                                                                <span class="element_title">
+                                                                                    <a class="element_link inactive" href="#review" rel="nofollow" onclick="viewStage(6)">Review and Purchase</a>
+                                                                                </span>
+                                                                            </span>
+                                                                        </li>
+                                                                    
+                                                                </ul>
+                                                            </nav>
                                                         </div>
 
 
@@ -427,7 +438,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" id="distance" aria-label="Select Distance Single Vision">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select Distance Single Vision"  id="distance"  >Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -466,7 +477,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" id="single" aria-label="Select Reading Single Vision">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select Reading Single Vision">Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -511,6 +522,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                     width="61"
                                                                                                     height="52"
                                                                                                     style="width: 100%;max-width: 310px;"
+
                                                                                                 />
                                                                                             </div>
                                                                                             <div class="thumbnail_description">
@@ -519,7 +531,7 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <span class="thumbnail_price price">Included</span>
                                                                                             </div>
                                                                                             <div class="thumbnail_buttons">
-                                                                                                <button class="button component_option_thumbnail_select" id="no_pres" aria-label="Select No Prescription">Select</button>
+                                                                                                <button class="button component_option_thumbnail_select" aria-label="Select No Prescription"  id="no_pres" >Select</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </li>
@@ -666,8 +678,8 @@ if(isset($_POST['wccp_component_selection'])){
                                                                             </ul>
                                                                         </div>
                                                                     </div>
-																	<!-- first form -->
-																	<div method="post" id="first_form" >
+                                                                    <!-- first form -->
+                                                                    <div method="post" id="first_form" >
                                                                     <div class="component_content" data-product_id="1584107435" style="height: auto; display: block;">
                                                                         <div class="component_summary cp_clearfix">
                                                                             <div class="product content summary_content populated bundle_form initialized">
@@ -728,14 +740,14 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                     <div class="wc-pao-addon-container wc-pao-addon wc-pao-addon-sph" data-product-name="Right Eye">
                                                                                                                         <label for="addon-1584107435-1-sph-0" class="wc-pao-addon-name" data-addon-name="SPH" data-has-per-person-pricing="" data-has-per-block-pricing="">SPH </label>
                                                         
-                                                                                                                        <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-1-sph-0">
-                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select select_right_sph" name="addon-1584107435-1-sph-0" id="addon-1584107435-1-sph-0">
+                                                                                                                        <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-1-sph-0 select_right_sph">
+                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-sph-0" id="addon-1584107435-1-sph-0">
                                                                                                                                 <option value="0.00">0.00</option>
                                                             
-                                                                                                                                <?php  $points = +8.00;
+                                                                                                                                <?$points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['r_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points-=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['r_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points-=0.25;
                                                                                                                                 }?>
                                                                                                                             </select>
                                                                                                                         </p>
@@ -750,10 +762,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-cyl-1" id="addon-1584107435-1-cyl-1">
                                                                                                                                 <option value="">0.0</option>
                                                                                                                                 
-                                                                                                                                <?php  $points = +3.00;
+                                                                                                                                <?$points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?php if($points==$presDeets['r_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points-=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['r_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points-=0.25;
                                                                                                                                 }?>
                                                                                                                             </select>
                                                                                                                         </p>
@@ -786,10 +798,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-add-3" id="addon-1584107435-1-add-3">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?php  $points = +0.25;
+                                                                                                                                <?$points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['r_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points+=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['r_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points+=0.25;
                                                                                                                                 }?>
                                                                                                                                 
                                                                                                                                 </select>
@@ -805,10 +817,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-1-pd-4" id="addon-1584107435-1-pd-4">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?php  $points = 22.00;
+                                                                                                                                <?$points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points+=0.5;
+                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?$points+=0.5;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -861,13 +873,13 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                         <label for="addon-1584107435-2-sph-0" class="wc-pao-addon-name" data-addon-name="SPH" data-has-per-person-pricing="" data-has-per-block-pricing="">SPH </label>
                                                         
                                                                                                                         <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-2-sph-0">
-                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select select_left_sph" name="addon-1584107435-2-sph-0" id="addon-1584107435-2-sph-0">
+                                                                                                                            <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-sph-0" id="addon-1584107435-2-sph-0">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                               <?php  $points = +8.00;
+                                                                                                                               <?$points = +8.00;
                                                                                                                                 while($points>=-8.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['l_sph']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points-=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['l_sph']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points-=0.25;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -881,10 +893,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-cyl-1" id="addon-1584107435-2-cyl-1">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?php  $points = +3.00;
+                                                                                                                                <?$points = +3.00;
                                                                                                                                 while($points>=-3.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['l_cyl']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points-=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['l_cyl']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points-=0.25;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -916,10 +928,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-add-3" id="addon-1584107435-2-add-3">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?php  $points = +0.25;
+                                                                                                                                <?$points = +0.25;
                                                                                                                                 while($points<6.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['l_add']){echo "selected";}?>><?php   echo  number_format((float)formatNum($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points+=0.25;
+                                                                                                                                    <option <?if($points==$presDeets['l_add']){echo "selected";}?>><? echo  number_format((float)formatNum($points), 2, '.', '');?></option>
+                                                                                                                                <?$points+=0.25;
                                                                                                                                 }?>
                                                                                                                                 </select>
                                                                                                                         </p>
@@ -934,10 +946,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                                             <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-2-pd-4" id="addon-1584107435-2-pd-4">
                                                                                                                                 <option value="0.00">0.00</option>
                                                         
-                                                                                                                                <?php  $points = 22.00;
+                                                                                                                                <?$points = 22.00;
                                                                                                                                 while($points<37.00){?>
-                                                                                                                                    <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                                                <?php  $points+=0.5;
+                                                                                                                                    <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                                                <?$points+=0.5;
                                                                                                                                 }?></select>
                                                                                                                         </p>
                                                         
@@ -987,13 +999,13 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                 <label for="addon-1584107435-pd-2" class="wc-pao-addon-name" data-addon-name="PD" data-has-per-person-pricing="" data-has-per-block-pricing="">PD </label>
                                                         
                                                                                                 <p class="form-row form-row-wide wc-pao-addon-wrap wc-pao-addon-1584107435-pd-2">
-                                                                                                    <select class="wc-pao-addon-field wc-pao-addon-select select_pd" name="addon-1584107435-pd-2" id="addon-1584107435-pd-2 pd">
+                                                                                                    <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-pd-2" id="addon-1584107435-pd-2">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?php  $points = 44.00;
+                                                                                                        <?$points = 44.00;
                                                                                                         while($points<74.00){?>
-                                                                                                            <option <?php  if($points==$presDeets['pd']){echo "selected";}?>><?php   echo  number_format((float)($points), 0, '.', '');?></option>
-                                                                                                        <?php  $points+=1;
+                                                                                                            <option <?if($points==$presDeets['pd']){echo "selected";}?>><? echo  number_format((float)($points), 0, '.', '');?></option>
+                                                                                                        <?$points+=1;
                                                                                                         }?> </select>
                                                                                                 </p>
                                                                  
@@ -1022,10 +1034,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                     <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-right-pd-3" id="addon-1584107435-right-pd-3">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?php  $points = 22.00;
+                                                                                                        <?$points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?php  $points+=0.5;
+                                                                                                            <option <?if($points==$presDeets['addon-1584107435-right-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?$points+=0.5;
                                                                                                         }?>
                                                                                                         </select>
                                                                                                 </p>
@@ -1040,10 +1052,10 @@ if(isset($_POST['wccp_component_selection'])){
                                                                                                     <select class="wc-pao-addon-field wc-pao-addon-select" name="addon-1584107435-left-pd-4" id="addon-1584107435-left-pd-4">
                                                                                                         <option value="0.00">0.00</option>
                                                         
-                                                                                                        <?php  $points = 22.00;
+                                                                                                        <?$points = 22.00;
                                                                                                         while($points<37.00){?>
-                                                                                                            <option <?php  if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><?php   echo  number_format((float)($points), 2, '.', '');?></option>
-                                                                                                        <?php  $points+=0.5;
+                                                                                                            <option <?if($points==$presDeets['addon-1584107435-left-pd-3']){echo "selected";}?>><? echo  number_format((float)($points), 2, '.', '');?></option>
+                                                                                                        <?$points+=0.5;
                                                                                                         }?></select>
                                                                                                 </p>
                                                         
@@ -1268,9 +1280,21 @@ color: #000;"
                                                                                                 <div class="clear"></div>
                                                                                             </div>
                                                                                             -->
-                                                                                            <div class="wc-pao-addon-container  wc-pao-addon wc-pao-addon-confirm" data-product-name="Enter Prescription Now" onclick="viewStage(4)" id="button">
-                                                                                            	    <h3 class="wc-pao-addon-heading">Confirm</h3>
-                                                                                            	<div class="clear"></div>
+                                                                                            
+                                                                                             <div class="wc-pao-addon-container">
+                                                                                                <div class="form-check">
+                                                                                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                                  <label class="form-check-label" for="flexCheckDefault">
+                                                                                                    I confirm that all of the above information is correct
+                                                                                                  </label>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="wc-pao-addon-container  wc-pao-addon wc-pao-addon-confirm" data-product-name="Enter Prescription Now" onclick="viewStage(4)">
+                                                                                                
+                                                                                                
+                                                                                                    <h3 class="wc-pao-addon-heading">Confirm</h3>
+                                                                                                <div class="clear"></div>
                                                                                             </div>
 
 
@@ -1310,8 +1334,8 @@ color: #000;"
                                                                             </div>
                                                                         </div>
                                                                     </div>
-																	</div>
-																	<!-- first form -->
+                                                                    </div>
+                                                                    <!-- first form -->
                                                                     <p class="component_section_title">
                                                                         <label class="select_label"> Available options: </label>
                                                                     </p>
@@ -1460,7 +1484,7 @@ color: #000;"
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-																<!-- second form -->
+                                                                <!-- second form -->
                                                                 <div class="component_content" data-product_id="1584107435" style="height: auto; display: block;">
                                                                     <div class="component_summary cp_clearfix">
                                                                         <div class="product content summary_content populated initialized bundle_form">
@@ -1767,7 +1791,7 @@ color: #000;"
                                                                         </div>
                                                                     </div>
                                                                 </div>
-																<!-- second form -->
+                                                                <!-- second form -->
                                                                 <p class="component_section_title">
                                                                     <label class="select_label"> Available options: </label>
                                                                 </p>
@@ -2147,7 +2171,7 @@ color: #000;"
                                                                     <div class="component_options_inner cp_clearfix">
                                                                         <div id="component_option_thumbnails_1584107439" class="component_option_thumbnails columns-3" data-component_option_columns="3" >
                                                                             <ul class="component_option_thumbnails_container cp_clearfix" style="list-style: none;">
-                                                                                <li onclick="viewStage(5);  setSummary('summary_adons', 'Acuity Anti Reflection')" id="component_option_thumbnail_container_402 basic_enhance" class="component_option_thumbnail_container first" style="margin-bottom: 20px;">
+                                                                                <li onclick="viewStage(5); setSummary('summary_adons', 'Acuity Anti Reflection')" id="component_option_thumbnail_container_402" class="component_option_thumbnail_container first" style="margin-bottom: 20px;">
                                                                                     <div id="component_option_thumbnail_402" class="cp_clearfix component_option_thumbnail" data-val="402">
                                                                                         <img src="./uploads/WhatsApp Image 2021-09-16 at 10.58.34 PM.jpeg" style="max-width: 1110px;width:100%;">
                                                                                        <!-- <div class="thumnail_title">
@@ -2249,8 +2273,61 @@ color: #000;"
                                                                 </div>
                                                             </div>
                                                         </div>
-
+                                                        
                                                         <!--stage 8-->
+                                                        <div style="display:none;" id="component_1584107438stage_inner" class="component_inner">
+                                                            <div class="component_description_wrapper">
+                                                                <div class="component_description"><p>Choose a UV Protection for your everyday needs</p></div>
+                                                            </div>
+                                                            <div class="component_selections">
+                                                                <div class="scroll_show_component_details"></div>
+                                                                <div
+                                                                    id="component_options_1584107439"
+                                                                    class="component_options"
+                                                                    data-options_data='[{"option_id":"402","option_title":"Acuity Anti Reflection","option_price_html":"Included","option_thumbnail_html":"<img width=\"175\" height=\"32\" src=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image\" alt=\"\" loading=\"lazy\" srcset=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star-150x27.png 150w\" sizes=\"(max-width: 175px) 100vw, 175px\" \/>","option_product_data":{"price":"0","regular_price":"0","product_type":"simple","variation_id":"","variations_data":false,"tax_ratios":{"incl":1,"excl":1},"image_data":{"image_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png","image_srcset":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star-150x27.png 150w","image_sizes":"(max-width: 175px) 100vw, 175px","image_title":"Acuity Anti Reflection"},"stock_status":"in-stock","product_html":"\t<div class=\"composited_product_title_wrapper\" data-show_title=\"yes\" tabindex=\"-1\"><\/div>\n\t<div class=\"composited_product_details_wrapper\"><div class=\"composited_product_images images\"><figure class=\"composited_product_image woocommerce-product-gallery__image\"><a href=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png\" class=\"image zoom\" title=\"4star\" data-rel=\"photoSwipe\"><img width=\"175\" height=\"32\" src=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image\" alt=\"\" loading=\"lazy\" title=\"4star\" data-caption=\"\" data-large_image=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png\" data-large_image_width=\"175\" data-large_image_height=\"32\" srcset=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/4star-150x27.png 150w\" sizes=\"(max-width: 175px) 100vw, 175px\" \/><\/a><\/figure><\/div>\n<div class=\"details component_data\"><div class=\"component_wrap\"><span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&amp;#36;<\/span>0.00<\/bdi><\/span> <span class=\"component_option_each\">each<\/span><\/span>\n<div class=\"quantity_button\">\t<div class=\"quantity\">\n\t\t\t\t<label class=\"screen-reader-text\" for=\"quantity_60ae1f23c062b\">Acuity Anti Reflection quantity<\/label>\n\t\t<input\n\t\t\ttype=\"number\"\n\t\t\tid=\"quantity_60ae1f23c062b\"\n\t\t\tclass=\"input-text qty text\"\n\t\t\tstep=\"1\"\n\t\t\tmin=\"1\"\n\t\t\tmax=\"\"\n\t\t\tname=\"wccp_component_quantity[1584107439]\"\n\t\t\tvalue=\"1\"\n\t\t\ttitle=\"Qty\"\n\t\t\tsize=\"4\"\n\t\t\tplaceholder=\"\"\n\t\t\tinputmode=\"numeric\" \/>\n\t\t\t<\/div>\n\t<\/div>\n\t<\/div>\n<\/div>\n\n<\/div>"},"option_price_data":{"price":"0","regular_price":"0","max_price":"0","max_regular_price":"0","min_qty":1,"max_qty":"","discount":""},"is_selected":false,"is_configurable":false,"has_addons":false,"has_required_addons":false,"is_in_view":true,"option_description":"Premium lenses offers reduced internal and external reflections, easy-to-clean and more impact resistant than standard anti reflective lenses\r\n<ul class=\"desc-ul\">\r\n \t<li><img class=\"alignleft size-full wp-image-10040\" src=\"\/wp-content\/uploads\/2020\/05\/anti-refl.png\" alt=\"\" width=\"27\" height=\"23\" \/>Anti reflection<\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10045\" src=\"\/wp-content\/uploads\/2020\/05\/scratch-res.png\" alt=\"\" width=\"28\" height=\"28\" \/>scratch resistant<\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10049\" src=\"\/wp-content\/uploads\/2020\/05\/uv-protect.png\" alt=\"\" width=\"34\" height=\"34\" \/>100% UV protection<\/li>\r\n<\/ul>"},{"option_id":"403","option_title":"Ultimate Anti Reflection","option_price_html":"<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&amp;#36;<\/span>25.00<\/bdi><\/span> <span class=\"component_option_each\">each<\/span>","option_thumbnail_html":"<img width=\"175\" height=\"32\" src=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image\" alt=\"\" loading=\"lazy\" srcset=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star-150x27.png 150w\" sizes=\"(max-width: 175px) 100vw, 175px\" \/>","option_product_data":{"price":"25","regular_price":"25","product_type":"simple","variation_id":"","variations_data":false,"tax_ratios":{"incl":1,"excl":1},"image_data":{"image_src":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png","image_srcset":"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star-150x27.png 150w","image_sizes":"(max-width: 175px) 100vw, 175px","image_title":"Ultimate Anti Reflection"},"stock_status":"in-stock","product_html":"\t<div class=\"composited_product_title_wrapper\" data-show_title=\"yes\" tabindex=\"-1\"><\/div>\n\t<div class=\"composited_product_details_wrapper\"><div class=\"composited_product_images images\"><figure class=\"composited_product_image woocommerce-product-gallery__image\"><a href=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png\" class=\"image zoom\" title=\"5star\" data-rel=\"photoSwipe\"><img width=\"175\" height=\"32\" src=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png\" class=\"attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image\" alt=\"\" loading=\"lazy\" title=\"5star\" data-caption=\"\" data-large_image=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png\" data-large_image_width=\"175\" data-large_image_height=\"32\" srcset=\"https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star.png 175w, https:\/\/directvisioneyewear.ca\/wp-content\/uploads\/2020\/08\/5star-150x27.png 150w\" sizes=\"(max-width: 175px) 100vw, 175px\" \/><\/a><\/figure><\/div>\n<div class=\"details component_data\"><div class=\"component_wrap\"><span class=\"price\"><span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&amp;#36;<\/span>25.00<\/bdi><\/span> <span class=\"component_option_each\">each<\/span><\/span>\n<div class=\"quantity_button\">\t<div class=\"quantity\">\n\t\t\t\t<label class=\"screen-reader-text\" for=\"quantity_60ae1f23c2670\">Ultimate Anti Reflection quantity<\/label>\n\t\t<input\n\t\t\ttype=\"number\"\n\t\t\tid=\"quantity_60ae1f23c2670\"\n\t\t\tclass=\"input-text qty text\"\n\t\t\tstep=\"1\"\n\t\t\tmin=\"1\"\n\t\t\tmax=\"\"\n\t\t\tname=\"wccp_component_quantity[1584107439]\"\n\t\t\tvalue=\"1\"\n\t\t\ttitle=\"Qty\"\n\t\t\tsize=\"4\"\n\t\t\tplaceholder=\"\"\n\t\t\tinputmode=\"numeric\" \/>\n\t\t\t<\/div>\n\t<\/div>\n\t<\/div>\n<\/div>\n\n<\/div>"},"option_price_data":{"price":25,"regular_price":25,"max_price":25,"max_regular_price":25,"min_qty":1,"max_qty":"","discount":""},"is_selected":false,"is_configurable":false,"has_addons":false,"has_required_addons":false,"is_in_view":true,"option_description":"This versatile lens enhancement reduces reflections from all angles for exceptional visual clarity and enhanced lens aesthetics\r\n<ul class=\"desc-ul\">\r\n \t<li><img class=\"alignleft size-full wp-image-10040\" src=\"\/wp-content\/uploads\/2020\/10\/ec-icon.png\" alt=\"\" width=\"27\" height=\"23\" \/><span>Enhance clarity<\/span><\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10045\" src=\"\/wp-content\/uploads\/2020\/10\/ugr-icon.png\" alt=\"\" width=\"28\" height=\"28\" \/><span>Ultimate glare reduction<\/span><\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10046\" src=\"\/wp-content\/uploads\/2020\/10\/dsg-icon.png\" alt=\"\" width=\"26\" height=\"27\" \/><span>durable scratch guard<\/span><\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10049\" src=\"\/wp-content\/uploads\/2020\/10\/sr-icon.png\" alt=\"\" width=\"34\" height=\"34\" \/><span>SMUDGE RESISTANT<\/span><\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10049\" src=\"\/wp-content\/uploads\/2020\/10\/dr-icon.png\" alt=\"\" width=\"34\" height=\"34\" \/><span>DUST REPELLENT<\/span><\/li>\r\n \t<li><img class=\"alignleft size-full wp-image-10049\" src=\"\/wp-content\/uploads\/2020\/10\/uv-icon.png\" alt=\"\" width=\"34\" height=\"34\" \/><span>100% UV PROTECTION<\/span><\/li>\r\n<\/ul>"}]'
+                                                                >
+                                                                    <div class="component_options_inner cp_clearfix">
+                                                                        <div id="component_option_thumbnails_1584107439" class="component_option_thumbnails columns-3" data-component_option_columns="3" >
+                                                                            <ul class="component_option_thumbnails_container cp_clearfix" style="list-style: none;">
+                                                                                <li onclick="viewStage(6); setSummary('summary_adons', 'Acuity Anti Reflection')" id="component_option_thumbnail_container_402" class="component_option_thumbnail_container first" style="margin-bottom: 20px;">
+                                                                                    <div id="component_option_thumbnail_402" class="cp_clearfix component_option_thumbnail" data-val="402">
+                                                                                        <img src="./uploads/WhatsApp Image 2021-09-16 at 10.58.34 PM.jpeg" style="max-width: 1110px;width:100%;">
+                                                                                       
+                                                                                        <div class="thumbnail_buttons">
+                                                                                            <!--<button class="button component_option_thumbnail_select" aria-label="Select Acuity Anti Reflection" onclick="viewStage(5); setSummary('summary_adons', 'Acuity Anti Reflection')">Select</button>-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                        
+                                                                            </ul>
+                                                                            
+                                                                            <a type="button" onclick="viewStage(6);" class="btn button"> OR SKIP</a>
+                                                                        </div>
+                                                                        <div class="component_options_select_wrapper" style="display: none;">
+                                                                            <select id="component_options_1584107439" class="component_options_select" name="wccp_component_selection[1584107439]">
+                                                                                <option value="" selected="selected">No Enhance</option>
+                                                        
+                                                                                <option value="402">Acuity Anti Reflection</option>
+                                                        
+                                                                                <option value="403">Ultimate Anti Reflection</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="component_pagination cp_clearfix bottom" data-pagination_data='{"page":1,"pages":1}' style="display: none;">
+                                                                    <p class="index woocommerce-result-count" tabindex="-1">Page 1 of 1</p>
+                                                                    <nav class="woocommerce-pagination">
+                                                                        <ul class="page-numbers">
+                                                                            <li>
+                                                                                <span aria-current="page" class="page-numbers component_pagination_element number current" data-page_num="1">1</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </nav>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--stage 9-->
                                                         
                                                         <div id="component_1584107435_inner_saved" class="component_inner" style="display:none;">
                                                             <div class="component_description_wrapper">
@@ -2276,7 +2353,7 @@ color: #000;"
                                                                                                             <tbody>
                                                                                                                 
                                                                                                                 
-                                                                                                                <?php  $myOrderIds = array();
+                                                                                                                <?$myOrderIds = array();
                                                                                                                 $orders = getAll($con, "SELECT *, o.id order_id from glassBuy_order o inner join glassBuy_glasses g on g.glass_id=o.product_id where o.user_id='$session_userId' and isPaid='1';");
                                                                                                                 foreach($orders as $row){
                                                                                                                     $myOrderIds[] = $row['order_id'];
@@ -2293,15 +2370,15 @@ color: #000;"
                                                                                                                         <p class="no-pres-text">You have no saved prescriptions.</p>
                                                                                                                     </td>
                                                                                                                 </tr>
-                                                                                                                <?php  }else{
+                                                                                                                <?}else{
                                                                                                                     foreach($od as $row){
                                                                                                                     if($row['prescription']!=""){?>
                                                                                                                     <tr>
-                                                                                                                        <td><?php  echo $row['prescription']?></td>
-                                                                                                                        <td class="" onclick="select_prescription('<?php  echo $row['id']?>')"><a class="button pres-btn pres-btn-<?php  echo $row['id']?>" >Select</a></td>
+                                                                                                                        <td><?echo $row['prescription']?></td>
+                                                                                                                        <td class="" onclick="select_prescription('<?echo $row['id']?>')"><a class="button pres-btn pres-btn-<?echo $row['id']?>" >Select</a></td>
                                                                                                                     </tr>
                                                                                                                 
-                                                                                                                <?php  }}}?>
+                                                                                                                <?}}}?>
                                                                                                             </tbody>
                                                                                                         </table>
                                                                                                     </div>
@@ -2422,15 +2499,15 @@ color: #000;"
                                                                         </div>
                                                                     </div>
                                                                 </li>
-                                                              
     </ul>
     <div class="composite_wrap" style="">
-                                                    		<div class="composite_price" style="display: block;"><p class="price-label">PRESCRIPTION LENSES SUBTOTAL</p><p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><span class="Prescription_lenses_cost">0</span></span></p></div>
-                                                        	
-                                                        	</div>
+                                                            <div class="composite_price" style="display: block;"><p class="price-label">PRESCRIPTION LENSES SUBTOTAL</p><p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><span class="Prescription_lenses_cost">0</span></span></p></div>
+                                                            
+                                                            </div>
                                                             <div class="" style="display: block;">
                                                             <p class="price-label">Extra Charges</p><p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><span class="extra_ch"></span></span></p>
                                                             </div>
+
                                                         </div>
                                                         
                                                         
@@ -2449,25 +2526,24 @@ color: #000;"
                                                         
                                                             <h3>Summary</h3>
                                                             <div class="product-image">
-                                                                <img src="./uploads/<?php  echo $img?>" />
+                                                                <img src="./uploads/<?echo $img?>" />
                                                             </div>
                                                             <div class="title-price-area">
                                                                 <div class="product-title-frame">
-                                                                    <?php  echo $glassDeets['title']?> <br />
-                                                                    <span><?php  echo $glassDeets['available_sizes']?></span><br />
-                                                                    <span><?php  echo $glassDeets['description']?></span><br />
+                                                                    <?echo $glassDeets['title']?> <br />
+                                                                    <span><?echo $glassDeets['available_sizes']?></span><br />
+                                                                    <span><?echo $glassDeets['description']?></span><br />
                                                                 </div>
                                                                 <div class="product-price-frame">
                                                                     <span class="woocommerce-Price-amount amount">
-                                                                        <bdi><span class="woocommerce-Price-currencySymbol">&#36;</span><?php  echo $glassDeets['price']?></bdi>
+                                                                        <bdi><span class="woocommerce-Price-currencySymbol">&#36;</span><?echo $glassDeets['price']?></bdi>
                                                                     </span>
                                                                 </div>
-                                                                <input type="hidden" value=""  name="lens_type_details" id="lens_type_details">
-                                                                <input type="hidden" name="attribute_pa_size" id="pa_size" value="<?php  echo $glassDeets['available_sizes']?>" /><input type="hidden" name="attribute_pa_colour" id="pa_colour" value="<?php  echo $glassDeets['description']?>" />
+                                                                <input type="hidden" name="attribute_pa_size" id="pa_size" value="<?echo $glassDeets['available_sizes']?>" /><input type="hidden" name="attribute_pa_colour" id="pa_colour" value="<?echo $glassDeets['description']?>" />
                                                                 <input type="hidden" name="add-to-cart" value="21464" />
                                                                 <input type="hidden" name="product_id" id="product_id" value="21464" />
                                                                 <input type="hidden" name="variation_id" id="variation_id" value="21465" />
-                                                                <input type="hidden" name="frame_product_url" id="frame_product_url" value="./product.php?id=<?php  echo $glassDeets['glass_id']?>" />
+                                                                <input type="hidden" name="frame_product_url" id="frame_product_url" value="./product.php?id=<?echo $glassDeets['glass_id']?>" />
                                                                 <input type="hidden" id="quantity_5da9955a5ab80" class="qty" name="quantity" value="1" />
                                                                 <button type="submit" class="single_add_to_cart_button button alt disabled wc-variation-selection-needed" style="display: none;">Add to cart</button>
                                                             </div>
@@ -2489,9 +2565,6 @@ color: #000;"
                                                         <p class="summary_adons">
                                                             
                                                         </p>
-                                                        <p class="extra_charges">
-                                                            
-                                                            </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2569,7 +2642,7 @@ color: #000;"
                                                                         </div>
                                                                         <button
                                                                             type="button"
-																			id="check_button"
+                                                                            id="check_button"
                                                                             class="single_add_to_cart_button composite_add_to_cart_button button alt"
                                                                             onclick='sendToCart()'
                                                                         >
@@ -2868,21 +2941,18 @@ display: block;">I am ready</button>
                 <video id="video" style="max-width: 400px;width:100%;
     height: 300px;">Video stream not available.</video>
             </div>
-          --> 
+          -->
           
             <img id="image_pd_video" src="./js/camera-overlay.png" >
 
 
             <div><button id="startbutton" type="button" onclick="takepicture_timer()">Take photo</button></div>
-            <div  id="video-div"> </div>
+            <div  id="video-div" style="height: 260px;"> </div>
   
             <canvas id="canvas"></canvas>
   
-           
-        
-        </div>
-
-        <div class="output" style="display:none; width:100%;">
+            <img id="output_pd_display" class="" width="200"  style="-webkit-transform: scaleX(-1);transform: scaleX(-1);margin-top:30px;"/>
+            <div class="output" style="display:none; width:100%;">
                 <img id="photo" alt="The screen capture will appear in this box.">
                 <br>
                  <a href="#" id="retake">Retake</a>
@@ -2890,24 +2960,24 @@ display: block;">I am ready</button>
             <div class="buttons" style="display:none">
                
             </div>
-
-
+ 
         
+        </div>
         
         
     <a href="#" rel="modal:close">Close</a>
 </div>
 
- <!-- Link to open the modal --> 
+<!-- Link to open the modal -->
 
 
 
-<!-- .fl-page-content --> 
+<!-- .fl-page-content -->
 <?php require("./includes/footer.php");?>
 </div>
 <!-- .fl-page -->
 <?php require("./includes/comman/select_lenses/footerjs.php");?>
- <!-- WooCommerce JavaScript --> 
+<!-- WooCommerce JavaScript -->
 </body>
 
 <input name="vision" class="vision" hidden>
@@ -2915,12 +2985,7 @@ display: block;">I am ready</button>
 
 </form>
 </html>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-    $("#startbutton").click(function(){
-
-    });
 $(".composite_button").hide()
 pdPicUploaded = "";
     vision = "";
@@ -2951,7 +3016,7 @@ pdPicUploaded = "";
     function viewStage(stageNo){
         console.log("stageNo", stageNo)
         if(currentStage==3 && stageNo==4){
-            if(jQuery("#addon-1584107435-first-name-8").val()=="" || jQuery("#addon-1584107435-last-name-9").val()=="" || jQuery("#addon-1584107435-date-of-prescription-12").val()=="" || jQuery("#addon-1584107435-save-your-prescription-for-future-11").val()=="" || pdPicUploaded=="" ){
+            if(jQuery("#addon-1584107435-first-name-8").val()=="" || jQuery("#addon-1584107435-last-name-9").val()=="" || jQuery("#addon-1584107435-date-of-prescription-12").val()=="" || jQuery("#addon-1584107435-save-your-prescription-for-future-11").val()=="" || pdPicUploaded=="" || !$("#flexCheckDefault").is(":checked") ){
                 jQuery(".requireFields").show() 
                 console.log("not all")
                 return;
@@ -2981,30 +3046,35 @@ pdPicUploaded = "";
 
         //7
         jQuery("#component_1584107439_inner").hide();
+        
+        // 8
+        jQuery("#component_1584107438stage_inner").hide();
+        
 
-		jQuery("#component_option_thumbnail_container_390").hide();
-		jQuery("#component_option_thumbnail_container_396").hide();
-		
-		jQuery("#component_1584107434_inner > .component_description_wrapper > .component_description > p").hide();
-		jQuery("#component_options_1584107435component_options_1584107435").hide();
-		
-		//remove class
-		jQuery(".pagination_element_1584107434").removeClass("pagination_element_current")
-		jQuery(".pagination_element_1584107436").removeClass("pagination_element_current")
-		jQuery(".pagination_element_1584107439").removeClass("pagination_element_current")
-		jQuery(".pagination_element_review").removeClass("pagination_element_current")
-		
-		jQuery("#composite_summary_394").hide();
-		
-		
-		
-		if(stageNo=="back"){
-		    
-		    if(currentStage>1){
+        jQuery("#component_option_thumbnail_container_390").hide();
+        jQuery("#component_option_thumbnail_container_396").hide();
+        
+        jQuery("#component_1584107434_inner > .component_description_wrapper > .component_description > p").hide();
+        jQuery("#component_options_1584107435component_options_1584107435").hide();
+        
+        //remove class
+        jQuery(".pagination_element_1584107434").removeClass("pagination_element_current")
+        jQuery(".pagination_element_1584107436").removeClass("pagination_element_current")
+        jQuery(".pagination_element_1584107439").removeClass("pagination_element_current")
+        jQuery(".pagination_elementuvstep_1584107439").removeClass("pagination_element_current")
+        jQuery(".pagination_element_review").removeClass("pagination_element_current")
+        
+        jQuery("#composite_summary_394").hide();
+        
+        
+        
+        if(stageNo=="back"){
+            
+            if(currentStage>1){
                 currentStage=currentStage-1;
-		    }else{
-		        window.location="./product.php?id=<?echo $_GET['product_id']?>"
-		    }
+            }else{
+                window.location="./product.php?id=<?echo $_GET['product_id']?>"
+            }
             viewStage(currentStage);
             return 1;
         }else{
@@ -3017,7 +3087,6 @@ pdPicUploaded = "";
             jQuery("#component_1584107435").show();
             
             jQuery(".pagination_element_1584107434").addClass("pagination_element_current")
-          
             
         }else if(stageNo==2){
             jQuery("#component_options_1584107435component_options_1584107435").show();
@@ -3034,8 +3103,14 @@ pdPicUploaded = "";
             // jQuery("#component_1584107436").show();
             jQuery(".pagination_element_1584107439").addClass("pagination_element_current")
             jQuery("#component_1584107439_inner").show();
+        
             
         }else if(stageNo==5){
+            // jQuery("#component_1584107436").show();
+            jQuery(".pagination_elementuvstep_1584107439").addClass("pagination_element_current")
+            jQuery("#component_1584107438stage_inner").show();
+            
+        }else if(stageNo==6){
             jQuery("#composite_summary_394").show();
             jQuery(".pagination_element_review").addClass("pagination_element_current")
             $(".composite_button").show()
@@ -3055,32 +3130,25 @@ pdPicUploaded = "";
         // }
     }
     jQuery(document).ready(function(){
-		
-		viewStage(1);
-		// //Enter prescription
         
-		
-		
-		// //stage 1 click
-		jQuery("#component_options_1584107434").click(function(){
+        viewStage(1);
+        // //Enter prescription
+        
+        
+        // //stage 1 click
+        jQuery("#component_options_1584107434").click(function(){
             // viewStage(2);
-            //alert("second");
-            //$("#first_stage").removeClass("elemet_link");
-            $("#first_stage").css("pointer-events","auto");
-
-            //$("#first").removeClass("elemet_link");
-            
         });
 
         //stage 2 click
         jQuery("#component_options_1584107435component_options_1584107435").click(function(){
-            //alert("3");
+            
             // viewStage(3);
             //stage 3 form
             $("#second_stage").css("pointer-events","auto");
             
-            
         });
+
         jQuery("#button").click(function(){
             //alert("4");
             // viewStage(3);
@@ -3094,7 +3162,8 @@ pdPicUploaded = "";
             $("#forth_stage").css("pointer-events","auto");
         });
 
-	});
+
+    });
 
         function sendToCart(){
             // window.location="./cart.php?v="+vision+"&l="+lensType;
@@ -3134,31 +3203,38 @@ pdPicUploaded = "";
   </script>
       <script>
    
-        
+        var picTaken = false;
         
         function startTimer(duration, display) {
+            picTaken = false;
+            console.log("startTimer")
             var timer = duration, minutes, seconds;
             setInterval(function () {
-                if(timer>0 && timer<100){
-                    minutes = parseInt(timer / 60, 10);
-                    seconds = parseInt(timer % 60, 10);
-            
-                    minutes = minutes < 10 ? "0" + minutes : minutes;
-                    seconds = seconds < 10 ? "0" + seconds : seconds;
-            
-                    display.textContent = minutes + ":" + seconds;
-            
-                    if (--timer < 0) {
-                       
+                // console.log("timertimer", timer)
+                if(!picTaken){
+                    if(timer>0 && timer<100){
+                        minutes = parseInt(timer / 60, 10);
+                        seconds = parseInt(timer % 60, 10);
+                
+                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                        seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                        display.textContent = minutes + ":" + seconds;
+                
+                        if (--timer < 0) {
+                           
+                        }
+                    }else if(timer<=0){
+                        console.log("timer", timer);
+                        display.textContent  ="";
+                        takepicture();
+                        timer = 1000;
+                    }else if(timer==1000){
+                        timer = 1000;
+                        display.textContent  ="";
+                    }else{
+                        
                     }
-                }else if(timer<=0){
-                    console.log("timer", timer);
-                    display.textContent  ="";
-                    takepicture();
-                    timer = 1000;
-                }else if(timer==1000){
-                    timer = 1000;
-                    display.textContent  ="";
                 }
             }, 1000);
         }
@@ -3183,6 +3259,8 @@ pdPicUploaded = "";
           container.append(track.attach());
           video = document.getElementsByTagName("video")[0];
           
+        //   container.insertAdjacentHTML('beforeend', '<img id="image_pd_video" src="./js/camera-overlay.png" style="top: 0px;position: absolute;left: 0px;">');
+
           requestAnimationFrame(step);
           
         }
@@ -3207,7 +3285,6 @@ pdPicUploaded = "";
             startbutton.addEventListener('click', function(ev) {
                 takepicture_timer();
                 ev.preventDefault();
-               
             }, false);
 
             clearphoto();
@@ -3232,12 +3309,9 @@ pdPicUploaded = "";
         }
         
     
-    
         function takepicture() {
             var context = canvas.getContext('2d');
             width = 320;
-            $("#imready").hide();
-            $(".output").show();
             height = width / (4 / 3);
             if (width && height) {
                 canvas.width = width;
@@ -3249,9 +3323,13 @@ pdPicUploaded = "";
                 img.src=data;
                 img.classList.remove('hide');
                 
+                
+                document.getElementById('output_pd').src = data;
+                document.getElementById('output_pd_display').src = data;
+                console.log("here1");
+                
                 photo.setAttribute('src', data);
                 jQuery("#pictureTaken").show();
-               
                 
                 
                 var formData = new FormData();
@@ -3265,6 +3343,7 @@ pdPicUploaded = "";
                 request.open("POST", "");
                 request.send(formData);
                 pdPicUploaded = "uploaded;";
+                picTaken = true;
 
             } else {
                 clearphoto();
@@ -3278,7 +3357,10 @@ pdPicUploaded = "";
             $("#imnotready").hide();
             startup();
         }
-        $("#retake").click(function(){
+
+
+
+         $("#retake").click(function(){
             $("#imready").show();
             $(".output").hide();
         });
@@ -3442,6 +3524,6 @@ $("#basic_enhance").click(function(){
     var basic_enhance = "basic_enhance";
     alert(basic_enhance);
 });
+    
+        
     </script>
-
-
