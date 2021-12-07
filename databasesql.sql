@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 07, 2021 at 01:52 AM
--- Server version: 10.3.31-MariaDB-cll-lve
--- PHP Version: 7.3.33
+-- Host: 127.0.0.1
+-- Generation Time: Dec 07, 2021 at 07:52 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,8 +35,25 @@ CREATE TABLE `glassBuy_coupons` (
   `timeAdded` varchar(256) DEFAULT NULL,
   `description` varchar(256) DEFAULT NULL,
   `status` varchar(256) DEFAULT 'active',
+  `link` varchar(255) NOT NULL,
+  `text` varchar(100) DEFAULT NULL,
+  `color` varchar(100) NOT NULL,
   `timesUsed` varchar(256) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `glassBuy_favourites`
+--
+
+DROP TABLE IF EXISTS `glassBuy_favourites`;
+CREATE TABLE `glassBuy_favourites` (
+  `id` int(11) NOT NULL,
+  `product_id` varchar(50) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -47,19 +63,22 @@ CREATE TABLE `glassBuy_coupons` (
 
 DROP TABLE IF EXISTS `glassBuy_glasses`;
 CREATE TABLE `glassBuy_glasses` (
+  `id` int(11) NOT NULL,
   `glass_id` varchar(191) NOT NULL,
   `title` varchar(191) NOT NULL,
   `colour` varchar(191) NOT NULL,
   `shape` varchar(191) NOT NULL,
   `material` varchar(191) NOT NULL,
-  `brand` varchar(191) NOT NULL,
+  `brand` varchar(191) DEFAULT NULL,
   `gender` varchar(250) DEFAULT NULL,
   `additional_info` text DEFAULT NULL,
-  `available_sizes` varchar(191) NOT NULL,
+  `available_sizes` varchar(191) DEFAULT NULL,
   `price` varchar(191) NOT NULL,
+  `cost` double DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `manufacturer` varchar(256) DEFAULT '',
   `originalCode` varchar(256) DEFAULT '',
+  `mfg_code` varchar(100) DEFAULT NULL,
   `model` varchar(256) DEFAULT '',
   `ifAddOnRev` varchar(256) DEFAULT '',
   `colorCode` varchar(256) DEFAULT '',
@@ -74,8 +93,10 @@ CREATE TABLE `glassBuy_glasses` (
   `width` varchar(256) DEFAULT '',
   `ed` varchar(256) DEFAULT '',
   `rim` varchar(256) DEFAULT '',
+  `sticker` varchar(100) DEFAULT NULL,
   `feature` varchar(256) DEFAULT '',
   `nosePad` varchar(256) DEFAULT '',
+  `sell_in_clinic` varchar(100) DEFAULT NULL,
   `minimumPosPd` varchar(256) DEFAULT '',
   `lensType` varchar(256) DEFAULT '',
   `productCategory` varchar(256) DEFAULT '',
@@ -122,7 +143,6 @@ CREATE TABLE `glassBuy_glass_reviews` (
 
 -- --------------------------------------------------------
 
---
 -- Table structure for table `glassBuy_glass_reviews_likes`
 --
 
@@ -132,6 +152,30 @@ CREATE TABLE `glassBuy_glass_reviews_likes` (
   `commentId` varchar(256) DEFAULT NULL,
   `userId` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `glassBuy_glass_variations`
+--
+
+DROP TABLE IF EXISTS `glassBuy_glass_variations`;
+CREATE TABLE `glassBuy_glass_variations` (
+  `id` int(11) NOT NULL,
+  `color_code_1` varchar(100) DEFAULT NULL,
+  `color_1` varchar(100) NOT NULL,
+  `color_2` varchar(100) NOT NULL,
+  `size` varchar(100) DEFAULT NULL,
+  `frame_a_width` varchar(100) DEFAULT NULL,
+  `frame_b_height` varchar(100) DEFAULT NULL,
+  `frame_ed` varchar(100) DEFAULT NULL,
+  `frame_db_bridge` varchar(100) DEFAULT NULL,
+  `frame_temple_legs` varchar(100) DEFAULT NULL,
+  `frame_total_width` varchar(100) DEFAULT NULL,
+  `minimum_pd_p_sph` varchar(100) DEFAULT NULL,
+  `minimum_pd_n_sph` varchar(100) DEFAULT NULL,
+  `file` text NOT NULL,
+  `glass_id` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -160,7 +204,7 @@ CREATE TABLE `glassBuy_order` (
   `name` varchar(300) NOT NULL,
   `email` varchar(300) NOT NULL,
   `product_id` varchar(150) NOT NULL,
-  `status` varchar(256) DEFAULT '',
+  `status` varchar(256) DEFAULT 'Select',
   `isPaid` varchar(256) DEFAULT '',
   `total` varchar(256) DEFAULT '',
   `vision` varchar(256) DEFAULT '',
@@ -210,6 +254,7 @@ CREATE TABLE `glassBuy_order_details` (
   `order_date` datetime NOT NULL DEFAULT current_timestamp(),
   `vision` varchar(256) DEFAULT '',
   `lensType` varchar(256) DEFAULT '',
+  `uv_protection` varchar(100) DEFAULT NULL,
   `total` varchar(256) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -280,10 +325,17 @@ ALTER TABLE `glassBuy_coupons`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `glassBuy_favourites`
+--
+ALTER TABLE `glassBuy_favourites`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `glassBuy_glasses`
 --
 ALTER TABLE `glassBuy_glasses`
-  ADD PRIMARY KEY (`glass_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `glass_id` (`glass_id`);
 
 --
 -- Indexes for table `glassBuy_glass_picture`
@@ -297,10 +349,12 @@ ALTER TABLE `glassBuy_glass_picture`
 ALTER TABLE `glassBuy_glass_reviews`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `glassBuy_glass_reviews_likes`
---
 ALTER TABLE `glassBuy_glass_reviews_likes`
+  ADD PRIMARY KEY (`id`);
+--
+-- Indexes for table `glassBuy_glass_variations`
+--
+ALTER TABLE `glassBuy_glass_variations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -343,6 +397,24 @@ ALTER TABLE `glassBuy_users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `glassBuy_favourites`
+--
+ALTER TABLE `glassBuy_favourites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `glassBuy_glasses`
+--
+ALTER TABLE `glassBuy_glasses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `glassBuy_glass_variations`
+--
+ALTER TABLE `glassBuy_glass_variations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `glassBuy_order`
